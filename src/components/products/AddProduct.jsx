@@ -3,42 +3,100 @@ import { saveProduct } from "../../services/modalService";
 import { Link, useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-  return (
-    <>
-      <div className="d-flex align-items-center justify-content-center">
-        <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-            <div id="emailHelp" class="form-text">
-              We'll never share your email with anyone else.
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-            />
-          </div>
+  const Navigate = useNavigate();
+  // State for Product
+  const [Product, setProduct] = useState({
+    title: "",
+    barcode: "",
+    price: "",
+  });
+  // handle onChange
+  const handleChange = (e) => {
+    const product = {
+      ...Product,
+      PK: "STORE#WQ",
+      [e.target.name]: e.target.value,
+    };
+    setProduct(product);
+  };
 
-          <button type="submit" class="btn btn-primary">
-            Submit
-          </button>
-        </form>
+  // handle Submit
+  const handleSubmit = async (e, product) => {
+    e.preventDefault();
+    // console.log(product);
+    await saveProduct(product);
+    Navigate("/products/all");
+  };
+
+  return (
+    <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
+      <div className="container">
+        <div className=" row justify-content-center">
+          <div className="col-md-9 col-lg-7 col-xl-6">
+            {/* <div className="mx-4">
+            <CCardBody className="p-4"> */}
+            <form onSubmit="">
+              <h1>Add Product</h1>
+              <p className="text-medium-emphasis">Add your product details</p>
+              <div className="mb-3">
+                <label htmlFor="title">Product Title</label>
+                <input
+                  type="text"
+                  id="title"
+                  placeholder="Dalda Oil"
+                  required
+                  name="title"
+                  onChange={handleChange}
+                  value={Product.title}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="barcode">Product Barcode</label>
+                <input
+                  type="text"
+                  id="barcode"
+                  placeholder="123456"
+                  required
+                  name="barcode"
+                  onChange={handleChange}
+                  value={Product.barcode}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="price">Product Price</label>
+                <input
+                  type="number"
+                  id="price"
+                  placeholder="400"
+                  required
+                  name="price"
+                  onChange={handleChange}
+                  value={Product.price}
+                />
+              </div>
+              <button
+                type="sumbmit"
+                className="btn btn-info mb-3"
+                onClick={(e) => handleSubmit(e, Product)}
+              >
+                Add Product
+              </button>
+              {/* <button className="btn btn-info m-2" onClick="">
+                  Save
+                </button> */}
+              {/* <CButton className="btn-danger ms-2 mb-3" onClick={onCancel}>
+                  Cancel
+                </CButton> */}
+              <Link to="/products/all">
+                <button className="btn btn-danger ms-2 mb-3">Cancel</button>
+              </Link>
+            </form>
+            {/* </CCardBody>
+          </div> */}
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
-
 export default AddProduct;
