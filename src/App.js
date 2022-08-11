@@ -6,19 +6,20 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 // importing Navbar
 import Navbar from "./components/layout/Navbar";
 // importing Home
-import Home from "./components/layout/Home";
 // importing Footer
 import Footer from "./components/layout/Footer";
-import AppMain from "./components/layout/AppMain";
+
+import AddProduct from "./components/products/AddProduct";
+import AllProducts from "./components/products/AllProducts";
+import Sidebar from "./components/layout/Sidebar";
+import EditProduct from "./components/products/EditProduct";
+import AllOrders from "./components/orders/AllOrders";
 
 import { ToastContainer } from "react-toastify";
 import { alert_error, alert_info } from "./services/helpers";
 
 // importing Routes and Route
 import { useNavigate, Routes, Route } from "react-router-dom";
-import AddProduct from "./components/products/AddProduct";
-import AllProducts from "./components/products/AllProducts";
-import Sidebar from "./components/layout/Sidebar";
 import { useState, useEffect } from "react";
 import {
   getProducts,
@@ -26,7 +27,7 @@ import {
   saveProduct,
   getOrders,
 } from "./services/modalService";
-import EditProduct from "./components/products/EditProduct";
+import OrderModal from "./components/orders/OrderModal";
 
 function App() {
   // Navigate method of react router dom
@@ -86,7 +87,7 @@ function App() {
     const loadOrders = async () => {
       var orders = await getOrders();
       orders = orders.data.AllItems.Items;
-      console.log(orders);
+      // console.log(orders);
       setOrders(orders);
     };
     loadOrders();
@@ -114,7 +115,11 @@ function App() {
                   <AllProducts Products={Products} onDelete={handleDelete} />
                 }
               />
-              {/* <Route path="/orders/all" element={ <Orders />} /> */}
+              <Route path="/orders" element={<OrderModal />} />
+              <Route
+                path="/orders/all"
+                element={<AllOrders Orders={Orders} />}
+              />
             </Routes>
           </div>
         </div>
