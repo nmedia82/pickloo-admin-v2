@@ -14,7 +14,7 @@ const Navbar = () => {
         </Link>
         {/* Sidebar Toggle */}
         <button
-          className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+          className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 d-md-none"
           id="sidebarToggle"
           to=""
           type="button"
