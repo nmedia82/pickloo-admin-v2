@@ -29,18 +29,21 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
+    <div className="min-vh-100 d-flex flex-row align-items-center">
       <div className="container">
         <div className=" row justify-content-center">
-          <div className="col-md-9 col-lg-7 col-xl-6">
+          <div className="col-md-9 col-lg-7 col-xl-6 bg-light p-3">
             {/* <div className="mx-4">
             <CCardBody className="p-4"> */}
             <form onSubmit="">
               <h1>Add Product</h1>
               <p className="text-medium-emphasis">Add your product details</p>
               <div className="mb-3">
-                <label htmlFor="title">Product Title</label>
+                <label htmlFor="title" className="form-label">
+                  Product Title
+                </label>
                 <input
+                  className="form-control"
                   type="text"
                   id="title"
                   placeholder="Dalda Oil"
@@ -51,8 +54,11 @@ const AddProduct = () => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="barcode">Product Barcode</label>
+                <label htmlFor="barcode" className="form-label">
+                  Product Barcode
+                </label>
                 <input
+                  className="form-control"
                   type="text"
                   id="barcode"
                   placeholder="123456"
@@ -63,8 +69,11 @@ const AddProduct = () => {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="price">Product Price</label>
+                <label htmlFor="price" className="form-label">
+                  Product Price
+                </label>
                 <input
+                  className="form-control"
                   type="number"
                   id="price"
                   placeholder="400"

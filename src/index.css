@@ -1,24 +1,25 @@
 /* Sidebar */
-.my-sidebar {
-  height: 100%vh;
+.sidebar-col {
+  padding-left: 0 !important;
 }
+.my-sidebar {
+  /* height: 100%; */
+  background-color: #212529;
+  color: rgba(255, 255, 255, 0.5);
+}
+.my-sidebar .nav-ul {
+  padding-top: 2rem;
+  padding-left: 0.8rem;
+}
+
 .my-sidebar .nav-link {
   font-weight: 500;
-  color: rgb(142, 142, 142);
-}
-
-/* .my-sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #727272;
-} */
-
-.my-sidebar .nav-link.active {
-  color: #2470dc;
+  color: rgb(142, 142, 142) !important;
 }
 
 .my-sidebar .nav-link:hover,
-.my-sidebar .nav-link.active {
-  color: rgb(0, 0, 0);
+.my-sidebar .nav-link:active {
+  color: #fff !important;
 }
 
 /* Footer */

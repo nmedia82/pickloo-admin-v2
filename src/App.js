@@ -28,6 +28,7 @@ import {
   getOrders,
 } from "./services/modalService";
 import OrderModal from "./components/orders/OrderModal";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   // Navigate method of react router dom
@@ -97,11 +98,12 @@ function App() {
       <Navbar />
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-2">
+          <div className="sidebar-col col-md-3">
             <Sidebar />
           </div>
-          <div className="col-md-10">
+          <div className="col-md-9">
             <Routes>
+              <Route path="*" element={<Dashboard />} />
               <Route path="/products/add" element={<AddProduct />} />
               <Route
                 path="/products/edit/:id"
@@ -115,7 +117,7 @@ function App() {
                   <AllProducts Products={Products} onDelete={handleDelete} />
                 }
               />
-              <Route path="/orders" element={<OrderModal />} />
+              {/* <Route path="/orders" element={<OrderModal />} /> */}
               <Route
                 path="/orders/all"
                 element={<AllOrders Orders={Orders} />}

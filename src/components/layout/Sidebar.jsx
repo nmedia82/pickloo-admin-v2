@@ -11,9 +11,9 @@ import { FaAngleDown } from "react-icons/fa";
 
 const Sidebar = () => {
   return (
-    <div id="sidebar" className="my-sidebar bg-light min-vh-100">
-      <nav>
-        <ul className="nav flex-column p-3">
+    <div className="my-sidebar h-100">
+      <nav id="sidebarMenu" className="d-md-block collapse">
+        <ul className="nav-ul nav flex-column">
           <li className="nav-item mb-2">
             <Link className="nav-link active" aria-current="page" to="/">
               <FaTachometerAlt />
@@ -38,12 +38,14 @@ const Sidebar = () => {
             >
               <li class="nav-item ms-2 mb-2 ">
                 <Link class="nav-link" to="/products/add">
-                  <FaShoppingCart /> Add Products
+                  {/* <FaShoppingCart /> */}
+                  Add Products
                 </Link>
               </li>
               <li class="nav-item ms-2 mb-2 ">
                 <Link class="nav-link" to="/products/all">
-                  <FaShoppingCart /> All Products
+                  {/* <FaShoppingCart /> */}
+                  All Products
                 </Link>
               </li>
             </ul>
@@ -60,13 +62,14 @@ const Sidebar = () => {
               <FaAngleDown />
             </Link>
             <ul
-              class="list-unstyled flex-column pl-3 collapse"
+              className="list-unstyled flex-column pl-3 collapse"
               id="submenuOrders"
               aria-expanded="false"
             >
               <li class="nav-item ms-2 mb-2 ">
                 <Link class="nav-link text-secondary" to="/orders/all">
-                  <FaRegFileAlt /> All Orders
+                  {/* <FaRegFileAlt /> */}
+                  All Orders
                 </Link>
               </li>
             </ul>
