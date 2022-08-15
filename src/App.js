@@ -98,7 +98,7 @@ function App() {
       <Navbar />
       <div className="container-fluid">
         <div className="row">
-          <div className="sidebar-col min-vh-100 col-md-3">
+          <div className="sidebar-col col-md-3">
             <Sidebar />
           </div>
           <div className="col-md-9">
