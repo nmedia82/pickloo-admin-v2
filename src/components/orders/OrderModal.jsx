@@ -12,10 +12,10 @@ const OrderModal = ({ Orders, OrderID }) => {
   // Get Order Detail
   const orderDetail = (OrderID) => {
     let myOrder = Orders.find((order) => order.order_id === OrderID);
-    console.log(myOrder);
+    // console.log(myOrder);
     setmyOrder(myOrder);
     let orderDetail = myOrder.order_items;
-    console.log(orderDetail);
+    // console.log(orderDetail);
     setOrder(orderDetail);
   };
 
@@ -71,6 +71,7 @@ const OrderModal = ({ Orders, OrderID }) => {
                     {Order.map((ord, ind) => (
                       <tr key={ind}>
                         <th scope="col">{ind + 1}</th>
+                        {console.log(ord.title)}
                         <td>{ord.title}</td>
                         <td>{__price(ord.price)}</td>
                         <td>{ord.qty}</td>

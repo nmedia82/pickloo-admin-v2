@@ -4,19 +4,20 @@ import { Link, useParams } from "react-router-dom";
 const EditProduct = ({ Products, onUpdate }) => {
   // Getting ID
   const { id } = useParams();
-  // console.log(id.toString())
+  // console.log(id.toString());
 
-  // set state for Product
+  // state for Product to Update
   const [Product, setProduct] = useState({});
 
   // Getting Product for Edit Product
   useEffect(() => {
     // loadProducts()
     const product = Products.find((p) => p.barcode === id);
-    console.log(product);
+    // console.log(product);
     setProduct(product);
-  }, [Products]);
+  }, []);
 
+  // handle onChange input fields
   const handleChange = (e) => {
     const product = {
       ...Product,
@@ -32,7 +33,7 @@ const EditProduct = ({ Products, onUpdate }) => {
         <div className=" row justify-content-center">
           <div className="col-md-9 col-lg-7 col-xl-6 bg-light p-3">
             {Product && (
-              <form onSubmit="">
+              <form>
                 <h1>Edit Product</h1>
                 <p className="text-medium-emphasis">
                   Edit your product details

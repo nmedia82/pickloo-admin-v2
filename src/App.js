@@ -27,14 +27,13 @@ import {
   saveProduct,
   getOrders,
 } from "./services/modalService";
-import OrderModal from "./components/orders/OrderModal";
 import Dashboard from "./components/Dashboard";
 
 function App() {
   // Navigate method of react router dom
   const Navigate = useNavigate();
 
-  // Products
+  // ========== Products  ===========
   // State for Products
   const [Products, setProducts] = useState([]);
 
@@ -66,6 +65,7 @@ function App() {
   // Update Product
   // handle Updatate Product
   const handleUpdate = async (product) => {
+    // console.log(product)
     const resp = await saveProduct(product);
     if (resp.status !== 200) return alert_error("Error while updating product");
     // updating Products lists
@@ -98,7 +98,7 @@ function App() {
       <Navbar />
       <div className="container-fluid">
         <div className="row">
-          <div className="sidebar-col col-md-3">
+          <div className="sidebar-col min-vh-100 col-md-3">
             <Sidebar />
           </div>
           <div className="col-md-9">
