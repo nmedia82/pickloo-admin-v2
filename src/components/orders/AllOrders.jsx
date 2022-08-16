@@ -1,5 +1,7 @@
 import React from "react";
+// importing OrderModal component
 import OrderModal from "./OrderModal";
+// importin price fuction
 import { __price } from "../../services/helpers";
 
 const AllOrders = ({ Orders }) => {

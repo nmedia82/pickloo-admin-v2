@@ -1,13 +1,15 @@
 import React from "react";
+// importing Link
 import { Link } from "react-router-dom";
 // icons
 import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
+
 const Navbar = () => {
   return (
     <>
-      <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
         {/* Navbar Brand */}
         <Link className="navbar-brand ps-3" to="/">
           Pickloo Vendor Admin

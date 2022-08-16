@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// importing price function
 import { __price } from "../../services/helpers";
 
 const OrderModal = ({ Orders, OrderID }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-// import Link
+// importing Link
 import { Link } from "react-router-dom";
 // icons
 import { AiOutlineBarChart } from "react-icons/ai";

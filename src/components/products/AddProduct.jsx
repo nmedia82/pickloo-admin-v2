@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { saveProduct } from "../../services/modalService";
+// importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
+// importing saveProduct API
+import { saveProduct } from "../../services/modalService";
 
 const AddProduct = () => {
   const Navigate = useNavigate();
@@ -10,7 +12,7 @@ const AddProduct = () => {
     barcode: "",
     price: "",
   });
-  // handle onChange
+  // handle on Change
   const handleChange = (e) => {
     const product = {
       ...Product,
@@ -20,7 +22,7 @@ const AddProduct = () => {
     setProduct(product);
   };
 
-  // handle Submit
+  // handle on Submit
   const handleSubmit = async (e, product) => {
     e.preventDefault();
     // console.log(product);

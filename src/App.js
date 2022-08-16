@@ -1,32 +1,37 @@
-// importing CSS from Bootstrap
-import "bootstrap/dist/css/bootstrap.min.css";
-// importing JS from Bootstrap
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
-
-// importing Navbar
-import Navbar from "./components/layout/Navbar";
-// importing Home
-// importing Footer
-import Footer from "./components/layout/Footer";
-
-import AddProduct from "./components/products/AddProduct";
-import AllProducts from "./components/products/AllProducts";
-import Sidebar from "./components/layout/Sidebar";
-import EditProduct from "./components/products/EditProduct";
-import AllOrders from "./components/orders/AllOrders";
-
-import { ToastContainer } from "react-toastify";
-import { alert_error, alert_info } from "./services/helpers";
-
-// importing Routes and Route
+// ============= importing packages  ==============
+// importing Routes, Route and useNavigate
 import { useNavigate, Routes, Route } from "react-router-dom";
+// importing hooks
 import { useState, useEffect } from "react";
+// importing Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
+// importing react-tostify
+import { ToastContainer } from "react-toastify";
+
+// ============= importing custom Functions  ==============
+// importing alerts
+import { alert_error, alert_info } from "./services/helpers";
+// importing APIs
 import {
   getProducts,
   deleteProduct,
   saveProduct,
   getOrders,
 } from "./services/modalService";
+
+// ============= importing components  ==============
+// importing Layout components
+import Navbar from "./components/layout/Navbar";
+import Sidebar from "./components/layout/Sidebar";
+import Footer from "./components/layout/Footer";
+// importing Products components
+import AddProduct from "./components/products/AddProduct";
+import AllProducts from "./components/products/AllProducts";
+import EditProduct from "./components/products/EditProduct";
+// importing Orders components
+import AllOrders from "./components/orders/AllOrders";
+// importing Dashboard
 import Dashboard from "./components/Dashboard";
 
 function App() {
@@ -79,7 +84,7 @@ function App() {
     Navigate("/products/all");
   };
 
-  // Orders
+  // ========== Orders  ===========
   // State for Orders
   const [Orders, setOrders] = useState([]);
 
@@ -93,14 +98,20 @@ function App() {
     };
     loadOrders();
   }, []);
+
+  // returnig Template
   return (
     <div className="App">
+      {/* Navbar */}
       <Navbar />
       <div className="container-fluid">
         <div className="row">
           <div className="sidebar-col col-md-3">
+            {/* Sidebar */}
             <Sidebar />
           </div>
+          {/* Main */}
+          {/* =========== Routing =========== */}
           <div className="col-md-9">
             <Routes>
               <Route path="*" element={<Dashboard />} />
@@ -117,7 +128,6 @@ function App() {
                   <AllProducts Products={Products} onDelete={handleDelete} />
                 }
               />
-              {/* <Route path="/orders" element={<OrderModal />} /> */}
               <Route
                 path="/orders/all"
                 element={<AllOrders Orders={Orders} />}
@@ -126,7 +136,9 @@ function App() {
           </div>
         </div>
       </div>
+      {/* Footer */}
       <Footer />
+      {/* Toostify */}
       <ToastContainer />
     </div>
   );

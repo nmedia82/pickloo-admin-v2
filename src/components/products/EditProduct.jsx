@@ -1,4 +1,6 @@
+// importing hooks
 import React, { useState, useEffect } from "react";
+// importing Link and useParams
 import { Link, useParams } from "react-router-dom";
 
 const EditProduct = ({ Products, onUpdate }) => {
@@ -63,6 +65,7 @@ const EditProduct = ({ Products, onUpdate }) => {
                     id="barcode"
                     placeholder="123456"
                     required
+                    disabled
                     name="barcode"
                     onChange={handleChange}
                     value={Product.barcode}

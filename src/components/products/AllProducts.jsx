@@ -1,5 +1,7 @@
 import React from "react";
+// importing Link
 import { Link } from "react-router-dom";
+// importing price function
 import { __price } from "../../services/helpers";
 
 const AllProducts = ({ Products, onDelete }) => {
@@ -22,6 +24,7 @@ const AllProducts = ({ Products, onDelete }) => {
                 </tr>
               </thead>
               <tbody>
+                {/* ======= listing products ======= */}
                 {Products.map((product, index) => (
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
