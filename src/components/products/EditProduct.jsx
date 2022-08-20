@@ -35,7 +35,7 @@ const EditProduct = ({ Products, onUpdate }) => {
         <div className=" row justify-content-center">
           <div className="col-md-9 col-lg-7 col-xl-6 bg-light p-3">
             {Product && (
-              <form>
+              <>
                 <h1>Edit Product</h1>
                 <p className="text-medium-emphasis">
                   Edit your product details
@@ -98,7 +98,7 @@ const EditProduct = ({ Products, onUpdate }) => {
                 <Link to="/products/all">
                   <button className="btn btn-danger ms-2 mb-3">Cancel</button>
                 </Link>
-              </form>
+              </>
             )}
           </div>
         </div>

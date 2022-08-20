@@ -70,7 +70,8 @@ function App() {
   // Update Product
   // handle Updatate Product
   const handleUpdate = async (product) => {
-    // console.log(product)
+    // console.log(product);
+    // return;
     const resp = await saveProduct(product);
     if (resp.status !== 200) return alert_error("Error while updating product");
     // updating Products lists
