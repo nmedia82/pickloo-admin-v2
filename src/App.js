@@ -18,6 +18,7 @@ import {
   deleteProduct,
   saveProduct,
   getOrders,
+  getTranspoters,
 } from "./services/modalService";
 
 // ============= importing components  ==============
@@ -33,6 +34,9 @@ import EditProduct from "./components/products/EditProduct";
 import AllOrders from "./components/orders/AllOrders";
 // importing Dashboard
 import Dashboard from "./components/Dashboard";
+// importing Transporters components
+import AddTransporter from "./transporters/AddTranspoter";
+import AllTranspoters from "./transporters/AllTransporters";
 
 function App() {
   // Navigate method of react router dom
@@ -77,6 +81,7 @@ function App() {
     // updating Products lists
     const products = [...Products];
     const product1 = products.find((p) => p.barcode === product.barcode);
+    // console.log(product1);
     const index = Products.indexOf(product1);
     products[index] = product;
     setProducts(products);
@@ -100,6 +105,21 @@ function App() {
     loadOrders();
   }, []);
 
+  // ========== Transpoters  ===========
+  // State for Transpoters
+  const [Transpoters, setTranspoters] = useState([]);
+
+  // Getting Transpoters
+  useEffect(() => {
+    const loadTranspoters = async () => {
+      let transpoters = await getTranspoters();
+      console.log(transpoters);
+      // orders = orders.data.AllItems.Items;
+      setTranspoters(transpoters);
+    };
+    loadTranspoters();
+  }, []);
+
   // returnig Template
   return (
     <div className="App">
@@ -116,6 +136,8 @@ function App() {
           <div className="col-md-9">
             <Routes>
               <Route path="*" element={<Dashboard />} />
+              <Route path="/transpoters/add" element={<AddTransporter />} />
+              <Route path="/transpoters/all" element={<AllTranspoters />} />
               <Route path="/products/add" element={<AddProduct />} />
               <Route
                 path="/products/edit/:id"

@@ -65,7 +65,6 @@ const EditProduct = ({ Products, onUpdate }) => {
                     id="barcode"
                     placeholder="123456"
                     required
-                    disabled
                     name="barcode"
                     onChange={handleChange}
                     value={Product.barcode}
