@@ -6,6 +6,7 @@ import { AiOutlineBarChart } from "react-icons/ai";
 import { FaTachometerAlt } from "react-icons/fa";
 import { FaRegFileAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
+import { FaBusAlt } from "react-icons/fa";
 import { FaUserFriends } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 
@@ -70,6 +71,30 @@ const Sidebar = () => {
                 <Link class="nav-link text-secondary" to="/orders/all">
                   {/* <FaRegFileAlt /> */}
                   All Orders
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link"
+              to="#submenuTransporters"
+              data-bs-toggle="collapse"
+              data-bs-target="#submenuTransporters"
+            >
+              <FaBusAlt />
+              <span className="mx-2">Transporters</span>
+              <FaAngleDown />
+            </Link>
+            <ul
+              className="list-unstyled flex-column pl-3 collapse"
+              id="submenuTransporters"
+              aria-expanded="false"
+            >
+              <li class="nav-item ms-2 mb-2 ">
+                <Link class="nav-link text-secondary" to="/transporters/all">
+                  {/* <FaRegFileAlt /> */}
+                  All Transporters
                 </Link>
               </li>
             </ul>

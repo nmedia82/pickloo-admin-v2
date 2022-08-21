@@ -23,16 +23,16 @@ export function getOrders() {
   return httpService.get(url);
 }
 
-// ============ Transpoters ============
-// Getting Transpoters
-export function getTranspoters() {
+// ============ Transporter ============
+// Getting Transporter
+export function getTransporters() {
   const url =
     "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
   return httpService.get_transporters(url);
 }
 
 // Adding Transpoter
-export function saveTranspoter(data) {
+export function saveTransporter(data) {
   const url =
     "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
   return httpService.save_transporter(url, data);

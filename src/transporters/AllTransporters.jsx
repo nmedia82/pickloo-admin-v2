@@ -2,13 +2,14 @@ import React from "react";
 // importing Link
 import { Link } from "react-router-dom";
 
-const AllTranspoters = ({ Transpoters }) => {
-  console.log(Transpoters);
+const AllTransporters = ({ Transporters }) => {
+  // console.log(Transporters);
+  
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
-          <h1 className="text-center my-3">All Products</h1>
+          <h1 className="text-center my-3">All Transporters</h1>
           <div className="table-responsive">
             <table className="table table-light table-bordered text-center">
               <thead className="table-dark">
@@ -22,17 +23,17 @@ const AllTranspoters = ({ Transpoters }) => {
                 </tr>
               </thead>
               <tbody>
-                {/* ======= listing transpoters ======= */}
-                {/* {Transpoters.map((transpoter, index) => (
+                {/* ======= listing transporters ======= */}
+                {Transporters.map((transporter, index) => (
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
-                    <td>{transpoter.full_name}</td>
-                    <td>{transpoter.transporter_phone}</td>
-                    <td>{transpoter.email}</td>
-                    <td>{transpoter.address}</td>
-                    <td>{transpoter.city}</td>
+                    <td>{transporter.full_name}</td>
+                    <td>{transporter.transporter_phone}</td>
+                    <td>{transporter.email}</td>
+                    <td>{transporter.address}</td>
+                    <td>{transporter.city}</td>
                   </tr>
-                ))} */}
+                ))}
               </tbody>
             </table>
           </div>
@@ -42,4 +43,4 @@ const AllTranspoters = ({ Transpoters }) => {
   );
 };
 
-export default AllTranspoters;
+export default AllTransporters;

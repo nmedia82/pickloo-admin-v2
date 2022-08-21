@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
 // importing saveTransporter API
-import { saveTranspoter } from "../services/modalService";
+import { saveTransporter } from "../services/modalService";
 
 const AddTransporter = () => {
   const Navigate = useNavigate();
@@ -27,7 +27,7 @@ const AddTransporter = () => {
   const handleSubmit = async (e, transporter) => {
     e.preventDefault();
     // console.log(transporter);
-    await saveTranspoter(transporter);
+    await saveTransporter(transporter);
     console.log("transpoter added");
     // Navigate("/transporters/all");
   };
@@ -40,7 +40,7 @@ const AddTransporter = () => {
             {/* <div className="mx-4">
             <CCardBody className="p-4"> */}
             <form onSubmit="">
-              <h1>Add transporter</h1>
+              <h1>Register transporter</h1>
               <p className="text-medium-emphasis">
                 Add your transporter details
               </p>

@@ -18,10 +18,12 @@ import {
   deleteProduct,
   saveProduct,
   getOrders,
-  getTranspoters,
+  getTransporters,
 } from "./services/modalService";
 
 // ============= importing components  ==============
+// importing Login
+import Login from "./Login";
 // importing Layout components
 import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
@@ -35,8 +37,8 @@ import AllOrders from "./components/orders/AllOrders";
 // importing Dashboard
 import Dashboard from "./components/Dashboard";
 // importing Transporters components
-import AddTransporter from "./transporters/AddTranspoter";
-import AllTranspoters from "./transporters/AllTransporters";
+import AddTransporter from "./transporters/AddTransporter";
+import AllTransporters from "./transporters/AllTransporters";
 
 function App() {
   // Navigate method of react router dom
@@ -105,24 +107,25 @@ function App() {
     loadOrders();
   }, []);
 
-  // ========== Transpoters  ===========
-  // State for Transpoters
-  const [Transpoters, setTranspoters] = useState([]);
+  // ========== Transporters  ===========
+  // State for Transporters
+  const [Transporters, setTransporters] = useState([]);
 
-  // Getting Transpoters
+  // Getting Transporters
   useEffect(() => {
-    const loadTranspoters = async () => {
-      let transpoters = await getTranspoters();
-      console.log(transpoters);
+    const loadTransporters = async () => {
+      let transporters = await getTransporters();
+      console.log(transporters);
       // orders = orders.data.AllItems.Items;
-      setTranspoters(transpoters);
+      setTransporters(transporters);
     };
-    loadTranspoters();
+    loadTransporters();
   }, []);
 
   // returnig Template
   return (
     <div className="App">
+      {/* <Login /> */}
       {/* Navbar */}
       <Navbar />
       <div className="container-fluid">
@@ -135,9 +138,12 @@ function App() {
           {/* =========== Routing =========== */}
           <div className="col-md-9">
             <Routes>
-              <Route path="*" element={<Dashboard />} />
-              <Route path="/transpoters/add" element={<AddTransporter />} />
-              <Route path="/transpoters/all" element={<AllTranspoters />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/transporters/add" element={<AddTransporter />} />
+              <Route
+                path="/transporters/all"
+                element={<AllTransporters Transporters={Transporters} />}
+              />
               <Route path="/products/add" element={<AddProduct />} />
               <Route
                 path="/products/edit/:id"
