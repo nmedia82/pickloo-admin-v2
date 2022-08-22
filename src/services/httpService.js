@@ -32,4 +32,6 @@ export default {
   delete: axios.delete,
   get_transporters: axios.get,
   save_transporter: axios.post,
+  get_routes: axios.get,
+  save_route: axios.post,
 };

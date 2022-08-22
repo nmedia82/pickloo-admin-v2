@@ -37,3 +37,17 @@ export function saveTransporter(data) {
     "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
   return httpService.save_transporter(url, data);
 }
+
+// ============ Routes ============
+// Getting Routes
+export function getRoutes() {
+  const url =
+    "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
+  return httpService.get_routes(url);
+}
+// Adding Route
+export function saveRoute(data) {
+  const url =
+    "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
+  return httpService.save_route(url, data);
+}

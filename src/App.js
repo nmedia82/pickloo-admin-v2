@@ -39,6 +39,8 @@ import Dashboard from "./components/Dashboard";
 // importing Transporters components
 import AddTransporter from "./transporters/AddTransporter";
 import AllTransporters from "./transporters/AllTransporters";
+// importing Routes components
+import AddRoute from "./routes/AddRoute";
 
 function App() {
   // Navigate method of react router dom
@@ -144,7 +146,7 @@ function App() {
                 path="/transporters/all"
                 element={<AllTransporters Transporters={Transporters} />}
               />
-              <Route path="/routes/add" element={<AddTransporter />} />
+              <Route path="/routes/add" element={<AddRoute />} />
               <Route path="/bookings/add" element={<AddTransporter />} />
               <Route path="/products/add" element={<AddProduct />} />
               <Route
