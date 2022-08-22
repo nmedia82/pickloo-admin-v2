@@ -18,6 +18,7 @@ const AddTransporter = () => {
   const handleChange = (e) => {
     const Transporter = {
       ...transporter,
+      PK: "MEMBER#",
       [e.target.name]: e.target.value,
     };
     setTransporter(Transporter);
@@ -27,9 +28,9 @@ const AddTransporter = () => {
   const handleSubmit = async (e, transporter) => {
     e.preventDefault();
     console.log(transporter);
-    // await saveTransporter(transporter);
-    // console.log("transpoter added");
-    // Navigate("/transporters/all");
+    await saveTransporter(transporter);
+    console.log("transpoter added");
+    Navigate("/transporters/all");
   };
 
   return (
