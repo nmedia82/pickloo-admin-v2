@@ -55,35 +55,33 @@ function App() {
   // State for Transporters
   const [Transporters, setTransporters] = useState([]);
 
-  // Getting Products for AllProducts
   useEffect(() => {
+    // Getting Products for AllProducts
     const loadProducts = async () => {
       var products = await getProducts();
       products = products.data.AllItems.Items;
       // console.log(products)
       setProducts(products);
     };
+    // loadProducts();
 
+    // Getting Orders for AllOrders
     const loadOrders = async () => {
       var orders = await getOrders();
       orders = orders.data.AllItems.Items;
       // console.log(orders);
       setOrders(orders);
     };
-
     // loadOrders();
 
+    // Getting Transporters for AllTransporters
     const loadTransporters = async () => {
       let transporters = await getTransporters();
       transporters = transporters.data.AllItems.Items;
-      console.log(transporters);
-      // orders = orders.data.AllItems.Items;
+      // console.log(transporters);
       setTransporters(transporters);
     };
-
     loadTransporters();
-
-    // loadProducts();
   }, []);
 
   // Delete Prouduct from AllProducts
