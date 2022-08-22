@@ -2,14 +2,14 @@ import React from "react";
 // importing Link
 import { Link } from "react-router-dom";
 
-const AllTransporters = ({ Transporters }) => {
-  // console.log(Transporters);
+const AllRoutes = ({ Routes }) => {
+  console.log(Routes);
 
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
-          <h1 className="text-center my-3">All Transporters</h1>
+          <h1 className="text-center my-3">All Routes</h1>
           <div className="table-responsive">
             <table className="table table-light table-bordered text-center">
               <thead className="table-dark">
@@ -24,18 +24,18 @@ const AllTransporters = ({ Transporters }) => {
                 </tr>
               </thead>
               <tbody>
-                {/* ======= listing transporters ======= */}
-                {Transporters.map((transporter, index) => (
+                {/* ======= listing Routes ======= */}
+                {/* {Routes.map((route, index) => (
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
-                    <td>{transporter.full_name}</td>
-                    <td>{transporter.phone}</td>
-                    <td>{transporter.email}</td>
-                    <td>{transporter.address}</td>
-                    <td>{transporter.city}</td>
-                    <td>{transporter.transporter_status}</td>
+                    <td>{route.full_name}</td>
+                    <td>{route.phone}</td>
+                    <td>{route.email}</td>
+                    <td>{route.address}</td>
+                    <td>{route.city}</td>
+                    <td>{route.transporter_status}</td>
                   </tr>
-                ))}
+                ))} */}
               </tbody>
             </table>
           </div>
@@ -45,4 +45,4 @@ const AllTransporters = ({ Transporters }) => {
   );
 };
 
-export default AllTransporters;
+export default AllRoutes;

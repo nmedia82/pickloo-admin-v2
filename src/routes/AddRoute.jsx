@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
 // importing saveroute API
-import { saveRoute } from "../services/modalService";
+import { saveMyRoute } from "../services/modalService";
 
 const AddRoute = () => {
   const Navigate = useNavigate();
@@ -27,8 +27,8 @@ const AddRoute = () => {
   const handleSubmit = async (e, route) => {
     e.preventDefault();
     console.log(route);
-    await saveRoute(route);
-    // console.log("route added");
+    await saveMyRoute(route);
+    console.log("route added");
     // Navigate("/routes/all");
   };
   return (

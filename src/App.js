@@ -20,6 +20,7 @@ import {
   saveProduct,
   getOrders,
   getTransporters,
+  // getRoutes,
 } from "./services/modalService";
 
 // ============= importing components  ==============
@@ -42,6 +43,7 @@ import AddTransporter from "./transporters/AddTransporter";
 import AllTransporters from "./transporters/AllTransporters";
 // importing Routes components
 import AddRoute from "./routes/AddRoute";
+// import AllRoutes from "./routes/AllRoutes";
 
 function App() {
   // Navigate method of react router dom
@@ -54,6 +56,8 @@ function App() {
   const [Orders, setOrders] = useState([]);
   // State for Transporters
   const [Transporters, setTransporters] = useState([]);
+  // State for Routes
+  // const [Routes, setRoutes] = useState([]);
 
   useEffect(() => {
     // Getting Products for AllProducts
@@ -82,6 +86,15 @@ function App() {
       setTransporters(transporters);
     };
     loadTransporters();
+
+    // Getting Routes for AllRoutes
+    // const loadRoutes = async () => {
+    //   let routes = await getRoutes();
+    //   console.log(routes);
+    //   routes = routes.data.AllItems.Items;
+    //   setRoutes(routes);
+    // };
+    // loadRoutes();
   }, []);
 
   // Delete Prouduct from AllProducts
@@ -139,6 +152,10 @@ function App() {
                 element={<AllTransporters Transporters={Transporters} />}
               />
               <Route path="/routes/add" element={<AddRoute />} />
+              {/* <Route
+                path="/routes/all"
+                element={<AllRoutes Routes={Routes} />}
+              /> */}
               <Route path="/bookings/add" element={<AddTransporter />} />
               <Route path="/products/add" element={<AddProduct />} />
               <Route

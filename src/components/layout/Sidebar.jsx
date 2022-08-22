@@ -126,6 +126,12 @@ const Sidebar = () => {
                   Add Route
                 </Link>
               </li>
+              <li className="nav-item ms-2 mb-2 ">
+                <Link className="nav-link text-secondary" to="/routes/all">
+                  {/* <FaRegFileAlt /> */}
+                  All Routes
+                </Link>
+              </li>
             </ul>
           </li>
           <li className="nav-item mb-2">

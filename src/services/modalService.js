@@ -39,14 +39,12 @@ export function saveTransporter(data) {
 
 // ============ Routes ============
 // Getting Routes
-export function getRoutes() {
-  const url =
-    "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
-  return httpService.get_routes(url);
+export function getRoutes(data) {
+  const url = `${config.uri_roaddy}?action=get_routes`;
+  return httpService.post(url, data);
 }
 // Adding Route
-export function saveRoute(data) {
-  const url =
-    "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
-  return httpService.save_route(url, data);
+export function saveMyRoute(data) {
+  const url = `${config.uri_roaddy}?action=save_route`;
+  return httpService.post(url, data);
 }
