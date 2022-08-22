@@ -7,6 +7,8 @@ import { FaTachometerAlt } from "react-icons/fa";
 import { FaRegFileAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaBusAlt } from "react-icons/fa";
+import { FaRoute } from "react-icons/fa";
+import { TbBrandBooking } from "react-icons/tb";
 import { FaUserFriends } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 
@@ -95,6 +97,54 @@ const Sidebar = () => {
                 <Link class="nav-link text-secondary" to="/transporters/all">
                   {/* <FaRegFileAlt /> */}
                   All Transporters
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link"
+              to="#submenuRoutes"
+              data-bs-toggle="collapse"
+              data-bs-target="#submenuRoutes"
+            >
+              <FaRoute />
+              <span className="mx-2">Routes</span>
+              <FaAngleDown />
+            </Link>
+            <ul
+              className="list-unstyled flex-column pl-3 collapse"
+              id="submenuRoutes"
+              aria-expanded="false"
+            >
+              <li class="nav-item ms-2 mb-2 ">
+                <Link class="nav-link text-secondary" to="/routes/add">
+                  {/* <FaRegFileAlt /> */}
+                  Add Route
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li className="nav-item mb-2">
+            <Link
+              className="nav-link"
+              to="#submenuBookings"
+              data-bs-toggle="collapse"
+              data-bs-target="#submenuBookings"
+            >
+              <TbBrandBooking />
+              <span className="mx-2">Bookings</span>
+              <FaAngleDown />
+            </Link>
+            <ul
+              className="list-unstyled flex-column pl-3 collapse"
+              id="submenuBookings"
+              aria-expanded="false"
+            >
+              <li class="nav-item ms-2 mb-2 ">
+                <Link class="nav-link text-secondary" to="/bookings/add">
+                  {/* <FaRegFileAlt /> */}
+                  Add Bookings
                 </Link>
               </li>
             </ul>

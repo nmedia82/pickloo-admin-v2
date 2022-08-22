@@ -138,12 +138,14 @@ function App() {
           {/* =========== Routing =========== */}
           <div className="col-md-9">
             <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/transporters/add" element={<AddTransporter />} />
               <Route
                 path="/transporters/all"
                 element={<AllTransporters Transporters={Transporters} />}
               />
+              <Route path="/routes/add" element={<AddTransporter />} />
+              <Route path="/bookings/add" element={<AddTransporter />} />
               <Route path="/products/add" element={<AddProduct />} />
               <Route
                 path="/products/edit/:id"

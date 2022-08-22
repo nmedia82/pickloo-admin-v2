@@ -3,8 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const AllTransporters = ({ Transporters }) => {
-  // console.log(Transporters);
-  
+  console.log(Transporters);
+
   return (
     <div className="container-fluid">
       <div className="row">

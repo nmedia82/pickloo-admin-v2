@@ -26,9 +26,9 @@ const AddTransporter = () => {
   // handle on Submit
   const handleSubmit = async (e, transporter) => {
     e.preventDefault();
-    // console.log(transporter);
-    await saveTransporter(transporter);
-    console.log("transpoter added");
+    console.log(transporter);
+    // await saveTransporter(transporter);
+    // console.log("transpoter added");
     // Navigate("/transporters/all");
   };
 
