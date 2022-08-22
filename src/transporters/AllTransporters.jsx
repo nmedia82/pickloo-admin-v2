@@ -20,6 +20,7 @@ const AllTransporters = ({ Transporters }) => {
                   <th scope="col">Email</th>
                   <th scope="col">Address</th>
                   <th scope="col">City</th>
+                  <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -32,6 +33,7 @@ const AllTransporters = ({ Transporters }) => {
                     <td>{transporter.email}</td>
                     <td>{transporter.address}</td>
                     <td>{transporter.city}</td>
+                    <td>{transporter.transporter_status}</td>
                   </tr>
                 ))}
               </tbody>

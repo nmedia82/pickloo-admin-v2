@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 // importing react-tostify
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // ============= importing custom Functions  ==============
 // importing alerts

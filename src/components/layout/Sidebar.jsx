@@ -36,17 +36,17 @@ const Sidebar = () => {
               <FaAngleDown />
             </Link>
             <ul
-              class="list-unstyled flex-column pl-3 collapse"
+              className="list-unstyled flex-column pl-3 collapse"
               id="submenuProducts"
             >
-              <li class="nav-item ms-2 mb-2 ">
-                <Link class="nav-link" to="/products/add">
+              <li className="nav-item ms-2 mb-2 ">
+                <Link className="nav-link" to="/products/add">
                   {/* <FaShoppingCart /> */}
                   Add Products
                 </Link>
               </li>
-              <li class="nav-item ms-2 mb-2 ">
-                <Link class="nav-link" to="/products/all">
+              <li className="nav-item ms-2 mb-2 ">
+                <Link className="nav-link" to="/products/all">
                   {/* <FaShoppingCart /> */}
                   All Products
                 </Link>
@@ -69,8 +69,8 @@ const Sidebar = () => {
               id="submenuOrders"
               aria-expanded="false"
             >
-              <li class="nav-item ms-2 mb-2 ">
-                <Link class="nav-link text-secondary" to="/orders/all">
+              <li className="nav-item ms-2 mb-2 ">
+                <Link className="nav-link text-secondary" to="/orders/all">
                   {/* <FaRegFileAlt /> */}
                   All Orders
                 </Link>
@@ -93,8 +93,11 @@ const Sidebar = () => {
               id="submenuTransporters"
               aria-expanded="false"
             >
-              <li class="nav-item ms-2 mb-2 ">
-                <Link class="nav-link text-secondary" to="/transporters/all">
+              <li className="nav-item ms-2 mb-2 ">
+                <Link
+                  className="nav-link text-secondary"
+                  to="/transporters/all"
+                >
                   {/* <FaRegFileAlt /> */}
                   All Transporters
                 </Link>
@@ -117,8 +120,8 @@ const Sidebar = () => {
               id="submenuRoutes"
               aria-expanded="false"
             >
-              <li class="nav-item ms-2 mb-2 ">
-                <Link class="nav-link text-secondary" to="/routes/add">
+              <li className="nav-item ms-2 mb-2 ">
+                <Link className="nav-link text-secondary" to="/routes/add">
                   {/* <FaRegFileAlt /> */}
                   Add Route
                 </Link>
@@ -141,8 +144,8 @@ const Sidebar = () => {
               id="submenuBookings"
               aria-expanded="false"
             >
-              <li class="nav-item ms-2 mb-2 ">
-                <Link class="nav-link text-secondary" to="/bookings/add">
+              <li className="nav-item ms-2 mb-2 ">
+                <Link className="nav-link text-secondary" to="/bookings/add">
                   {/* <FaRegFileAlt /> */}
                   Add Bookings
                 </Link>
