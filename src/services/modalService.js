@@ -26,16 +26,15 @@ export function getOrders() {
 // ============ Transporter ============
 // Getting Transporter
 export function getTransporters() {
-  const url =
-    "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
-  return httpService.get_transporters(url);
+  const url = `${config.uri_roaddy}?action=get_transporters`;
+  const data = { phone: "all" };
+  return httpService.post(url, data);
 }
 
 // Adding Transpoter
 export function saveTransporter(data) {
-  const url =
-    "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/?action=";
-  return httpService.save_transporter(url, data);
+  const url = `${config.uri_roaddy}?action=save_transporter`;
+  return httpService.post(url, data);
 }
 
 // ============ Routes ============

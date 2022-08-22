@@ -49,6 +49,10 @@ function App() {
   // ========== Products  ===========
   // State for Products
   const [Products, setProducts] = useState([]);
+  // State for Orders
+  const [Orders, setOrders] = useState([]);
+  // State for Transporters
+  const [Transporters, setTransporters] = useState([]);
 
   // Getting Products for AllProducts
   useEffect(() => {
@@ -59,7 +63,26 @@ function App() {
       setProducts(products);
     };
 
-    loadProducts();
+    const loadOrders = async () => {
+      var orders = await getOrders();
+      orders = orders.data.AllItems.Items;
+      // console.log(orders);
+      setOrders(orders);
+    };
+
+    // loadOrders();
+
+    const loadTransporters = async () => {
+      let transporters = await getTransporters();
+      transporters = transporters.data.AllItems.Items;
+      console.log(transporters);
+      // orders = orders.data.AllItems.Items;
+      setTransporters(transporters);
+    };
+
+    loadTransporters();
+
+    // loadProducts();
   }, []);
 
   // Delete Prouduct from AllProducts
@@ -93,36 +116,6 @@ function App() {
     alert_info("Product updated successfully!");
     Navigate("/products/all");
   };
-
-  // ========== Orders  ===========
-  // State for Orders
-  const [Orders, setOrders] = useState([]);
-
-  // Getting Orders
-  useEffect(() => {
-    const loadOrders = async () => {
-      var orders = await getOrders();
-      orders = orders.data.AllItems.Items;
-      // console.log(orders);
-      setOrders(orders);
-    };
-    loadOrders();
-  }, []);
-
-  // ========== Transporters  ===========
-  // State for Transporters
-  const [Transporters, setTransporters] = useState([]);
-
-  // Getting Transporters
-  useEffect(() => {
-    const loadTransporters = async () => {
-      let transporters = await getTransporters();
-      console.log(transporters);
-      // orders = orders.data.AllItems.Items;
-      setTransporters(transporters);
-    };
-    loadTransporters();
-  }, []);
 
   // returnig Template
   return (

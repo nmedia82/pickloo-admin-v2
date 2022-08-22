@@ -1,4 +1,5 @@
 {
   "uri": "https://e6uf6dloxi.execute-api.us-east-1.amazonaws.com/prod",
-  "store_code": "WQ"
+  "store_code": "WQ",
+  "uri_roaddy": "https://5ipr2je3gm7l5mo24pq4kiyd540qtzjk.lambda-url.us-east-1.on.aws/"
 }

@@ -28,7 +28,7 @@ const AllTransporters = ({ Transporters }) => {
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
                     <td>{transporter.full_name}</td>
-                    <td>{transporter.transporter_phone}</td>
+                    <td>{transporter.phone}</td>
                     <td>{transporter.email}</td>
                     <td>{transporter.address}</td>
                     <td>{transporter.city}</td>
