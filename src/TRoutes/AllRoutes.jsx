@@ -4,7 +4,7 @@ import { __price } from "../services/helpers";
 import { Link } from "react-router-dom";
 
 const AllTRoutes = ({ TRoutes }) => {
-  console.log(TRoutes);
+  // console.log(TRoutes);
 
   return (
     <div className="container-fluid">

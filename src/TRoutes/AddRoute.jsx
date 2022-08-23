@@ -44,7 +44,7 @@ const AddTRoute = () => {
       if (resp.status === 200) {
         // const { data } = resp;
         alert_info("Done");
-        // Navigate("/routes/all");
+        Navigate("/routes/all");
       } else {
         alert_error("Error while saving");
       }

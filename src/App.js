@@ -132,7 +132,7 @@ function App() {
   // returnig Template
   return (
     <div className="App">
-      <Login />
+      {/* <Login /> */}
       {/* Navbar */}
       <Navbar />
       <div className="container-fluid">

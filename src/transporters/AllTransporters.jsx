@@ -1,6 +1,8 @@
 import React from "react";
 // importing Link
 import { Link } from "react-router-dom";
+// importing status API
+import { setTransporterStatus } from "../services/modalService";
 
 const AllTransporters = ({ Transporters }) => {
   // console.log(Transporters);
@@ -33,7 +35,24 @@ const AllTransporters = ({ Transporters }) => {
                     <td>{transporter.email}</td>
                     <td>{transporter.address}</td>
                     <td>{transporter.city}</td>
-                    <td>{transporter.transporter_status}</td>
+
+                    <td>
+                      {transporter.transporter_status === "active" ? (
+                        <button
+                          className="btn btn-sm btn-success"
+                          onClick={() => setTransporterStatus()}
+                        >
+                          {transporter.transporter_status}
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-sm btn-danger"
+                          onClick={() => setTransporterStatus()}
+                        >
+                          {transporter.transporter_status}
+                        </button>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>

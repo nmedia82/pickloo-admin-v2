@@ -39,8 +39,9 @@ export function saveTransporter(data) {
 }
 
 // Setting Transpoter Status
-export function setTransporterStatus(data) {
+export function setTransporterStatus() {
   const url = `${config.uri_roaddy}?action=set_transporter_status`;
+  const data = { phone: get_transporter_phone() };
   return httpService.post(url, data);
 }
 
