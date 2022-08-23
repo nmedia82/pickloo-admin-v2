@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
+// importing alerts
 import { alert_error, alert_info } from "../services/helpers";
 // importing saveTransporter API
 import { saveTransporter } from "../services/modalService";
@@ -26,7 +27,6 @@ const AddTransporter = () => {
 
   // handle on Submit
   const handleSubmit = async () => {
-    console.log(Transporter);
     let resp = {};
     try {
       const transporter = {

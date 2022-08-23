@@ -37,6 +37,12 @@ export function saveTransporter(data) {
   return httpService.post(url, data);
 }
 
+// Setting Transpoter Status
+export function setTransporterStatus(data) {
+  const url = `${config.uri_roaddy}?action=set_transporter_status`;
+  return httpService.post(url, data);
+}
+
 // ============ Routes ============
 // Getting Routes
 export function getRoutes(data) {
@@ -44,7 +50,7 @@ export function getRoutes(data) {
   return httpService.post(url, data);
 }
 // Adding Route
-export function saveMyRoute(data) {
+export function saveRoute(data) {
   const url = `${config.uri_roaddy}?action=save_route`;
   return httpService.post(url, data);
 }
