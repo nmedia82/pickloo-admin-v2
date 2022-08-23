@@ -20,7 +20,7 @@ import {
   saveProduct,
   getOrders,
   getTransporters,
-  // getRoutes,
+  getRoutes,
 } from "./services/modalService";
 
 // ============= importing components  ==============
@@ -42,8 +42,8 @@ import Dashboard from "./components/Dashboard";
 import AddTransporter from "./transporters/AddTransporter";
 import AllTransporters from "./transporters/AllTransporters";
 // importing Routes components
-import AddRoute from "./routes/AddRoute";
-// import AllRoutes from "./routes/AllRoutes";
+import AddTRoute from "./TRoutes/AddRoute";
+import AllTRoutes from "./TRoutes/AllRoutes";
 
 function App() {
   // Navigate method of react router dom
@@ -57,7 +57,7 @@ function App() {
   // State for Transporters
   const [Transporters, setTransporters] = useState([]);
   // State for Routes
-  // const [Routes, setRoutes] = useState([]);
+  const [TRoutes, setTRoutes] = useState([]);
 
   useEffect(() => {
     // Getting Products for AllProducts
@@ -88,13 +88,13 @@ function App() {
     loadTransporters();
 
     // Getting Routes for AllRoutes
-    // const loadRoutes = async () => {
-    //   let routes = await getRoutes();
-    //   console.log(routes);
-    //   routes = routes.data.AllItems.Items;
-    //   setRoutes(routes);
-    // };
-    // loadRoutes();
+    const loadRoutes = async () => {
+      let routes = await getRoutes();
+      console.log(routes);
+      routes = routes.data.AllItems.Items;
+      setTRoutes(routes);
+    };
+    loadRoutes();
   }, []);
 
   // Delete Prouduct from AllProducts
@@ -151,11 +151,11 @@ function App() {
                 path="/transporters/all"
                 element={<AllTransporters Transporters={Transporters} />}
               />
-              <Route path="/routes/add" element={<AddRoute />} />
-              {/* <Route
+              <Route path="/routes/add" element={<AddTRoute />} />
+              <Route
                 path="/routes/all"
-                element={<AllRoutes Routes={Routes} />}
-              /> */}
+                element={<AllTRoutes TRoutes={TRoutes} />}
+              />
               <Route path="/bookings/add" element={<AddTransporter />} />
               <Route path="/products/add" element={<AddProduct />} />
               <Route

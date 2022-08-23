@@ -1,4 +1,5 @@
 import config from "./../config.json";
+import { get_transporter_phone } from "./auth";
 import httpService from "./httpService";
 
 export function getProducts() {
@@ -45,8 +46,9 @@ export function setTransporterStatus(data) {
 
 // ============ Routes ============
 // Getting Routes
-export function getRoutes(data) {
+export function getRoutes() {
   const url = `${config.uri_roaddy}?action=get_routes`;
+  const data = { phone: get_transporter_phone() };
   return httpService.post(url, data);
 }
 // Adding Route

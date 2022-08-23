@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 // importing Link and useNavigate for navigation
-import { Link, useNavigate } from "react-Router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { get_transporter_phone } from "../services/auth";
 // importing alerts
 import { alert_error, alert_info } from "../services/helpers";
 // importing saveRoute API
 import { saveRoute } from "../services/modalService";
 
-const AddRoute = () => {
+const AddTRoute = () => {
   const Navigate = useNavigate();
 
   // State for Route
@@ -36,6 +37,7 @@ const AddRoute = () => {
     try {
       const route = {
         ...Route,
+        phone: get_transporter_phone(), // it's from user storage
         route_status: "inactive",
       };
       resp = await saveRoute(route);
@@ -69,7 +71,7 @@ const AddRoute = () => {
                 id="RouteName"
                 placeholder="Motorway"
                 required
-                name="Route_name"
+                name="route_name"
                 onChange={handleChange}
                 value={Route.route_name}
               />
@@ -159,4 +161,4 @@ const AddRoute = () => {
   );
 };
 
-export default AddRoute;
+export default AddTRoute;
