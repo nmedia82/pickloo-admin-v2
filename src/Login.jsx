@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
 // importing saveTransporter API
-import { saveTransporter } from "./services/modalService";
+// import { saveLogin } from "./services/modalService";
 import AddTransporter from "./transporters/AddTransporter";
 
 const Login = () => {
@@ -14,48 +14,56 @@ const Login = () => {
   });
   // handle on Change
   const handleChange = (e) => {
-    const Login = {
+    const login = {
       ...Login,
       [e.target.name]: e.target.value,
     };
-    setLogin(Login);
+    setLogin(login);
   };
 
   // handle on Submit
   const handleSubmit = async (e, Login) => {
     e.preventDefault();
-    console.log(Login);
-    await saveLogin(Login);
-    console.log("transpoter added");
-    // Navigate("/Logins/all");
+    console.log("Login Successfully");
+    // console.log(Login);
+    // await saveLogin(Login);
+    // Navigate("/");
   };
   return (
     <div className="container-fluid">
       <div className="row bg-light d-flex min-vh-100 align-items-center justify-content-center p-5">
         <div className="col-md-6 p-4">
-          <form>
+          <form onSubmit={(e) => handleSubmit(e, Login)}>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="loginEmail" className="form-label">
                 Email address
               </label>
               <input
                 type="email"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="loginEmail"
                 aria-describedby="emailHelp"
+                required
+                onChange={handleChange}
+                name="email"
+                value={Login.email}
               />
-              {/* <div id="emailHelp" className="form-text">
+              <div id="emailHelp" className="form-text">
                 We'll never share your email with anyone else.
-              </div> */}
+              </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
+              <label htmlFor="loginPassword" className="form-label">
                 Password
               </label>
               <input
                 type="password"
                 className="form-control"
-                id="exampleInputPassword1"
+                id="loginPassword"
+                required
+                onChange={handleChange}
+                name="password"
+                value={Login.password}
               />
             </div>
 
@@ -64,7 +72,7 @@ const Login = () => {
             </button>
           </form>
         </div>
-        <div className="col-md-6 bg-white p-4">
+        <div className="col-md-6 p-4">
           {/* Register Transporter */}
           <AddTransporter />
         </div>

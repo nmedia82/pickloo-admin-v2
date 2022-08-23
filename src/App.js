@@ -90,7 +90,7 @@ function App() {
     // Getting Routes for AllRoutes
     const loadRoutes = async () => {
       let routes = await getRoutes();
-      console.log(routes);
+      // console.log(routes);
       routes = routes.data.AllItems.Items;
       setTRoutes(routes);
     };
@@ -132,7 +132,7 @@ function App() {
   // returnig Template
   return (
     <div className="App">
-      {/* <Login /> */}
+      <Login />
       {/* Navbar */}
       <Navbar />
       <div className="container-fluid">

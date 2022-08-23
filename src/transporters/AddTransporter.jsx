@@ -38,6 +38,7 @@ const AddTransporter = () => {
       if (resp.status === 200) {
         // const { data } = resp;
         alert_info("Done");
+        Navigate("/transporters/all");
       } else {
         alert_error("Error while saving");
       }
@@ -50,9 +51,7 @@ const AddTransporter = () => {
     <div className="min-vh-100 d-flex flex-row align-items-center">
       <div className="container">
         <div className=" row justify-content-center">
-          <div className="col-md-9 col-lg-7 col-xl-6 bg-light p-3 my-5">
-            {/* <div className="mx-4">
-            <CCardBody className="p-4"> */}
+          <div className="bg-white p-4">
             <h1>Register transporter</h1>
             <p className="text-medium-emphasis">Add your transporter details</p>
             <div className="mb-3">
