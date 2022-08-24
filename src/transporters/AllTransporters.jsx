@@ -35,23 +35,17 @@ const AllTransporters = ({ Transporters }) => {
                     <td>{transporter.email}</td>
                     <td>{transporter.address}</td>
                     <td>{transporter.city}</td>
-
                     <td>
-                      {transporter.transporter_status === "active" ? (
-                        <button
-                          className="btn btn-sm btn-success"
-                          onClick={() => setTransporterStatus()}
-                        >
-                          {transporter.transporter_status}
-                        </button>
-                      ) : (
-                        <button
-                          className="btn btn-sm btn-danger"
-                          onClick={() => setTransporterStatus()}
-                        >
-                          {transporter.transporter_status}
-                        </button>
-                      )}
+                      <button
+                        className={
+                          transporter.transporter_status === "active"
+                            ? "btn btn-sm btn-success"
+                            : "btn btn-sm btn-danger"
+                        }
+                        // onClick={() => setTransporterStatus()}
+                      >
+                        {transporter.transporter_status}
+                      </button>
                     </td>
                   </tr>
                 ))}
