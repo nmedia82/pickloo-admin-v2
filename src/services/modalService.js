@@ -3,6 +3,8 @@ import { get_transporter_phone } from "./auth";
 import httpService from "./httpService";
 import moment from "moment";
 
+// ============ Products ============
+// Getting Products
 export function getProducts() {
   const url = `${config.uri}/product/store/${config.store_code}`;
   return httpService.get(url);
