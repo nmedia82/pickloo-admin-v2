@@ -10,7 +10,7 @@ const AllTRoutes = ({ TRoutes }) => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-12">
-          <h1 className="text-center my-3">All TRoutes</h1>
+          <h1 className="text-center my-3">All Routes</h1>
           <div className="table-responsive">
             <table className="table table-light table-bordered text-center">
               <thead className="table-dark">
@@ -34,7 +34,19 @@ const AllTRoutes = ({ TRoutes }) => {
                     <td>{route.total_seats}</td>
                     <td>{__price(route.ticket_price)}</td>
                     <td>{route.time_departure}</td>
-                    <td>{route.route_status}</td>
+                    {/* <td>{route.route_status}</td> */}
+                    <td>
+                      <button
+                        className={
+                          route.route_status === "active"
+                            ? "btn btn-sm btn-success"
+                            : "btn btn-sm btn-danger"
+                        }
+                        // onClick={() => setRouteStatus()}
+                      >
+                        {route.route_status}
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

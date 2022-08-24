@@ -52,8 +52,16 @@ export function getRoutes() {
   const data = { phone: get_transporter_phone() };
   return httpService.post(url, data);
 }
+
 // Adding Route
 export function saveRoute(data) {
   const url = `${config.uri_roaddy}?action=save_route`;
   return httpService.post(url, data);
 }
+
+// Setting Route Status
+// export function setRouteStatus() {
+//   const url = `${config.uri_roaddy}?action=set_route_status`;
+//   const data = { phone: get_route_phone() };
+//   return httpService.post(url, data);
+// }
