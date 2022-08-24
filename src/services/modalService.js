@@ -62,6 +62,27 @@ export function saveRoute(data) {
 // Setting Route Status
 // export function setRouteStatus() {
 //   const url = `${config.uri_roaddy}?action=set_route_status`;
-//   const data = { phone: get_route_phone() };
+//   const data = { phone: get_transporter_phone() };
+//   return httpService.post(url, data);
+// }
+
+// ============ Booking ============
+// Getting Bookings
+export function getBookings() {
+  const url = `${config.uri_roaddy}?action=get_bookings`;
+  const data = { phone: get_transporter_phone() };
+  return httpService.post(url, data);
+}
+
+// Adding Bookings
+export function saveBooking(data) {
+  const url = `${config.uri_roaddy}?action=save_booking`;
+  return httpService.post(url, data);
+}
+
+// Setting Bookings Status
+// export function setBookingStatus() {
+//   const url = `${config.uri_roaddy}?action=set_booking_status`;
+//   const data = { phone: get_transporter_phone() };
 //   return httpService.post(url, data);
 // }
