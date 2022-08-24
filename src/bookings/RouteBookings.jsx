@@ -1,36 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { __price } from "../services/helpers";
 import { alert_info, alert_error } from "../services/helpers";
-import { setRouteStatus } from "../services/modalService";
+import { getBookings } from "../services/modalService";
 // importing Link
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const AllTRoutes = ({ TRoutes }) => {
+const RouteBookings = () => {
   // console.log(TRoutes);
-  const [AllRoutes, setAllRoutes] = useState([]);
+  const [AllBookings, setAllBookings] = useState([]);
+  const { route_id } = useParams();
 
   useEffect(() => {
-    setAllRoutes([...TRoutes]);
-  }, [TRoutes]);
+    const loadBookings = async () => {
+      var bookings = await getBookings(route_id);
+      bookings = bookings.data.AllItems.Items;
+      console.log(bookings);
+      setAllBookings(bookings);
+    };
+    loadBookings();
+  }, [route_id]);
 
   const updateStatus = async (route) => {
     let resp;
-    try {
-      var status = route.route_status === "active" ? "inactive" : "active";
-      resp = await setRouteStatus(route.route_id, status);
-      console.log(resp);
-      if (resp.status === 200 && resp.data.Message === "SUCCESS") {
-        const routes = [...AllRoutes];
-        const index = routes.indexOf(route);
-        routes[index].route_status = status;
-        setAllRoutes(routes);
-        alert_info("Status updated");
-      } else {
-        alert_error("Error while saving");
-      }
-    } catch (e) {
-      alert_error(e.message);
-    }
+    // try {
+    //   var status = route.route_status === "active" ? "inactive" : "active";
+    //   resp = await setRouteStatus(route.route_id, status);
+    //   console.log(resp);
+    //   if (resp.status === 200 && resp.data.Message === "SUCCESS") {
+    //     const routes = [...AllBookings];
+    //     const index = routes.indexOf(route);
+    //     routes[index].route_status = status;
+    //     setAllBookings(routes);
+    //     alert_info("Status updated");
+    //   } else {
+    //     alert_error("Error while saving");
+    //   }
+    // } catch (e) {
+    //   alert_error(e.message);
+    // }
   };
 
   return (
@@ -53,7 +60,7 @@ const AllTRoutes = ({ TRoutes }) => {
               </thead>
               <tbody>
                 {/* ======= listing TRoutes ======= */}
-                {AllRoutes.map((route, index) => (
+                {AllBookings.map((route, index) => (
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
                     <td>{route.route_name}</td>
@@ -74,7 +81,7 @@ const AllTRoutes = ({ TRoutes }) => {
                       </button>
                       <Link
                         className="btn btn-success m-1"
-                        to={`/route/${route.route_id}/bookings`}
+                        to={`/routes/${route.route_id}/bookings`}
                       >
                         Bookings
                       </Link>
@@ -90,4 +97,4 @@ const AllTRoutes = ({ TRoutes }) => {
   );
 };
 
-export default AllTRoutes;
+export default RouteBookings;
