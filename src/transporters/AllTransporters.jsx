@@ -21,7 +21,7 @@ const AllTransporters = ({ Transporters }) => {
     try {
       let status =
         transporter.transporter_status === "active" ? "inactive" : "active";
-      resp = await setTransporterStatus();
+      resp = await setTransporterStatus(status);
       console.log(resp);
       if (resp.status === 200 && resp.data.Message === "SUCCESS") {
         const transporters = [...AllTransporters];

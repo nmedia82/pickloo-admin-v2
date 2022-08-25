@@ -42,9 +42,9 @@ export function saveTransporter(data) {
 }
 
 // Setting Transpoter Status
-export function setTransporterStatus() {
+export function setTransporterStatus(status) {
   const url = `${config.uri_roaddy}?action=set_transporter_status`;
-  const data = { phone: get_transporter_phone() };
+  const data = { phone: get_transporter_phone(), transporter_status: status };
   return httpService.post(url, data);
 }
 
@@ -84,7 +84,6 @@ export function getBookings(route_id) {
   const url = `${config.uri_roaddy}?action=get_bookings`;
   const today = moment().utc().format("YYYY-MM-DDTHH:mm:ss") + "Z";
   const data = {
-    transporter_phone: get_transporter_phone(),
     route_id: route_id,
     booking_date: today,
   };

@@ -34,3 +34,23 @@ footer p {
   padding: 8px;
   margin: 0;
 }
+
+.booking-grid-wrapper {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+
+.roaddy-booking-cell {
+  height: 35px;
+  border: 1px solid black;
+  text-align: center;
+  padding-top: 5px;
+  cursor: pointer;
+}
+.green {
+  background-color: green;
+}
+.new-booking {
+  background-color: black;
+  color: #fff;
+}

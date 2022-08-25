@@ -4,6 +4,8 @@ import { alert_info, alert_error, __todate } from "../services/helpers";
 import { getBookings, setBookingStatus } from "../services/modalService";
 // importing Link
 import { Link, useParams } from "react-router-dom";
+import moment from "moment";
+import DateBookings from "./DateBookings";
 
 const RouteBookings = ({ TRoutes }) => {
   // console.log(TRoutes);
@@ -15,9 +17,23 @@ const RouteBookings = ({ TRoutes }) => {
     const loadBookings = async () => {
       var bookings = await getBookings(route_id);
       bookings = bookings.data.AllItems.Items;
+      bookings = bookings.map((b) => {
+        b.booking_date = moment(b.booking_date).format("YYYY-MM-DD");
+        b.seat_info = !b.seat_info ? [] : b.seat_info;
+        return b;
+      });
+      // Sorting by date
+      bookings.sort((a, b) => moment(a.booking_date) - moment(b.booking_date));
       console.log(bookings);
+      // group by booking dates
+      bookings = bookings.reduce(function (r, a) {
+        r[a.booking_date] = r[a.booking_date] || [];
+        r[a.booking_date].push(a);
+        return r;
+      }, Object.create(null));
       setAllBookings(bookings);
     };
+
     loadBookings();
 
     const loadRoute = async () => {
@@ -27,17 +43,17 @@ const RouteBookings = ({ TRoutes }) => {
     loadRoute();
   }, [route_id, TRoutes]);
 
-  const updateStatus = async (route) => {
+  const handleStatus = async (booking) => {
     let resp;
     try {
-      var status = route.route_status === "pending" ? "done" : "pending";
-      resp = await setBookingStatus(route.route_id, status);
+      var status = booking.booking_status === "pending" ? "done" : "pending";
+      resp = await setBookingStatus(route_id, booking.booking_id, status);
       console.log(resp);
       if (resp.status === 200 && resp.data.Message === "SUCCESS") {
-        const routes = [...AllBookings];
-        const index = routes.indexOf(route);
-        routes[index].route_status = status;
-        setAllBookings(routes);
+        const bookings = [...AllBookings];
+        const index = bookings.indexOf(booking);
+        bookings[index].booking_status = status;
+        setAllBookings(bookings);
         alert_info("Status updated");
       } else {
         alert_error("Error while saving");
@@ -52,46 +68,17 @@ const RouteBookings = ({ TRoutes }) => {
       <div className="row">
         <div className="col-md-12">
           <h1 className="text-center my-3">{Route.route_name}</h1>
-          <div className="table-responsive">
-            <table className="table table-light table-bordered text-center">
-              <thead className="table-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Total Seats</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* ======= listing TRoutes ======= */}
-                {AllBookings.map((booking, index) => (
-                  <tr key={index}>
-                    <th scope="row">{index + 1}</th>
-                    <td>{__todate(booking.booking_date)}</td>
-                    <td>{booking.passenger_phone}</td>
-                    <td>{booking.passenger_name}</td>
-                    <td>{booking.total_seats}</td>
-                    <td>{booking.booking_status}</td>
-                    <td>
-                      <button
-                        onClick={() => updateStatus(booking)}
-                        className={
-                          booking.booking_status === "pending"
-                            ? "btn btn-danger"
-                            : "btn btn-info"
-                        }
-                      >
-                        {booking.booking_status}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+
+          {Object.keys(AllBookings).map((bookings, index) => (
+            <div key={index}>
+              <h3>{bookings}</h3>
+              <DateBookings
+                Bookings={AllBookings[bookings]}
+                onUpdateStatus={handleStatus}
+                Route={Route}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>
