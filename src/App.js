@@ -159,7 +159,7 @@ function App() {
               />
               <Route
                 path="/route/:route_id/bookings"
-                element={<RouteBookings />}
+                element={<RouteBookings TRoutes={TRoutes} />}
               />
               <Route path="/products/add" element={<AddProduct />} />
               <Route
