@@ -134,7 +134,7 @@ const Sidebar = () => {
               </li>
             </ul>
           </li>
-          <li className="nav-item mb-2">
+          {/* <li className="nav-item mb-2">
             <Link
               className="nav-link"
               to="#submenuBookings"
@@ -152,13 +152,13 @@ const Sidebar = () => {
             >
               <li className="nav-item ms-2 mb-2 ">
                 <Link className="nav-link text-secondary" to="/bookings/add">
-                  {/* <FaRegFileAlt /> */}
+                  <FaRegFileAlt />
                   Add Bookings
                 </Link>
               </li>
             </ul>
           </li>
-          {/* <li className="nav-item mb-2">
+          <li className="nav-item mb-2">
               <Link className="nav-link" to="/">
                 <FaUserFriends /> Customers
               </Link>
