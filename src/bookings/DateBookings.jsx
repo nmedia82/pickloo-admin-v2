@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { alert_error, alert_info } from "../services/helpers";
+import PrintBooking from "./PrintBooking";
 
-const DateBookings = ({ Route, Bookings, onUpdateStatus }) => {
+const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
   const [ShowModal, setShowModal] = useState(false);
   const [TickGrid, setTickGrid] = useState([]);
   const [BookedSeats, setBookedSeats] = useState([]);
@@ -30,12 +32,25 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus }) => {
 
   const handleClose = () => setShowModal(false);
   const handleShow = (booking) => {
+    setNewBooking([]);
     setSelectedBooking(booking);
     setShowModal(true);
   };
 
   const BookTicket = (seat_no) => {
-    const new_booking = [...NewBooking, seat_no];
+    // check it is already book
+    var new_booking = [...NewBooking];
+    const index = new_booking.indexOf(seat_no);
+    if (index !== -1) {
+      new_booking = new_booking.filter((b) => b !== seat_no);
+    } else {
+      const { total_seats } = SelectedBooking;
+      if (total_seats <= new_booking.length) {
+        return alert_error(`Maximum ${total_seats} can be assigned.`);
+      }
+      new_booking = [...NewBooking, seat_no];
+    }
+
     // console.log(new_booking);
     setNewBooking(new_booking);
   };
@@ -53,6 +68,15 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus }) => {
       SelectedBooking &&
       BookedSeats[SelectedBooking.booking_date].find((info) => info === cell)
     );
+  };
+
+  const getPassengerName = () => {
+    return SelectedBooking && SelectedBooking.passenger_name;
+  };
+
+  const handleTicketAssign = () => {
+    handleClose();
+    onTicketUpdate(SelectedBooking, NewBooking, "done");
   };
 
   return (
@@ -80,22 +104,25 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus }) => {
               <td>{booking.seat_info && booking.seat_info.join(",")}</td>
               <td>{booking.booking_status}</td>
               <td>
-                <button
-                  onClick={() => onUpdateStatus(booking)}
-                  className={
-                    booking.booking_status === "pending"
-                      ? "btn btn-danger"
-                      : "btn btn-info"
-                  }
-                >
-                  {booking.booking_status}
-                </button>
-                <button
-                  onClick={() => handleShow(booking)}
-                  className="btn btn-primary"
-                >
-                  Ticket
-                </button>
+                {booking.booking_status === "done" && (
+                  <>
+                    <button
+                      onClick={() => onTicketUpdate(booking, [], "cancelled")}
+                      className="btn btn-danger"
+                    >
+                      Cancel Booking
+                    </button>
+                    <PrintBooking Booking={booking} />
+                  </>
+                )}
+                {booking.booking_status !== "done" && (
+                  <button
+                    onClick={() => handleShow(booking)}
+                    className="btn btn-primary"
+                  >
+                    Ticket
+                  </button>
+                )}
               </td>
             </tr>
           ))}
@@ -103,7 +130,7 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus }) => {
       </table>
       <Modal show={ShowModal} onHide={handleClose} className="no-urdu-font">
         <Modal.Header closeButton>
-          <Modal.Title>Photos</Modal.Title>
+          <Modal.Title>Bookings: {getPassengerName()}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="booking-grid-wrapper">
@@ -118,8 +145,11 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus }) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="info" onClick={() => handleTicketAssign()}>
+            Assign Tickets
+          </Button>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>

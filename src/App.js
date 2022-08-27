@@ -45,6 +45,7 @@ import AllTransporters from "./transporters/AllTransporters";
 import AddTRoute from "./TRoutes/AddRoute";
 import AllTRoutes from "./TRoutes/AllRoutes";
 import RouteBookings from "./bookings/RouteBookings";
+import PrintBooking from "./bookings/PrintBooking";
 
 function App() {
   // Navigate method of react router dom

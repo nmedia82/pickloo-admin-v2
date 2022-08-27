@@ -79,9 +79,9 @@ export function setRouteStatus(route_id, route_status) {
 }
 
 // ============ Bookings ============
-// Getting Bookings
+// Getting Bookings All
 export function getBookings(route_id) {
-  const url = `${config.uri_roaddy}?action=get_bookings`;
+  const url = `${config.uri_roaddy}?action=get_bookings_by_date`;
   const today = moment().utc().format("YYYY-MM-DDTHH:mm:ss") + "Z";
   const data = {
     route_id: route_id,
@@ -89,13 +89,38 @@ export function getBookings(route_id) {
   };
   return httpService.post(url, data);
 }
+
+// Getting Bookings From Date Period Onward
+export function getBookingsByDatePeriod(route_id) {
+  const url = `${config.uri_roaddy}?action=get_bookings_by_date`;
+  var today = moment().utc().local().format("YYYY-MM-DD");
+  // today = moment.utc(today).local().format();
+  console.log(today);
+  const data = {
+    route_id: route_id,
+    booking_date: today,
+  };
+  return httpService.post(url, data);
+}
 // Setting Booking Status
-export function setBookingStatus(route_id, booking_id, booking_status) {
+export function setBookingStatus(
+  route_id,
+  booking_id,
+  booking_status,
+  seat_info
+) {
   const url = `${config.uri_roaddy}?action=set_booking_status`;
   const data = {
     route_id: route_id,
     booking_id: booking_id,
     booking_status: booking_status,
+    seat_info: seat_info,
   };
+  return httpService.post(url, data);
+}
+
+// Adding Booking
+export function saveBooking(data) {
+  const url = `${config.uri_roaddy}?action=save_booking`;
   return httpService.post(url, data);
 }
