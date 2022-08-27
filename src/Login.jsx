@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import { saveLogin } from "./services/modalService";
 import AddTransporter from "./transporters/AddTransporter";
 
-const Login = () => {
+const Login = ({onLogin}) => {
   const Navigate = useNavigate();
   // State for transporter
   const [Login, setLogin] = useState({
@@ -24,10 +24,7 @@ const Login = () => {
   // handle on Submit
   const handleSubmit = async (e, Login) => {
     e.preventDefault();
-    console.log("Login Successfully");
-    // console.log(Login);
-    // await saveLogin(Login);
-    // Navigate("/");
+    onLogin(Login)
   };
   return (
     <div className="container-fluid">

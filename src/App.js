@@ -22,10 +22,13 @@ import {
   getTransporters,
   getRoutes,
 } from "./services/modalService";
+import useLocalStorage from "./components/localStorage";
+import {verifyLogin} from "./services/auth"
 
 // ============= importing components  ==============
 // importing Login
 import Login from "./Login";
+import Protected from "./components/Protected";
 // importing Layout components
 import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
@@ -60,6 +63,10 @@ function App() {
   const [Transporters, setTransporters] = useState([]);
   // State for Routes
   const [TRoutes, setTRoutes] = useState([]);
+  // User Cache
+  const [User, setUser] = useLocalStorage('user', {});
+  // Check if logged in
+  const [isLoggedIn, setisLoggedIn] = useState(false);
 
   useEffect(() => {
     // Getting Products for AllProducts
@@ -99,6 +106,23 @@ function App() {
     loadRoutes();
   }, []);
 
+  // Login
+  const handleLogin = (user) => {
+    user = verifyLogin(user);
+
+    if(user !== null){
+      setUser(user);
+      setisLoggedIn(true);
+      Navigate("/routes/all")
+    }
+  }
+
+  const handleLogOut = () => {
+    setUser(null);
+    setisLoggedIn(false);
+    Navigate("/login")
+  }
+
   // Delete Prouduct from AllProducts
   const handleDelete = async (barcode) => {
     // ask first
@@ -136,7 +160,7 @@ function App() {
     <div className="App">
       {/* <Login /> */}
       {/* Navbar */}
-      <Navbar />
+      <Navbar onLogOut={handleLogOut} />
       <div className="container-fluid">
         <div className="row">
           <div className="sidebar-col col-md-3">
@@ -148,6 +172,7 @@ function App() {
           <div className="col-md-9">
             <Routes>
               <Route path="/" element={<Dashboard />} />
+              <Route path="/login" element={<Login onLogin={handleLogin} />} />
               <Route path="/transporters/add" element={<AddTransporter />} />
               <Route
                 path="/transporters/all"
@@ -156,7 +181,11 @@ function App() {
               <Route path="/routes/add" element={<AddTRoute />} />
               <Route
                 path="/routes/all"
-                element={<AllTRoutes TRoutes={TRoutes} />}
+                element={
+                  <Protected isLoggedIn={isLoggedIn}>
+                    <AllTRoutes TRoutes={TRoutes} />
+                  </Protected>
+                }
               />
               <Route
                 path="/route/:route_id/bookings"

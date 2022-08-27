@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = ({onLogOut}) => {
   return (
     <>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -30,7 +30,7 @@ const Navbar = () => {
         </button>
 
         {/* Navbar Search */}
-        <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        {/* <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
           <div className="input-group">
             <input
               className="form-control"
@@ -47,9 +47,9 @@ const Navbar = () => {
               <FaSearch />
             </button>
           </div>
-        </form>
+        </form> */}
         {/* Navbar */}
-        <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 push-right">
           <li className="nav-item dropdown">
             <Link
               className="nav-link dropdown-toggle"
@@ -79,9 +79,9 @@ const Navbar = () => {
                 <hr className="dropdown-divider" />
               </li>
               <li>
-                <Link className="dropdown-item" to="">
+                <button className="dropdown-item" onClick={() => onLogOut()}>
                   Logout
-                </Link>
+                </button>
               </li>
             </ul>
           </li>
