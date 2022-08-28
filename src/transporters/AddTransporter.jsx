@@ -59,7 +59,7 @@ const AddTransporter = () => {
     <div className="min-vh-100 d-flex flex-row align-items-center">
       <div className="container">
         <div className=" row justify-content-center">
-          <div className="bg-white p-4">
+          <div className="bg-light p-4">
             <form onSubmit={(e) => handleSubmit(e)}>
               <h1>Register transporter</h1>
               <p className="text-medium-emphasis">

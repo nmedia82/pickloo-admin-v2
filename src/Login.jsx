@@ -28,7 +28,7 @@ const Login = ({ onLogin }) => {
   };
   return (
     <div className="container-fluid">
-      <div className="row bg-light d-flex min-vh-100 align-items-center justify-content-center p-5">
+      <div className="row d-flex min-vh-100 align-items-center justify-content-center p-5">
         <div className="col-md-6 p-4">
           <form onSubmit={(e) => handleSubmit(e, Login)}>
             <div className="mb-3">
