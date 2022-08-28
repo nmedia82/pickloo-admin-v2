@@ -113,7 +113,7 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
                   <>
                     <button
                       onClick={() => onTicketUpdate(booking, [], "cancelled")}
-                      className="btn btn-danger"
+                      className="btn btn-danger mb-2"
                     >
                       Cancel
                     </button>

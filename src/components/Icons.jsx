@@ -4,6 +4,7 @@ import {
   FaPlusCircle,
   FaUser,
   FaTachometerAlt,
+  FaRoute 
 } from "react-icons/fa";
 
 function Icons({ icon }) {
@@ -14,6 +15,7 @@ function Icons({ icon }) {
       {icon === "user" && <FaUser />}
       {icon === "images" && <FaImages />}
       {icon === "meter" && <FaTachometerAlt />}
+      {icon === "troute" && <FaRoute />}
     </>
   );
 }
