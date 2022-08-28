@@ -79,3 +79,22 @@ export const __timeReadable = (date) => {
   }
   return Math.floor(seconds) + " seconds";
 };
+
+export const get_menu = (type = null) => {
+  var menu = [{ title: "Home", to: "/", icon: "meter" }];
+  switch (type) {
+    case "transporter":
+      menu = [
+        ...menu,
+        { title: "Routes & Bookings", to: "/routes/all", icon: "meter" },
+        { title: "Add Route", to: "/routes/add", icon: "meter" },
+      ];
+      break;
+
+    default:
+      menu = [...menu];
+      break;
+  }
+
+  return menu;
+};

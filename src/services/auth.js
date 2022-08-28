@@ -1,17 +1,25 @@
+import httpService from "./httpService";
+import config from "./../config.json";
 export const get_transporter_phone = () => {
   // fake
-  return "03224028612";
+  const user = getCurrentUser();
+  return user.phone;
 };
+
+export function getCurrentUser() {
+  try {
+    const user = localStorage.getItem("user");
+    return JSON.parse(user);
+  } catch (e) {
+    return null;
+  }
+}
 
 const is_loggedin = () => {
   return true;
 };
 
 export const verifyLogin = (login) => {
-  if( login.password === '1122' ){
-    return {"fullname":"Najeeb","phone":"03224028612", "type":"transporter"};
-  } else {
-    return null;
-  }
-  
-}
+  const url = `${config.uri_roaddy}?action=login`;
+  return httpService.post(url, login);
+};

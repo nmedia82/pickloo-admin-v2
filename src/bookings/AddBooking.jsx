@@ -14,7 +14,7 @@ const AddBooking = ({ onNewTicket }) => {
   };
 
   return (
-    <div>
+    <div className="booking-add-form text-center m-3">
       <button onClick={handleShow} className="btn btn-success">
         Add New Booking
       </button>
@@ -23,13 +23,12 @@ const AddBooking = ({ onNewTicket }) => {
           <Modal.Title>Add Booking</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {JSON.stringify(Booking)}
           <p>
             <label className="form-label">
               Phone Number
               <input
                 type="text"
-                className="form-input"
+                className="form-control"
                 name="passenger_phone"
                 value={Booking.passenger_phone}
                 onChange={(e) => onChangeBooking(e)}
@@ -38,10 +37,10 @@ const AddBooking = ({ onNewTicket }) => {
           </p>
           <p>
             <label className="form-label">
-              Phone Name
+              Customer Name
               <input
                 type="Phone Name"
-                className="form-input"
+                className="form-control"
                 name="passenger_name"
                 value={Booking.passenger_name}
                 onChange={(e) => onChangeBooking(e)}
@@ -53,7 +52,7 @@ const AddBooking = ({ onNewTicket }) => {
               Total Seats
               <input
                 type="number"
-                className="form-input"
+                className="form-control"
                 name="total_seats"
                 value={Booking.total_seats}
                 onChange={(e) => onChangeBooking(e)}
@@ -65,7 +64,7 @@ const AddBooking = ({ onNewTicket }) => {
               Date
               <input
                 type="date"
-                className="form-input"
+                className="form-control"
                 name="booking_date"
                 value={Booking.booking_date}
                 onChange={(e) => onChangeBooking(e)}

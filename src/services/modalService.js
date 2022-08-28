@@ -41,6 +41,12 @@ export function saveTransporter(data) {
   return httpService.post(url, data);
 }
 
+// send Welcome Email & Pin
+export function sendWelcomePin(data) {
+  const url = `${config.uri_roaddy}?action=send_welcome_pin`;
+  return httpService.post(url, data);
+}
+
 // Setting Transpoter Status
 export function setTransporterStatus(status) {
   const url = `${config.uri_roaddy}?action=set_transporter_status`;

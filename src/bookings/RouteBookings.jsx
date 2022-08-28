@@ -12,6 +12,7 @@ import moment from "moment";
 import DateBookings from "./DateBookings";
 import AddBooking from "./AddBooking";
 import { get_transporter_phone } from "../services/auth";
+import Joi from "joi";
 
 const RouteBookings = ({ TRoutes }) => {
   // console.log(TRoutes);
@@ -19,6 +20,13 @@ const RouteBookings = ({ TRoutes }) => {
   const [AllBookings, setAllBookings] = useState([]);
   const [Route, setRoute] = useState({});
   const { route_id } = useParams();
+
+  const validateBooking = Joi.object({
+    passenger_phone: Joi.string().min(11).max(11).required(),
+    passenger_name: Joi.string().min(4).required(),
+    total_seats: Joi.required(),
+    booking_date: Joi.date().required(),
+  }).unknown(true);
 
   useEffect(() => {
     const loadBookings = async () => {
@@ -105,6 +113,12 @@ const RouteBookings = ({ TRoutes }) => {
     booking.booking_date =
       moment(booking_date).utc().local().format("YYYY-MM-DDTHH:mm:ss") + "Z";
 
+    const { error, value } = validateBooking.validate(booking);
+    if (error) {
+      alert(error);
+      return;
+    }
+
     // console.log(booking);
     // return;
 
@@ -133,13 +147,12 @@ const RouteBookings = ({ TRoutes }) => {
           <AddBooking onNewTicket={handleNewTicket} />
           {Object.keys(AllBookings).map((bookings, index) => (
             <div key={index}>
-              <h3>{bookings}</h3>
+              <h3>{__todate(bookings)}</h3>
               <DateBookings
                 Bookings={AllBookings[bookings]}
                 onTicketUpdate={handleBookingStatus}
                 Route={Route}
               />
-              if( ){" "}
             </div>
           ))}
         </div>

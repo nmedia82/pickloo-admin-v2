@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 // importing alerts
 import { alert_error, alert_info } from "../services/helpers";
 // importing saveTransporter API
-import { saveTransporter } from "../services/modalService";
+import { saveTransporter, sendWelcomePin } from "../services/modalService";
 
 const AddTransporter = () => {
   const Navigate = useNavigate();
@@ -38,8 +38,15 @@ const AddTransporter = () => {
       resp = await saveTransporter(transporter);
       if (resp.status === 200) {
         // const { data } = resp;
-        alert_info("Done");
-        Navigate("/transporters/all");
+        const { email, full_name, pin } = resp.data.Item;
+        const welcome_data = {
+          full_name: full_name,
+          email: email,
+          pin: pin.toString(),
+        };
+        resp = await sendWelcomePin(welcome_data);
+        alert_info("Your account is created, please check email for your pin.");
+        Navigate("/login");
       } else {
         alert_error("Error while saving");
       }
@@ -66,11 +73,26 @@ const AddTransporter = () => {
                   className="form-control"
                   type="text"
                   id="fullName"
-                  placeholder="Bilal Transports"
+                  placeholder="Amir Khalid"
                   required
                   name="full_name"
                   onChange={handleChange}
                   value={Transporter.full_name}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="company_name" className="form-label">
+                  Company Name
+                </label>
+                <input
+                  className="form-control"
+                  type="text"
+                  id="company_name"
+                  placeholder="Usman Travels"
+                  required
+                  name="company_name"
+                  onChange={handleChange}
+                  value={Transporter.company_name}
                 />
               </div>
               <div className="mb-3">

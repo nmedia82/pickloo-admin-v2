@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import { saveLogin } from "./services/modalService";
 import AddTransporter from "./transporters/AddTransporter";
 
-const Login = ({onLogin}) => {
+const Login = ({ onLogin }) => {
   const Navigate = useNavigate();
   // State for transporter
   const [Login, setLogin] = useState({
@@ -24,7 +24,7 @@ const Login = ({onLogin}) => {
   // handle on Submit
   const handleSubmit = async (e, Login) => {
     e.preventDefault();
-    onLogin(Login)
+    onLogin(Login);
   };
   return (
     <div className="container-fluid">
@@ -33,17 +33,17 @@ const Login = ({onLogin}) => {
           <form onSubmit={(e) => handleSubmit(e, Login)}>
             <div className="mb-3">
               <label htmlFor="loginEmail" className="form-label">
-                Email address
+                Phone Number
               </label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
                 id="loginEmail"
                 aria-describedby="emailHelp"
                 required
                 onChange={handleChange}
-                name="email"
-                value={Login.email}
+                name="phone"
+                value={Login.phone}
               />
               <div id="emailHelp" className="form-text">
                 We'll never share your email with anyone else.
@@ -59,8 +59,8 @@ const Login = ({onLogin}) => {
                 id="loginPassword"
                 required
                 onChange={handleChange}
-                name="password"
-                value={Login.password}
+                name="pin"
+                value={Login.pin}
               />
             </div>
 

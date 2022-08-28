@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { getCurrentUser } from "../services/auth";
+import { __todate } from "../services/helpers";
 
 const PrintBooking = ({ Booking }) => {
   const [Show, setShow] = useState(false);
@@ -7,9 +9,8 @@ const PrintBooking = ({ Booking }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handlePrint = () => {
-    window.print();
-  };
+  const { company_name, phone, address } = getCurrentUser();
+
   return (
     <div className="non-printable">
       <button className="btn btn-primary" onClick={handleShow}>
@@ -17,11 +18,14 @@ const PrintBooking = ({ Booking }) => {
       </button>
       <Modal show={Show} onHide={handleClose}>
         <Modal.Body>
-          <h3 className="booking-print-heading1 text-center">Bilal Travels</h3>
-          <h5 className="booking-print-heading2 text-center">0322 5565655</h5>
+          <h3 className="booking-print-heading1 text-center">{company_name}</h3>
+          <h5 className="booking-print-heading2 text-center">
+            Contact: {phone}
+          </h5>
+          <p className="booking-print-heading2 text-center">{address}</p>
           <hr />
           <div className="booking-print-route text-center">
-            Aug 29, 2022 - Chenab Nagar to Lahore
+            {__todate(Booking.booking_date)} - {Booking.route_name}
           </div>
           <div className="booking-info table-responsive">
             <table className="text-center table-striped table">
@@ -34,12 +38,15 @@ const PrintBooking = ({ Booking }) => {
               </thead>
               <tbody>
                 <tr>
-                  <td>Najeeb</td>
-                  <td>0233232332</td>
-                  <td>5,2,9</td>
+                  <td>{Booking.passenger_name}</td>
+                  <td>{Booking.passenger_phone}</td>
+                  <td>{Booking.seat_info.join(",")}</td>
                 </tr>
               </tbody>
             </table>
+            <div className="roaddy-print-footer text-center">
+              Online booking ystem developed by N-Media - 0322 4028612
+            </div>
           </div>
         </Modal.Body>
         <Modal.Footer>

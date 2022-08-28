@@ -23,7 +23,7 @@ import {
   getRoutes,
 } from "./services/modalService";
 import useLocalStorage from "./components/localStorage";
-import {verifyLogin} from "./services/auth"
+import { verifyLogin } from "./services/auth";
 
 // ============= importing components  ==============
 // importing Login
@@ -64,11 +64,15 @@ function App() {
   // State for Routes
   const [TRoutes, setTRoutes] = useState([]);
   // User Cache
-  const [User, setUser] = useLocalStorage('user', {});
+  const [User, setUser] = useLocalStorage("user", {});
   // Check if logged in
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [isLoggedIn, setisLoggedIn] = useState(true);
 
   useEffect(() => {
+    const user = User;
+    console.log(user);
+    user === null && setisLoggedIn(false);
+
     // Getting Products for AllProducts
     const loadProducts = async () => {
       var products = await getProducts();
@@ -99,29 +103,29 @@ function App() {
     // Getting Routes for AllRoutes
     const loadRoutes = async () => {
       let routes = await getRoutes();
-      // console.log(routes);
       routes = routes.data.AllItems.Items;
       setTRoutes(routes);
     };
     loadRoutes();
-  }, []);
+  }, [User]);
 
   // Login
-  const handleLogin = (user) => {
-    user = verifyLogin(user);
-
-    if(user !== null){
+  const handleLogin = async (user) => {
+    user = await verifyLogin(user);
+    user = user.data.Response;
+    console.log(user);
+    if (user !== false) {
       setUser(user);
       setisLoggedIn(true);
-      Navigate("/routes/all")
+      Navigate("/routes/all");
     }
-  }
+  };
 
   const handleLogOut = () => {
     setUser(null);
     setisLoggedIn(false);
-    Navigate("/login")
-  }
+    Navigate("/login");
+  };
 
   // Delete Prouduct from AllProducts
   const handleDelete = async (barcode) => {
@@ -165,7 +169,7 @@ function App() {
         <div className="row">
           <div className="sidebar-col col-md-3">
             {/* Sidebar */}
-            <Sidebar />
+            <Sidebar UserCache={User} />
           </div>
           {/* Main */}
           {/* =========== Routing =========== */}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { alert_error, alert_info } from "../services/helpers";
+import { alert_error, __price } from "../services/helpers";
 import PrintBooking from "./PrintBooking";
 
 const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
@@ -79,6 +79,11 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
     onTicketUpdate(SelectedBooking, NewBooking, "done");
   };
 
+  const getOrderTotal = () => {
+    const total_seats = NewBooking.length * Route.ticket_price;
+    return __price(total_seats);
+  };
+
   return (
     <div className="table-responsive">
       <table className="table table-light table-bordered text-center">
@@ -110,7 +115,7 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
                       onClick={() => onTicketUpdate(booking, [], "cancelled")}
                       className="btn btn-danger"
                     >
-                      Cancel Booking
+                      Cancel
                     </button>
                     <PrintBooking Booking={booking} />
                   </>
@@ -130,9 +135,12 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
       </table>
       <Modal show={ShowModal} onHide={handleClose} className="no-urdu-font">
         <Modal.Header closeButton>
-          <Modal.Title>Bookings: {getPassengerName()}</Modal.Title>
+          <Modal.Title>
+            Total Amount: <span>{getOrderTotal()}</span>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <h4>{getPassengerName()}</h4>
           <div className="booking-grid-wrapper">
             {TickGrid.map((cell) => (
               <div
