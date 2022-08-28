@@ -4,8 +4,10 @@ import {
   FaPlusCircle,
   FaUser,
   FaTachometerAlt,
-  FaRoute 
+  FaRoute,
 } from "react-icons/fa";
+import { TbBrandBooking } from "react-icons/tb";
+
 
 function Icons({ icon }) {
   return (
@@ -16,6 +18,7 @@ function Icons({ icon }) {
       {icon === "images" && <FaImages />}
       {icon === "meter" && <FaTachometerAlt />}
       {icon === "troute" && <FaRoute />}
+      {icon === "booking" && <TbBrandBooking />}
     </>
   );
 }

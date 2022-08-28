@@ -67,14 +67,14 @@ const Navbar = ({onLogOut}) => {
             >
               <li>
                 <Link className="dropdown-item" to="">
-                  Settings
+                  Profile
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link className="dropdown-item" to="">
                   Activity Log
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <hr className="dropdown-divider" />
               </li>

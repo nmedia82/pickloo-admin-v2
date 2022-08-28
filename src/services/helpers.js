@@ -86,8 +86,8 @@ export const get_menu = (type = null) => {
     case "transporter":
       menu = [
         ...menu,
-        { title: "Routes & Bookings", to: "/routes/all", icon: "meter" },
-        { title: "Add Route", to: "/routes/add", icon: "meter" },
+        { title: "Routes & Bookings", to: "/routes/all", icon: "booking" },
+        { title: "Add Route", to: "/routes/add", icon: "troute" },
       ];
       break;
 
