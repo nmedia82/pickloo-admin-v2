@@ -66,8 +66,8 @@ const AllTRoutes = ({ TRoutes }) => {
                         onClick={() => updateStatus(route)}
                         className={
                           route.route_status === "inactive"
-                            ? "btn btn-danger"
-                            : "btn btn-info"
+                            ? "btn btn-sm btn-danger"
+                            : "btn btn-sm btn-info"
                         }
                       >
                         {route.route_status}

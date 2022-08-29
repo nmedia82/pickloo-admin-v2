@@ -28,9 +28,12 @@ const Login = ({ onLogin }) => {
   };
   return (
     <div className="container-fluid">
-      <div className="row d-flex min-vh-100 align-items-center justify-content-center p-5">
+      <div className="row d-flex min-vh-100 justify-content-center p-5">
         <div className="col-md-6 p-4">
-          <form onSubmit={(e) => handleSubmit(e, Login)}>
+          <form
+            onSubmit={(e) => handleSubmit(e, Login)}
+            className="bg-light p-3"
+          >
             <div className="mb-3">
               <label htmlFor="loginEmail" className="form-label">
                 Phone Number
