@@ -62,7 +62,7 @@ const AddTransporter = () => {
         <div className=" row justify-content-center">
           <div className="bg-light p-4">
             <form onSubmit={(e) => handleSubmit(e)}>
-              <h1>Register transporter</h1>
+              <h2>Register transporter</h2>
               <p className="text-medium-emphasis">
                 Add your transporter details
               </p>

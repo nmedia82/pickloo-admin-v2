@@ -28,9 +28,12 @@ const Login = ({ onLogin }) => {
   };
   return (
     <div className="container-fluid">
-      <div className="row d-flex min-vh-100 align-items-center justify-content-center p-5">
+      <div className="row d-flex min-vh-100 justify-content-center p-5">
         <div className="col-md-6 p-4">
-          <form onSubmit={(e) => handleSubmit(e, Login)}>
+          <form
+            onSubmit={(e) => handleSubmit(e, Login)}
+            className="bg-light p-3"
+          >
             <div className="mb-3">
               <label htmlFor="loginEmail" className="form-label">
                 Phone Number
@@ -46,7 +49,7 @@ const Login = ({ onLogin }) => {
                 value={Login.phone}
               />
               <div id="emailHelp" className="form-text">
-                We'll never share your email with anyone else.
+                We'll never share your phone number with anyone else.
               </div>
             </div>
             <div className="mb-3">
