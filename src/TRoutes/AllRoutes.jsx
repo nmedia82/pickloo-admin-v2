@@ -73,7 +73,7 @@ const AllTRoutes = ({ TRoutes }) => {
                         {route.route_status}
                       </button>
                       <Link
-                        className="btn btn-success m-1"
+                        className="btn btn-sm btn-success m-1"
                         to={`/route/${route.route_id}/bookings`}
                       >
                         Bookings

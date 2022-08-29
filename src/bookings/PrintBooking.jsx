@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import Icons from "../components/Icons";
 import { getCurrentUser } from "../services/auth";
 import { __todate } from "../services/helpers";
 
@@ -13,8 +14,9 @@ const PrintBooking = ({ Booking }) => {
 
   return (
     <div className="non-printable">
-      <button className="btn btn-primary" onClick={handleShow}>
-        Print
+      <button className="btn" title="Print" onClick={handleShow}>
+        <Icons icon="print" />
+        {/* Print */}
       </button>
       <Modal show={Show} onHide={handleClose}>
         <Modal.Body>
@@ -45,7 +47,7 @@ const PrintBooking = ({ Booking }) => {
               </tbody>
             </table>
             <div className="roaddy-print-footer text-center">
-              Online booking ystem developed by N-Media - 0322 4028612
+              Online booking system developed by N-Media - 0322 4028612
             </div>
           </div>
         </Modal.Body>

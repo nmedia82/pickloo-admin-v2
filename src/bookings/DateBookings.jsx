@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { alert_error, __price } from "../services/helpers";
 import PrintBooking from "./PrintBooking";
+import Icons from "../components/Icons";
 
 const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
   const [ShowModal, setShowModal] = useState(false);
@@ -95,7 +96,9 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
             <th scope="col">Booking</th>
             <th scope="col">Seats</th>
             <th scope="col">Status</th>
-            <th scope="col">Actions</th>
+            <th scope="col" colspan="2">
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -110,20 +113,22 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
               <td>{booking.booking_status}</td>
               <td>
                 {booking.booking_status === "done" && (
-                  <>
+                  <div className="d-flex justify-content-center">
                     <button
                       onClick={() => onTicketUpdate(booking, [], "cancelled")}
-                      className="btn btn-danger mb-2"
+                      className="btn me-2"
+                      title="Cancel"
                     >
-                      Cancel
+                      {/* Cancel */}
+                      <Icons icon="cancel" />
                     </button>
                     <PrintBooking Booking={booking} />
-                  </>
+                  </div>
                 )}
                 {booking.booking_status !== "done" && (
                   <button
                     onClick={() => handleShow(booking)}
-                    className="btn btn-primary"
+                    className="btn btn-sm btn-primary"
                   >
                     Ticket
                   </button>
