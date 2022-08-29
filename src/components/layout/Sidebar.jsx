@@ -24,6 +24,11 @@ const Sidebar = ({ UserCache }) => {
               </NavLink>
             </li>
           ))}
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="login">
+              <Icons icon="" /> Login
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </div>
