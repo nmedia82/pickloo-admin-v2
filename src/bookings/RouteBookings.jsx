@@ -67,7 +67,8 @@ const RouteBookings = ({ TRoutes }) => {
   const handleBookingStatus = async (
     booking,
     seat_info,
-    booking_status = null
+    booking_status = null,
+    order_total = 0
   ) => {
     let resp;
     try {
@@ -79,7 +80,8 @@ const RouteBookings = ({ TRoutes }) => {
         route_id,
         booking.booking_id,
         status,
-        seat_info
+        seat_info,
+        order_total
       );
       // console.log(setRawBookings);
       if (resp.status === 200 && resp.data.Message === "SUCCESS") {
@@ -87,7 +89,7 @@ const RouteBookings = ({ TRoutes }) => {
         const index = bookings.indexOf(booking);
         bookings[index].booking_status = status;
         bookings[index].seat_info = seat_info;
-        console.log(bookings);
+        bookings[index].order_total = order_total;
         bookings = process_booking(bookings);
         setAllBookings(bookings);
         alert_info("Status updated");

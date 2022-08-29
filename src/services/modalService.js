@@ -113,7 +113,8 @@ export function setBookingStatus(
   route_id,
   booking_id,
   booking_status,
-  seat_info
+  seat_info,
+  order_total
 ) {
   const url = `${config.uri_roaddy}?action=set_booking_status`;
   const data = {
@@ -121,6 +122,7 @@ export function setBookingStatus(
     booking_id: booking_id,
     booking_status: booking_status,
     seat_info: seat_info,
+    order_total: order_total,
   };
   return httpService.post(url, data);
 }

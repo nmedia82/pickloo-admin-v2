@@ -4,13 +4,12 @@ import { alert_error, __price } from "../services/helpers";
 import PrintBooking from "./PrintBooking";
 import Icons from "../components/Icons";
 
-const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
+const DateBookings = ({ Route, Bookings, onTicketUpdate }) => {
   const [ShowModal, setShowModal] = useState(false);
   const [TickGrid, setTickGrid] = useState([]);
   const [BookedSeats, setBookedSeats] = useState([]);
   const [SelectedBooking, setSelectedBooking] = useState(null);
   const [NewBooking, setNewBooking] = useState([]);
-  const [CellClass, setCellClass] = useState("");
 
   useEffect(() => {
     var grid = [];
@@ -77,12 +76,13 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
 
   const handleTicketAssign = () => {
     handleClose();
-    onTicketUpdate(SelectedBooking, NewBooking, "done");
+    // update order_total
+    const order_total = getOrderTotal();
+    onTicketUpdate(SelectedBooking, NewBooking, "done", order_total);
   };
 
   const getOrderTotal = () => {
-    const total_seats = NewBooking.length * Route.ticket_price;
-    return __price(total_seats);
+    return NewBooking.length * Route.ticket_price;
   };
 
   return (
@@ -95,6 +95,7 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
             <th scope="col">Name</th>
             <th scope="col">Booking</th>
             <th scope="col">Seats</th>
+            <th scope="col">Total Amount</th>
             <th scope="col">Status</th>
             <th scope="col" colspan="2">
               Actions
@@ -110,6 +111,7 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
               <td>{booking.passenger_name}</td>
               <td>{booking.total_seats}</td>
               <td>{booking.seat_info && booking.seat_info.join(",")}</td>
+              <td>{__price(booking.order_total || 0)}</td>
               <td>{booking.booking_status}</td>
               <td>
                 {booking.booking_status === "done" && (
@@ -141,7 +143,7 @@ const DateBookings = ({ Route, Bookings, onUpdateStatus, onTicketUpdate }) => {
       <Modal show={ShowModal} onHide={handleClose} className="no-urdu-font">
         <Modal.Header closeButton>
           <Modal.Title>
-            Total Amount: <span>{getOrderTotal()}</span>
+            Total Amount: <span>{__price(getOrderTotal())}</span>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
