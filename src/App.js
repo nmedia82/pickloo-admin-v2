@@ -167,13 +167,13 @@ function App() {
       <Navbar onLogOut={handleLogOut} />
       <div className="container-fluid">
         <div className="row">
-          <div className="sidebar-col col-md-3">
+          <div className="sidebar-col col-md-2">
             {/* Sidebar */}
             <Sidebar UserCache={User} />
           </div>
           {/* Main */}
           {/* =========== Routing =========== */}
-          <div className="col-md-9">
+          <div className="col-md-10">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/login" element={<Login onLogin={handleLogin} />} />

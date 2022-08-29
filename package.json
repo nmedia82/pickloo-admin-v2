@@ -2,7 +2,7 @@
   "name": "pickloo-admin-v2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nmedia82.github.io/pickloo-admin-v2",
+  "homepage": "https://nmedia82.github.io",
   "dependencies": {
     "-": "^0.0.1",
     "@testing-library/jest-dom": "^5.16.4",
