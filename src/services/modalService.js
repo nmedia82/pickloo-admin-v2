@@ -132,3 +132,15 @@ export function saveBooking(data) {
   const url = `${config.uri_roaddy}?action=save_booking`;
   return httpService.post(url, data);
 }
+
+// ============ Cities ============
+// Getting Cities
+export function getCities(data) {
+  const url = `${config.uri_roaddy}?action=get_cities`;
+  return httpService.post(url, data);
+}
+
+export function saveCity(data) {
+  const url = `${config.uri_roaddy}?action=save_city`;
+  return httpService.post(url, data);
+}

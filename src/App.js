@@ -21,6 +21,7 @@ import {
   getOrders,
   getTransporters,
   getRoutes,
+  getCities,
 } from "./services/modalService";
 import useLocalStorage from "./components/localStorage";
 import { verifyLogin } from "./services/auth";
@@ -67,6 +68,8 @@ function App() {
   const [User, setUser] = useLocalStorage("user", {});
   // Check if logged in
   const [isLoggedIn, setisLoggedIn] = useState(true);
+  // Cities
+  const [Cities, setCities] = useState([]);
 
   useEffect(() => {
     const user = User;
@@ -107,6 +110,15 @@ function App() {
       setTRoutes(routes);
     };
     loadRoutes();
+
+    // Getting Cities
+    const laodCities = async () => {
+      const data = { country_code: "PK" };
+      let cities = await getCities(data);
+      cities = cities.data.AllItems.Items;
+      setCities(cities);
+    };
+    laodCities();
   }, [User]);
 
   // Login
@@ -154,7 +166,6 @@ function App() {
     const index = Products.indexOf(product1);
     products[index] = product;
     setProducts(products);
-    console.log("working");
     alert_info("Product updated successfully!");
     Navigate("/products/all");
   };
@@ -182,7 +193,10 @@ function App() {
                 path="/transporters/all"
                 element={<AllTransporters Transporters={Transporters} />}
               />
-              <Route path="/routes/add" element={<AddTRoute />} />
+              <Route
+                path="/routes/add"
+                element={<AddTRoute Cities={Cities} />}
+              />
               <Route
                 path="/routes/all"
                 element={
