@@ -38,11 +38,12 @@ const AddTransporter = () => {
       resp = await saveTransporter(transporter);
       if (resp.status === 200) {
         // const { data } = resp;
-        const { email, full_name, pin } = resp.data.Item;
+        const { email, full_name, pin, phone } = resp.data.Item;
         const welcome_data = {
           full_name: full_name,
           email: email,
           pin: pin.toString(),
+          phone: phone,
         };
         resp = await sendWelcomePin(welcome_data);
         alert_info("Your account is created, please check email for your pin.");
