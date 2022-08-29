@@ -164,7 +164,7 @@ function App() {
     <div className="App">
       {/* <Login /> */}
       {/* Navbar */}
-      <Navbar onLogOut={handleLogOut} />
+      <Navbar onLogOut={handleLogOut} onLogin={isLoggedIn} />
       <div className="container-fluid">
         <div className="row">
           <div className="sidebar-col col-md-2">
