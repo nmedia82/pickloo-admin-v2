@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.bcbadb92.css",
-    "main.js": "/static/js/main.db3473a1.js",
-    "static/js/787.72cf25ec.chunk.js": "/static/js/787.72cf25ec.chunk.js",
-    "index.html": "/index.html",
-    "main.bcbadb92.css.map": "/static/css/main.bcbadb92.css.map",
-    "main.db3473a1.js.map": "/static/js/main.db3473a1.js.map",
-    "787.72cf25ec.chunk.js.map": "/static/js/787.72cf25ec.chunk.js.map"
+    "main.css": "/pickloo-admin-v2/static/css/main.bcbadb92.css",
+    "main.js": "/pickloo-admin-v2/static/js/main.c45bc2bf.js",
+    "static/js/787.72cf25ec.chunk.js": "/pickloo-admin-v2/static/js/787.72cf25ec.chunk.js",
+    "index.html": "/pickloo-admin-v2/index.html",
+    "main.bcbadb92.css.map": "/pickloo-admin-v2/static/css/main.bcbadb92.css.map",
+    "main.c45bc2bf.js.map": "/pickloo-admin-v2/static/js/main.c45bc2bf.js.map",
+    "787.72cf25ec.chunk.js.map": "/pickloo-admin-v2/static/js/787.72cf25ec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bcbadb92.css",
-    "static/js/main.db3473a1.js"
+    "static/js/main.c45bc2bf.js"
   ]
 }
