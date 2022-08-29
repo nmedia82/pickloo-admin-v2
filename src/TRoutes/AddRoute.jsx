@@ -30,9 +30,6 @@ const AddTRoute = () => {
   // handle on Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(Route);
-    // await saveRoute(Route);
-    // console.log("Route added");
     let resp = {};
     try {
       const route = {
