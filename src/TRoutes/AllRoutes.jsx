@@ -49,6 +49,7 @@ const AllTRoutes = ({ TRoutes }) => {
                   <th scope="col">Ticket Price</th>
                   <th scope="col">Departure Time</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Report</th>
                 </tr>
               </thead>
               <tbody>
@@ -61,13 +62,14 @@ const AllTRoutes = ({ TRoutes }) => {
                     <td>{route.total_seats}</td>
                     <td>{__price(route.ticket_price)}</td>
                     <td>{route.time_departure}</td>
+
                     <td>
                       <button
                         onClick={() => updateStatus(route)}
                         className={
                           route.route_status === "inactive"
                             ? "btn btn-sm btn-danger"
-                            : "btn btn-sm btn-info"
+                            : "btn btn-sm btn-primary"
                         }
                       >
                         {route.route_status}
@@ -77,6 +79,14 @@ const AllTRoutes = ({ TRoutes }) => {
                         to={`/route/${route.route_id}/bookings`}
                       >
                         Bookings
+                      </Link>
+                    </td>
+                    <td>
+                      <Link
+                        className="btn btn-sm btn-info"
+                        to={`/reports/route/${route.route_id}`}
+                      >
+                        Print
                       </Link>
                     </td>
                   </tr>

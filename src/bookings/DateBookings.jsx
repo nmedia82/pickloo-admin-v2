@@ -118,7 +118,7 @@ const DateBookings = ({ Route, Bookings, onTicketUpdate }) => {
                   <div className="d-flex justify-content-center">
                     <button
                       onClick={() => onTicketUpdate(booking, [], "cancelled")}
-                      className="btn me-2"
+                      className="btn btn-danger me-2"
                       title="Cancel"
                     >
                       {/* Cancel */}

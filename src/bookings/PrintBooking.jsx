@@ -14,7 +14,7 @@ const PrintBooking = ({ Booking }) => {
 
   return (
     <div className="non-printable">
-      <button className="btn" title="Print" onClick={handleShow}>
+      <button className="btn btn-primary" title="Print" onClick={handleShow}>
         <Icons icon="print" />
         {/* Print */}
       </button>

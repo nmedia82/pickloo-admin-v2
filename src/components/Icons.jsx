@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import { TbBrandBooking } from "react-icons/tb";
 import { BsFillPrinterFill } from "react-icons/bs";
-import { FcCancel } from "react-icons/fc";
+import { GiCancel } from "react-icons/gi";
 
 function Icons({ icon }) {
   return (
@@ -20,7 +20,7 @@ function Icons({ icon }) {
       {icon === "meter" && <FaTachometerAlt />}
       {icon === "troute" && <FaRoute />}
       {icon === "booking" && <TbBrandBooking />}
-      {icon === "cancel" && <FcCancel />}
+      {icon === "cancel" && <GiCancel />}
       {icon === "print" && <BsFillPrinterFill />}
     </>
   );
