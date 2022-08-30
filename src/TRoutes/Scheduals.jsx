@@ -14,7 +14,7 @@ function SchedualsComponent({
       {Scheduals.map((schedual, index) => {
         return (
           <div className="row" key={index}>
-            <div className="col-md-5">
+            <div className="col-md-3">
               <input
                 type="time"
                 className="form-control"
@@ -24,13 +24,23 @@ function SchedualsComponent({
                 onChange={(e) => onSchedualChange(e, index)}
               />
             </div>
-            <div className="col-md-4">
+            <div className="col-md-3">
               <input
                 type="time"
                 className="form-control"
                 placeholder="Arrival"
                 name="arrival"
                 value={schedual.arrival}
+                onChange={(e) => onSchedualChange(e, index)}
+              />
+            </div>
+            <div className="col-md-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Vehicle"
+                name="vehicle"
+                value={schedual.vehicle}
                 onChange={(e) => onSchedualChange(e, index)}
               />
             </div>

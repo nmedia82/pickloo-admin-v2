@@ -34,6 +34,7 @@ const AddTRoute = ({ Cities }) => {
     {
       departure: "",
       arrival: "",
+      vehicle: "",
     },
   ]);
   // handle on Change
@@ -46,14 +47,15 @@ const AddTRoute = ({ Cities }) => {
   };
 
   // handle on Submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     let resp = {};
     try {
       const route = {
         ...Route,
         phone: get_transporter_phone(), // it's from user storage
         route_status: "inactive",
+        route_schedual: [...SchedualControls],
+        route_stations: [...SubStationControls],
       };
       resp = await saveRoute(route);
       if (resp.status === 200) {
@@ -115,127 +117,126 @@ const AddTRoute = ({ Cities }) => {
             {JSON.stringify(Route)}
             {/* <div className="mx-4">
             <CCardBody className="p-4"> */}
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <h1>Add Route</h1>
-              <p className="text-medium-emphasis">Add your Route details</p>
-              <InputGroup className="mb-3">
-                <InputGroup.Text id="inputGroup-sizing-default">
-                  Route Name
-                </InputGroup.Text>
-                <Form.Control
-                  aria-label="Default"
-                  aria-describedby="inputGroup-sizing-default"
-                  required
-                  name="route_name"
-                  onChange={handleChange}
-                  value={Route.route_name}
-                />
-              </InputGroup>
-              <div className="mb-3">
-                <div className="row">
-                  <div className="col-6">
-                    <label htmlFor="RouteFrom" className="form-label">
-                      From
-                    </label>
-                    <select
-                      className="form-select"
-                      name="route_from"
-                      id="RouteFrom"
-                      onChange={handleChange}
-                    >
-                      <option>Select From</option>
-                      {Cities.map((city, index) => (
-                        <option key={index} value={city.city_name}>
-                          {city.city_name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="col-6">
-                    <label htmlFor="RouteTo" className="form-label">
-                      Route Name
-                    </label>
-                    <select
-                      id="RouteTo"
-                      className="form-select"
-                      name="route_to"
-                      onChange={handleChange}
-                    >
-                      <option>Select To</option>
-                      {Cities.map((city, index) => (
-                        <option key={index} value={city.city_name}>
-                          {city.city_name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
 
+            <h1>Add Route</h1>
+            <p className="text-medium-emphasis">Add your Route details</p>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="inputGroup-sizing-default">
+                Route Name
+              </InputGroup.Text>
+              <Form.Control
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                required
+                name="route_name"
+                onChange={handleChange}
+                value={Route.route_name}
+              />
+            </InputGroup>
+            <div className="mb-3">
               <div className="row">
-                <div className="col-md-6">
-                  <InputGroup className="mb-3 col-md-6">
-                    <InputGroup.Text id="inputGroup-sizing-default">
-                      Total Seats
-                    </InputGroup.Text>
-                    <Form.Control
-                      aria-label="Default"
-                      aria-describedby="inputGroup-sizing-default"
-                      required
-                      name="total_seats"
-                      onChange={handleChange}
-                      value={Route.total_seats}
-                    />
-                  </InputGroup>
+                <div className="col-6">
+                  <label htmlFor="RouteFrom" className="form-label">
+                    From
+                  </label>
+                  <select
+                    className="form-select"
+                    name="route_from"
+                    id="RouteFrom"
+                    onChange={handleChange}
+                  >
+                    <option>Select From</option>
+                    {Cities.map((city, index) => (
+                      <option key={index} value={city.city_name}>
+                        {city.city_name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <div className="col-md-6">
-                  <InputGroup className="mb-3">
-                    <InputGroup.Text>Rs.</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Amount (to the nearest dollar)"
-                      name="ticket_price"
-                      onChange={handleChange}
-                      value={Route.ticket_price}
-                    />
-                    <InputGroup.Text>.00</InputGroup.Text>
-                  </InputGroup>
+                <div className="col-6">
+                  <label htmlFor="RouteTo" className="form-label">
+                    Route Name
+                  </label>
+                  <select
+                    id="RouteTo"
+                    className="form-select"
+                    name="route_to"
+                    onChange={handleChange}
+                  >
+                    <option>Select To</option>
+                    {Cities.map((city, index) => (
+                      <option key={index} value={city.city_name}>
+                        {city.city_name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
+            </div>
 
-              <SchedualsComponent
-                Scheduals={SchedualControls}
-                onSchedualChange={handleSchedualChange}
-                onMoreSchedual={handleMoreSchedual}
-                onRemoveSchedual={handleRemoveSchedual}
-              />
+            <div className="row">
+              <div className="col-md-6">
+                <InputGroup className="mb-3 col-md-6">
+                  <InputGroup.Text id="inputGroup-sizing-default">
+                    Total Seats
+                  </InputGroup.Text>
+                  <Form.Control
+                    aria-label="Default"
+                    aria-describedby="inputGroup-sizing-default"
+                    required
+                    name="total_seats"
+                    onChange={handleChange}
+                    value={Route.total_seats}
+                  />
+                </InputGroup>
+              </div>
+              <div className="col-md-6">
+                <InputGroup className="mb-3">
+                  <InputGroup.Text>Rs.</InputGroup.Text>
+                  <Form.Control
+                    aria-label="Amount (to the nearest dollar)"
+                    name="ticket_price"
+                    onChange={handleChange}
+                    value={Route.ticket_price}
+                  />
+                  <InputGroup.Text>.00</InputGroup.Text>
+                </InputGroup>
+              </div>
+            </div>
 
-              <SubStationsComponent
-                SubStations={SubStationControls}
-                onSubStationChange={handleSubStationChange}
-                onMoreSubStation={handleMoreSubStation}
-                onRemoveSubStation={handleRemoveSubStation}
-                Cities={Cities}
-              />
+            <SchedualsComponent
+              Scheduals={SchedualControls}
+              onSchedualChange={handleSchedualChange}
+              onMoreSchedual={handleMoreSchedual}
+              onRemoveSchedual={handleRemoveSchedual}
+            />
 
-              <button
-                type="submit"
-                className="btn btn-info mb-3"
-                // onClick={(e) => handleSubmit()}
-              >
-                Add Route
-              </button>
-              {/* <button className="btn btn-info m-2" onClick="">
+            <SubStationsComponent
+              SubStations={SubStationControls}
+              onSubStationChange={handleSubStationChange}
+              onMoreSubStation={handleMoreSubStation}
+              onRemoveSubStation={handleRemoveSubStation}
+              Cities={Cities}
+            />
+
+            <button
+              type="submit"
+              className="btn btn-info mb-3"
+              onClick={(e) => handleSubmit()}
+            >
+              Add Route
+            </button>
+            {/* <button className="btn btn-info m-2" onClick="">
                   Save
                 </button> */}
-              {/* <CButton className="btn-danger ms-2 mb-3" onClick={onCancel}>
+            {/* <CButton className="btn-danger ms-2 mb-3" onClick={onCancel}>
                   Cancel
                 </CButton> */}
-              <Link to="/routes/all">
-                <button className="btn btn-danger ms-2 mb-3">Cancel</button>
-              </Link>
-              {/* </CCardBody>
+            <Link to="/routes/all">
+              <button className="btn btn-danger ms-2 mb-3">Cancel</button>
+            </Link>
+            {/* </CCardBody>
           </div> */}
-            </form>
           </div>
         </div>
       </div>
