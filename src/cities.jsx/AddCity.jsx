@@ -73,8 +73,8 @@ const AddCity = () => {
                 Add City
               </button>
 
-              <Link to="/cities/all">
-                <button className="btn btn-danger ms-2 mb-3">Cancel</button>
+              <Link to="/cities/all" className="btn btn-danger ms-2 mb-3">
+                Cancel
               </Link>
             </form>
           </div>
