@@ -50,6 +50,7 @@ import AllTRoutes from "./TRoutes/AllRoutes";
 import RouteBookings from "./bookings/RouteBookings";
 import PrintBooking from "./bookings/PrintBooking";
 import RouteReport from "./reports/RouteReport";
+import AddCity from "./cities.jsx/AddCity";
 
 function App() {
   // Navigate method of react router dom
@@ -183,6 +184,7 @@ function App() {
                 path="/transporters/all"
                 element={<AllTransporters Transporters={Transporters} />}
               />
+              <Route path="/cities/add" element={<AddCity />} />
               <Route path="/routes/add" element={<AddTRoute />} />
               <Route
                 path="/routes/all"

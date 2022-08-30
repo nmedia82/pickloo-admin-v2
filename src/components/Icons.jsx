@@ -5,6 +5,7 @@ import {
   FaUser,
   FaTachometerAlt,
   FaRoute,
+  FaCity,
 } from "react-icons/fa";
 import { TbBrandBooking } from "react-icons/tb";
 import { BsFillPrinterFill } from "react-icons/bs";
@@ -22,6 +23,7 @@ function Icons({ icon }) {
       {icon === "booking" && <TbBrandBooking />}
       {icon === "cancel" && <GiCancel />}
       {icon === "print" && <BsFillPrinterFill />}
+      {icon === "city" && <FaCity />}
     </>
   );
 }
