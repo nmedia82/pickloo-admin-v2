@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 export const alert_info = (msg) => {
   toast.info(msg, {
-    autoClose: 1000,
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -12,7 +12,7 @@ export const alert_info = (msg) => {
 
 export const alert_error = (msg) => {
   toast.error(msg, {
-    autoClose: 1000,
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
