@@ -24,11 +24,11 @@ const Sidebar = ({ UserCache }) => {
               </NavLink>
             </li>
           ))}
-          {/* <li className="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="login">
-              <Icons icon="" /> Login
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/cities/add">
+              <Icons icon="city" /> Add City
             </NavLink>
-          </li> */}
+          </li>
         </ul>
       </nav>
     </div>
