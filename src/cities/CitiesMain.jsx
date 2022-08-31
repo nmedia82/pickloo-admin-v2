@@ -1,43 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
 // importing alerts
 import { alert_error, alert_info } from "../services/helpers";
 // importing saveProduct API
-import { saveCity, loadCities } from "../services/modalService";
+import { saveCity } from "../services/modalService";
+import AllCities from "./AllCities";
 
-const Cities = () => {
+const CitiesMain = ({ Cities }) => {
   // const navigate = useNavigate();
 
   // State for City
   const [City, setCity] = useState({
     city_name: "",
-    city_areas: "",
+    city_areas: [],
   });
-
-  // Getting Cities for AllCities
-  useEffect(() => {
-    const loadCities = async () => {
-      let cities = await getCities();
-      // products = products.data.AllItems.Items;
-      // console.log(products)
-      setCity(cities);
-    };
-    loadCities();
-  });
-
-  // Delete City from AllCities
-  const doDelete = async (id) => {
-    // ask first
-    const a = window.confirm("Are you sure to delete?");
-    if (!a) return;
-
-    const resp = await deleteCity(id);
-    if (resp.status !== 200) return alert_error("Error while deleting city");
-    // removing city from list and udpate
-    const city = City.filter((p) => p.id !== barcode);
-    setCity(city);
-  };
 
   // handle on Change
   const handleChange = (e) => {
@@ -54,7 +31,22 @@ const Cities = () => {
     e.preventDefault();
     console.log(City);
     // await saveCity(City);
-    // navigate("/cities/all");
+    let resp = {};
+    try {
+      const city = {
+        ...City,
+        country_code: "PK",
+      };
+      resp = await saveCity(city);
+      if (resp.status === 200) {
+        alert_info("Done");
+        // navigate("/cities/all");
+      } else {
+        alert_error("Error while saving");
+      }
+    } catch (e) {
+      alert_error(e.message);
+    }
   };
   return (
     <div className="min-vh-100 d-flex flex-row">
@@ -112,57 +104,15 @@ const Cities = () => {
                 Add City
               </button>
 
-              <Link to="/cities/all" className="btn btn-danger ms-2 mb-3">
+              {/* <Link to="/cities/all" className="btn btn-danger ms-2 mb-3">
                 Cancel
-              </Link>
+              </Link> */}
             </form>
           </div>
         </div>
-      </div>
-      {/* ============ Listing Cities ============ */}
-      <div className="row">
-        <div className="col-md-12">
-          <h1 className="text-center my-3">All Products</h1>
-          <div className="table-responsive">
-            <table className="table table-light table-bordered text-center">
-              <thead className="table-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">City Name</th>
-                  <th scope="col">City Areas</th>
-                  <th scope="col" colSpan="2">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* ======= listing products ======= */}
-                {City.map((cty, index) => (
-                  <tr key={index}>
-                    <th scope="row">{index + 1}</th>
-                    <td>{cty.city_name}</td>
-                    <td>{cty.city_areas}</td>
-
-                    {/* <td>
-                      <Link
-                        className="btn btn-sm btn-warning"
-                        to={`/products/edit/${product.barcode}`}
-                      >
-                        Edit
-                      </Link>
-                    </td> */}
-                    <td>
-                      <button
-                        className="btn btn-sm btn-danger"
-                        onClick={() => doDelete()}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <div className="row">
+          <div className="col-md-12">
+            <AllCities Cities={Cities} />
           </div>
         </div>
       </div>
@@ -170,4 +120,4 @@ const Cities = () => {
   );
 };
 
-export default Cities;
+export default CitiesMain;
