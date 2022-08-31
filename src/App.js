@@ -198,10 +198,7 @@ function App() {
                 element={<AllTransporters Transporters={Transporters} />}
               />
 
-              <Route
-                path="/cities/add"
-                element={<CitiesMain Cities={Cities} />}
-              />
+              <Route path="/cities" element={<CitiesMain Cities={Cities} />} />
 
               <Route
                 path="/routes/add"

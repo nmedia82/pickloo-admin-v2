@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-
 const AllCities = ({ Cities }) => {
   return (
     <div className="row">
       <div className="col-md-12">
-        <h1 className="text-center my-3">All Products</h1>
+        <h1 className="text-center my-3">All Cities</h1>
         <div className="table-responsive">
           <table className="table table-light table-bordered text-center">
             <thead className="table-dark">

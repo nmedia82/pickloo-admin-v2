@@ -104,9 +104,9 @@ const CitiesMain = ({ Cities }) => {
                 Add City
               </button>
 
-              <Link to="/cities/all" className="btn btn-danger ms-2 mb-3">
+              {/* <Link to="/cities/all" className="btn btn-danger ms-2 mb-3">
                 Cancel
-              </Link>
+              </Link> */}
             </form>
           </div>
         </div>
