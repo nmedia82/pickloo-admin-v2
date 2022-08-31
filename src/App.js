@@ -52,7 +52,7 @@ import AllTRoutes from "./TRoutes/AllRoutes";
 import RouteBookings from "./bookings/RouteBookings";
 import RouteReport from "./reports/RouteReport";
 import CitiesMain from "./cities/CitiesMain";
-import VehiclesMain from './vehicles/VehiclesMain'
+import VehiclesMain from "./vehicles/VehiclesMain";
 
 function App() {
   // Navigate method of react router dom
@@ -175,6 +175,11 @@ function App() {
     Navigate("/products/all");
   };
 
+  const handleNewCity = (City) => {
+    const cities = [...Cities, City];
+    setCities(cities);
+  };
+
   // returnig Template
   return (
     <div className="App">
@@ -199,7 +204,12 @@ function App() {
                 element={<AllTransporters Transporters={Transporters} />}
               />
 
-              <Route path="/cities" element={<CitiesMain Cities={Cities} />} />
+              <Route
+                path="/cities"
+                element={
+                  <CitiesMain onNewCity={handleNewCity} Cities={Cities} />
+                }
+              />
               <Route
                 path="/vehicles"
                 element={<VehiclesMain Vehicles={Vehicles} />}

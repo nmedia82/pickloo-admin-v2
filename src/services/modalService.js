@@ -144,3 +144,25 @@ export function saveCity(data) {
   const url = `${config.uri_roaddy}?action=save_city`;
   return httpService.post(url, data);
 }
+
+export function deleteCity(data) {
+  const url = `${config.uri_roaddy}?action=delete_city`;
+  return httpService.post(url, data);
+}
+
+// ============ Vehicles ============
+// Getting Vehicles
+export function getVehicles(data) {
+  const url = `${config.uri_roaddy}?action=get_vehicles`;
+  return httpService.post(url, data);
+}
+
+export function saveVehicle(data) {
+  const url = `${config.uri_roaddy}?action=save_vehicle`;
+  return httpService.post(url, data);
+}
+
+export function deleteVehicle(data) {
+  const url = `${config.uri_roaddy}?action=delete_vehicle`;
+  return httpService.post(url, data);
+}

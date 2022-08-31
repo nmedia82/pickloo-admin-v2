@@ -7,7 +7,7 @@ import { alert_error, alert_info } from "../services/helpers";
 import { saveCity } from "../services/modalService";
 import AllCities from "./AllCities";
 
-const CitiesMain = ({ Cities }) => {
+const CitiesMain = ({ Cities, onNewCity }) => {
   // const navigate = useNavigate();
 
   // State for City
@@ -37,9 +37,11 @@ const CitiesMain = ({ Cities }) => {
         ...City,
         country_code: "PK",
       };
+      city.city_areas = city.city_areas.split(",");
       resp = await saveCity(city);
       if (resp.status === 200) {
         alert_info("Done");
+        onNewCity(city);
         // navigate("/cities/all");
       } else {
         alert_error("Error while saving");
@@ -112,6 +114,9 @@ const CitiesMain = ({ Cities }) => {
         </div>
         <div className="row">
           <div className="col-md-12">
+            <h2>Cities/Terminals</h2>
+            <button>Add City</button>
+            {/* <NewCity></NewCity> */}
             <AllCities Cities={Cities} />
           </div>
         </div>
