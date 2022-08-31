@@ -50,7 +50,7 @@ import AddTRoute from "./TRoutes/AddRoute";
 import AllTRoutes from "./TRoutes/AllRoutes";
 import RouteBookings from "./bookings/RouteBookings";
 import RouteReport from "./reports/RouteReport";
-import AddCity from "./cities.jsx/AddCity";
+import AddCity from "./cities.jsx/Cities";
 
 function App() {
   // Navigate method of react router dom
