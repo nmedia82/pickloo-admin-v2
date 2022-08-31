@@ -113,7 +113,8 @@ export function setBookingStatus(
   route_id,
   booking_id,
   booking_status,
-  seat_info
+  seat_info,
+  order_total
 ) {
   const url = `${config.uri_roaddy}?action=set_booking_status`;
   const data = {
@@ -121,6 +122,7 @@ export function setBookingStatus(
     booking_id: booking_id,
     booking_status: booking_status,
     seat_info: seat_info,
+    order_total: order_total,
   };
   return httpService.post(url, data);
 }
@@ -128,5 +130,17 @@ export function setBookingStatus(
 // Adding Booking
 export function saveBooking(data) {
   const url = `${config.uri_roaddy}?action=save_booking`;
+  return httpService.post(url, data);
+}
+
+// ============ Cities ============
+// Getting Cities
+export function getCities(data) {
+  const url = `${config.uri_roaddy}?action=get_cities`;
+  return httpService.post(url, data);
+}
+
+export function saveCity(data) {
+  const url = `${config.uri_roaddy}?action=save_city`;
   return httpService.post(url, data);
 }

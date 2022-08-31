@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Icons from "../components/Icons";
 import { getCurrentUser } from "../services/auth";
-import { __todate } from "../services/helpers";
+import { __price, __todate } from "../services/helpers";
 
 const PrintBooking = ({ Booking }) => {
   const [Show, setShow] = useState(false);
@@ -36,6 +36,7 @@ const PrintBooking = ({ Booking }) => {
                   <th>Name</th>
                   <th>Phone</th>
                   <th>Seats</th>
+                  <th>Amount</th>
                 </tr>
               </thead>
               <tbody>
@@ -43,6 +44,7 @@ const PrintBooking = ({ Booking }) => {
                   <td>{Booking.passenger_name}</td>
                   <td>{Booking.passenger_phone}</td>
                   <td>{Booking.seat_info.join(",")}</td>
+                  <td>{__price(Booking.order_total)}</td>
                 </tr>
               </tbody>
             </table>

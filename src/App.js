@@ -21,6 +21,7 @@ import {
   getOrders,
   getTransporters,
   getRoutes,
+  getCities,
 } from "./services/modalService";
 import useLocalStorage from "./components/localStorage";
 import { verifyLogin } from "./services/auth";
@@ -48,7 +49,6 @@ import AllTransporters from "./transporters/AllTransporters";
 import AddTRoute from "./TRoutes/AddRoute";
 import AllTRoutes from "./TRoutes/AllRoutes";
 import RouteBookings from "./bookings/RouteBookings";
-import PrintBooking from "./bookings/PrintBooking";
 import RouteReport from "./reports/RouteReport";
 import AddCity from "./cities.jsx/Cities";
 
@@ -69,6 +69,10 @@ function App() {
   const [User, setUser] = useLocalStorage("user", {});
   // Check if logged in
   const [isLoggedIn, setisLoggedIn] = useState(true);
+  // Cities
+  const [Cities, setCities] = useState([]);
+  // Vehicles
+  const [Vehicles, setVehicles] = useState([]);
 
   useEffect(() => {
     const user = User;
@@ -109,6 +113,15 @@ function App() {
       setTRoutes(routes);
     };
     loadRoutes();
+
+    // Getting Cities
+    const laodCities = async () => {
+      const data = { country_code: "PK" };
+      let cities = await getCities(data);
+      cities = cities.data.AllItems.Items;
+      setCities(cities);
+    };
+    laodCities();
   }, [User]);
 
   // Login
@@ -156,7 +169,6 @@ function App() {
     const index = Products.indexOf(product1);
     products[index] = product;
     setProducts(products);
-    console.log("working");
     alert_info("Product updated successfully!");
     Navigate("/products/all");
   };
@@ -184,8 +196,14 @@ function App() {
                 path="/transporters/all"
                 element={<AllTransporters Transporters={Transporters} />}
               />
-              <Route path="/cities/add" element={<AddCity />} />
-              <Route path="/routes/add" element={<AddTRoute />} />
+
+              <Route
+                path="/routes/add"
+                element={<AddTRoute Cities={Cities} />}
+              />
+              {/* <Route path="/cities/add" element={<AddCity />} />
+              <Route path="/routes/add" element={<AddTRoute />} /> */}
+
               <Route
                 path="/routes/all"
                 element={
