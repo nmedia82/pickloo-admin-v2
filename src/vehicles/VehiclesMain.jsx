@@ -81,7 +81,7 @@ const VehiclesMain = ({ Vehicles }) => {
                   className="form-control"
                   id="vehicleNumber"
                   type="text"
-                  placeholder="Lahore"
+                  placeholder="ABC123"
                   required
                   name="vehicle_number"
                   onChange={handleChange}

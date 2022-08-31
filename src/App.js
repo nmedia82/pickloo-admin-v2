@@ -22,7 +22,7 @@ import {
   getTransporters,
   getRoutes,
   getCities,
-  saveCity,
+  deleteCity,
 } from "./services/modalService";
 import useLocalStorage from "./components/localStorage";
 import { verifyLogin } from "./services/auth";
@@ -144,6 +144,19 @@ function App() {
     Navigate("/login");
   };
 
+  // Delete City from AllCities
+  const doDeleteCity = async (cityName) => {
+    // ask first
+    const a = window.confirm("Are you sure to delete?");
+    if (!a) return;
+    console.log(cityName);
+    const resp = await deleteCity(cityName);
+    if (resp.status !== 200) return alert_error("Error while deleting city");
+    // removing city from list and udpate
+    const cities = Cities.filter((city) => city.city_name !== cityName);
+    setCities(cities);
+  };
+
   // Delete Prouduct from AllProducts
   const handleDelete = async (barcode) => {
     // ask first
@@ -207,7 +220,11 @@ function App() {
               <Route
                 path="/cities"
                 element={
-                  <CitiesMain onNewCity={handleNewCity} Cities={Cities} />
+                  <CitiesMain
+                    onNewCity={handleNewCity}
+                    Cities={Cities}
+                    doDeleteCity={doDeleteCity}
+                  />
                 }
               />
               <Route
