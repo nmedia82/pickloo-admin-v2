@@ -22,6 +22,7 @@ import {
   getTransporters,
   getRoutes,
   getCities,
+  saveCity,
 } from "./services/modalService";
 import useLocalStorage from "./components/localStorage";
 import { verifyLogin } from "./services/auth";
@@ -50,7 +51,7 @@ import AddTRoute from "./TRoutes/AddRoute";
 import AllTRoutes from "./TRoutes/AllRoutes";
 import RouteBookings from "./bookings/RouteBookings";
 import RouteReport from "./reports/RouteReport";
-import AddCity from "./cities.jsx/Cities";
+import CitiesMain from "./cities/CitiesMain";
 
 function App() {
   // Navigate method of react router dom
@@ -198,11 +199,16 @@ function App() {
               />
 
               <Route
+                path="/cities/add"
+                element={<CitiesMain Cities={Cities} />}
+              />
+
+              <Route
                 path="/routes/add"
                 element={<AddTRoute Cities={Cities} />}
               />
-              {/* <Route path="/cities/add" element={<AddCity />} />
-              <Route path="/routes/add" element={<AddTRoute />} /> */}
+
+              {/* <Route path="/routes/add" element={<AddTRoute />} /> */}
 
               <Route
                 path="/routes/all"
