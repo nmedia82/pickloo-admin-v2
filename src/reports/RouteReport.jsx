@@ -3,9 +3,13 @@ import React from "react";
 const RouteReport = () => {
   return (
     <div className="container-fluid">
+      <button className="btn btn-info my-2" onClick={() => window.print()}>
+        Print Report
+      </button>
       <div className="row">
         <div className="col-md-12">
           <h1 className="text-center my-3">Rout Report</h1>
+
           <div className="table-responsive">
             <table className="table table-light table-bordered text-center">
               <thead className="table-dark">

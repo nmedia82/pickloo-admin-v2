@@ -10,6 +10,7 @@ import {
 import { TbBrandBooking } from "react-icons/tb";
 import { BsFillPrinterFill } from "react-icons/bs";
 import { GiCancel } from "react-icons/gi";
+import { BiBusSchool } from "react-icons/bi";
 
 function Icons({ icon }) {
   return (
@@ -24,6 +25,7 @@ function Icons({ icon }) {
       {icon === "cancel" && <GiCancel />}
       {icon === "print" && <BsFillPrinterFill />}
       {icon === "city" && <FaCity />}
+      {icon === "vehicles" && <BiBusSchool />}
     </>
   );
 }
