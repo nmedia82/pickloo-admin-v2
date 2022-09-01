@@ -2,6 +2,8 @@ import React, { useState } from "react";
 // react-bootstrap Modalbox components
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+
 // importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
 // importing alerts
@@ -37,8 +39,7 @@ const AddCity = ({ onNewCity }) => {
   // handle on Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(City);
-    // await saveCity(City);
+    // console.log(City);
     let resp = {};
     try {
       const city = {
@@ -50,7 +51,7 @@ const AddCity = ({ onNewCity }) => {
       if (resp.status === 200) {
         alert_info("Done");
         onNewCity(city);
-        navigate("/cities");
+        // navigate("/cities");
       } else {
         alert_error("Error while saving");
       }
@@ -71,13 +72,11 @@ const AddCity = ({ onNewCity }) => {
           <Modal.Title>Add Your City Detail</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label htmlFor="cityName" className="form-label">
-                City Name
-              </label>
-              <input
-                className="form-control"
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>City Name</Form.Label>
+              <Form.Control
+                className=""
                 type="text"
                 id="cityName"
                 placeholder="Lahore"
@@ -86,13 +85,11 @@ const AddCity = ({ onNewCity }) => {
                 onChange={handleChange}
                 value={City.city_name}
               />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="cityArea" className="form-label">
-                City Areas
-              </label>
-              <textarea
-                className="form-control"
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>City Areas</Form.Label>
+              <Form.Control
+                className=""
                 id="cityArea"
                 rows="3"
                 placeholder="Lahore"
@@ -100,35 +97,23 @@ const AddCity = ({ onNewCity }) => {
                 name="city_areas"
                 onChange={handleChange}
                 value={City.city_areas}
-              ></textarea>
-
-              {/* <input
-                        className="form-control"
-                        type="text"
-                        id="cityArea"
-                        placeholder="Lahore"
-                        required
-                        name="city_areas"
-                        onChange={handleChange}
-                        value={City.city_areas}
-                        /> */}
-            </div>
-
-            <button type="sumbmit" className="btn btn-success mb-3">
-              Save
-            </button>
-
-            {/* <Link to="/cities/all" className="btn btn-danger ms-2 mb-3">
-                        Cancel
-                    </Link> */}
-          </form>
+              />
+            </Form.Group>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
+          <Button
+            type="submit"
+            variant="success"
+            onClick={(e) => {
+              handleSubmit(e);
+              handleClose();
+            }}
+          >
+            Save
+          </Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="success" onClick={handleClose}>
-            Save
           </Button>
         </Modal.Footer>
       </Modal>
