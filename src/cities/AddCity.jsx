@@ -4,15 +4,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
-// importing Link and useNavigate for navigation
-import { Link, useNavigate } from "react-router-dom";
 // importing alerts
 import { alert_error, alert_info } from "../services/helpers";
 // importing saveProduct API
 import { saveCity } from "../services/modalService";
 
 const AddCity = ({ onNewCity }) => {
-  const navigate = useNavigate();
 
   // States for react-bootstrap Modal
   const [show, setShow] = useState(false);

@@ -23,6 +23,8 @@ import {
   getRoutes,
   getCities,
   deleteCity,
+  deleteVehicle,
+  getVehicles,
 } from "./services/modalService";
 import useLocalStorage from "./components/localStorage";
 import { verifyLogin } from "./services/auth";
@@ -116,6 +118,15 @@ function App() {
     };
     loadRoutes();
 
+    // Getting Vehicles
+    const laodVehicles = async () => {
+      const data = { transporter_phone: "03224028624" };
+      let vehicles = await getVehicles(data);
+      vehicles = vehicles.data.AllItems.Items;
+      setVehicles(vehicles);
+    };
+    laodVehicles();
+
     // Getting Cities
     const laodCities = async () => {
       const data = { country_code: "PK" };
@@ -157,6 +168,19 @@ function App() {
     setCities(cities);
   };
 
+  // Delete Vehicle from AllCities
+  const doDeleteVehicle = async (id) => {
+    // ask first
+    const a = window.confirm("Are you sure to delete?");
+    if (!a) return;
+    console.log(id);
+    const resp = await deleteVehicle(id);
+    if (resp.status !== 200) return alert_error("Error while deleting vehicle");
+    // removing city from list and udpate
+    const vehicles = Vehicles.filter((vehicle) => vehicle.vehicle_id !== id);
+    setCities(vehicles);
+  };
+
   // Delete Prouduct from AllProducts
   const handleDelete = async (barcode) => {
     // ask first
@@ -191,6 +215,11 @@ function App() {
   const handleNewCity = (City) => {
     const cities = [...Cities, City];
     setCities(cities);
+  };
+  // for New Vehicle refresh page
+  const handleNewVehicle = (Vehicle) => {
+    const vehicles = [...Vehicles, Vehicle];
+    setVehicles(vehicles);
   };
 
   // returnig Template
@@ -229,7 +258,13 @@ function App() {
               />
               <Route
                 path="/vehicles"
-                element={<VehiclesMain Vehicles={Vehicles} />}
+                element={
+                  <VehiclesMain
+                    Vehicles={Vehicles}
+                    onNewVehicle={handleNewVehicle}
+                    doDeleteVehicle={doDeleteVehicle}
+                  />
+                }
               />
 
               <Route
