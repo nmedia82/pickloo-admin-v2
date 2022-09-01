@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // importing Link
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Icons from "../Icons";
 import { get_menu } from "../../services/helpers";
 
@@ -31,7 +31,7 @@ const Sidebar = ({ UserCache }) => {
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/vehicles">
-              <Icons icon="city" /> Vehicles
+              <Icons icon="vehicles" /> Vehicles
             </NavLink>
           </li>
         </ul>

@@ -3,7 +3,7 @@ import React from "react";
 import AllVehicles from "./AllVehicles";
 import AddVehicle from "./AddVehicle";
 
-const VehiclesMain = ({ Vehicles, doDeleteVehicle, onNewVehicle }) => {
+const VehiclesMain = ({ Vehicles, onDeleteVehicle, onNewVehicle }) => {
   return (
     <div className="min-vh-100 d-flex flex-row">
       <div className="container">
@@ -17,7 +17,7 @@ const VehiclesMain = ({ Vehicles, doDeleteVehicle, onNewVehicle }) => {
           <div className="col-md-12">
             <AllVehicles
               Vehicles={Vehicles}
-              doDeleteVehicle={doDeleteVehicle}
+              onDeleteVehicle={onDeleteVehicle}
             />
           </div>
         </div>

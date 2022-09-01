@@ -70,19 +70,7 @@ const AddVehicle = ({ onNewVehicle }) => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Transporter Phone</Form.Label>
-              <Form.Control
-                className="form-ontrol"
-                type="tel"
-                id="transporterPhone"
-                placeholder="03221234657"
-                required
-                name="transporter_phone"
-                onChange={handleChange}
-                value={Vehicle.transporter_phone}
-              />
-            </Form.Group>
+            
             <Form.Group className="mb-3">
               <Form.Label>Vehicle Number</Form.Label>
               <Form.Control

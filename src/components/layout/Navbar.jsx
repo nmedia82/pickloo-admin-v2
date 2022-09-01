@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
-import { get_company_name } from "../../services/auth";
+import { get_company_name, get_transporter_name } from "../../services/auth";
 
 const Navbar = ({ onLogOut, onLogin }) => {
   return (
@@ -19,7 +19,7 @@ const Navbar = ({ onLogOut, onLogin }) => {
             </Link>
           </div>
           {/* Navbar Search */}
-          <div className="col-md-7">
+          <div className="col-md-6">
             {/* <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
               <div className="input-group">
                 <input
@@ -55,7 +55,7 @@ const Navbar = ({ onLogOut, onLogin }) => {
               <FaBars />
             </button>
           </div>
-          <div className="col-md-1 ms-auto">
+          <div className="col-md-2 ms-auto">
             {/* Navbar */}
             {onLogin ? (
               <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 push-right">
@@ -68,6 +68,7 @@ const Navbar = ({ onLogOut, onLogin }) => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
+                    {get_transporter_name()}
                     <FaUserAlt />
                   </Link>
                   <ul
