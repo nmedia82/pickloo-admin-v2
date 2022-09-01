@@ -1,4 +1,4 @@
-const AllCities = ({ Cities, doDeleteCity }) => {
+const AllCities = ({ Cities, onDeleteCity }) => {
   return (
     <div className="table-responsive">
       <table className="table table-light table-bordered text-center">
@@ -31,7 +31,7 @@ const AllCities = ({ Cities, doDeleteCity }) => {
               <td>
                 <button
                   className="btn btn-sm btn-danger"
-                  onClick={() => doDeleteCity(city.city_name)}
+                  onClick={() => onDeleteCity(city.city_name)}
                 >
                   Delete
                 </button>

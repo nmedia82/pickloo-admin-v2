@@ -3,7 +3,7 @@ import React from "react";
 import AddCity from "./AddCity";
 import AllCities from "./AllCities";
 
-const CitiesMain = ({ Cities, doDeleteCity, onNewCity }) => {
+const CitiesMain = ({ Cities, onDeleteCity, onNewCity }) => {
   return (
     <div className="min-vh-100 d-flex flex-row">
       <div className="container">
@@ -17,7 +17,7 @@ const CitiesMain = ({ Cities, doDeleteCity, onNewCity }) => {
           <div className="col-md-12">
             {/* <button>Add City</button> */}
             {/* <NewCity></NewCity> */}
-            <AllCities Cities={Cities} doDeleteCity={doDeleteCity} />
+            <AllCities Cities={Cities} onDeleteCity={onDeleteCity} />
           </div>
         </div>
       </div>

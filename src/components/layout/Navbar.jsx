@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
+import { get_company_name } from "../../services/auth";
 
 const Navbar = ({ onLogOut, onLogin }) => {
   return (
@@ -14,7 +15,7 @@ const Navbar = ({ onLogOut, onLogin }) => {
           <div className="col-md-3 ps-4">
             {/* Navbar Brand */}
             <Link className="navbar-brand" to="/">
-              Roaddy Admin
+              Roaddy Admin | {get_company_name()}
             </Link>
           </div>
           {/* Navbar Search */}

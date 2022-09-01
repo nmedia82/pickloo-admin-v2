@@ -27,7 +27,7 @@ import {
   getVehicles,
 } from "./services/modalService";
 import useLocalStorage from "./components/localStorage";
-import { verifyLogin } from "./services/auth";
+import { get_country_code, verifyLogin } from "./services/auth";
 
 // ============= importing components  ==============
 // importing Login
@@ -156,12 +156,12 @@ function App() {
   };
 
   // Delete City from AllCities
-  const doDeleteCity = async (cityName) => {
+  const handleDeleteCity = async (cityName) => {
     // ask first
     const a = window.confirm("Are you sure to delete?");
     if (!a) return;
-    console.log(cityName);
-    const resp = await deleteCity(cityName);
+    const post_data = { city_name: cityName, country_code: get_country_code() };
+    const resp = await deleteCity(post_data);
     if (resp.status !== 200) return alert_error("Error while deleting city");
     // removing city from list and udpate
     const cities = Cities.filter((city) => city.city_name !== cityName);
@@ -252,7 +252,7 @@ function App() {
                   <CitiesMain
                     onNewCity={handleNewCity}
                     Cities={Cities}
-                    doDeleteCity={doDeleteCity}
+                    onDeleteCity={handleDeleteCity}
                   />
                 }
               />
