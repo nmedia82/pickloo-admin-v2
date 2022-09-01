@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+// react-bootstrap Modalbox components
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 // importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
 // importing alerts
@@ -8,6 +11,12 @@ import { saveCity } from "../services/modalService";
 
 const AddCity = ({ onNewCity }) => {
   const navigate = useNavigate();
+
+  // States for react-bootstrap Modal
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // State for City
   const [City, setCity] = useState({
@@ -52,69 +61,48 @@ const AddCity = ({ onNewCity }) => {
   return (
     <>
       {/* Button trigger modal  */}
-      <button
-        type="button"
-        class="btn btn-lg btn-info"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
+      <Button variant="primary" onClick={handleShow}>
         Add City
-      </button>
+      </Button>
 
       {/* Modal  */}
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Add your City details
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Your City Detail</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="cityName" className="form-label">
+                City Name
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                id="cityName"
+                placeholder="Lahore"
+                required
+                name="city_name"
+                onChange={handleChange}
+                value={City.city_name}
+              />
             </div>
-            <div class="modal-body">
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="cityName" className="form-label">
-                    City Name
-                  </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    id="cityName"
-                    placeholder="Lahore"
-                    required
-                    name="city_name"
-                    onChange={handleChange}
-                    value={City.city_name}
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="cityArea" className="form-label">
-                    City Areas
-                  </label>
-                  <textarea
-                    className="form-control"
-                    id="cityArea"
-                    rows="3"
-                    placeholder="Lahore"
-                    required
-                    name="city_areas"
-                    onChange={handleChange}
-                    value={City.city_areas}
-                  ></textarea>
+            <div className="mb-3">
+              <label htmlFor="cityArea" className="form-label">
+                City Areas
+              </label>
+              <textarea
+                className="form-control"
+                id="cityArea"
+                rows="3"
+                placeholder="Lahore"
+                required
+                name="city_areas"
+                onChange={handleChange}
+                value={City.city_areas}
+              ></textarea>
 
-                  {/* <input
+              {/* <input
                         className="form-control"
                         type="text"
                         id="cityArea"
@@ -124,32 +112,26 @@ const AddCity = ({ onNewCity }) => {
                         onChange={handleChange}
                         value={City.city_areas}
                         /> */}
-                </div>
+            </div>
 
-                <button type="sumbmit" className="btn btn-success mb-3">
-                  Save
-                </button>
+            <button type="sumbmit" className="btn btn-success mb-3">
+              Save
+            </button>
 
-                {/* <Link to="/cities/all" className="btn btn-danger ms-2 mb-3">
+            {/* <Link to="/cities/all" className="btn btn-danger ms-2 mb-3">
                         Cancel
                     </Link> */}
-              </form>
-            </div>
-          </div>
-          {/* <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">
-              Save changes
-            </button>
-          </div> */}
-        </div>
-      </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="success" onClick={handleClose}>
+            Save
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
