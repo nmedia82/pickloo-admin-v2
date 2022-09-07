@@ -114,7 +114,7 @@ const AddTRoute = ({ Cities }) => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-10 col-lg-7 col-xl-6 bg-light p-3 my-5">
-            {JSON.stringify(Route)}
+            {/* {JSON.stringify(Route)} */}
             {/* <div className="mx-4">
             <CCardBody className="p-4"> */}
 

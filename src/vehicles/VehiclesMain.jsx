@@ -9,7 +9,7 @@ const VehiclesMain = ({ Vehicles, onDeleteVehicle, onNewVehicle }) => {
       <div className="container">
         <h1 className="text-center m-3">Vehicles</h1>
         <div className="row">
-          <div className="col-md-12 m-3">
+          <div className="col-md-12 mb-3">
             <AddVehicle onNewVehicle={onNewVehicle} />
           </div>
         </div>

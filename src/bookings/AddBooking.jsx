@@ -24,52 +24,44 @@ const AddBooking = ({ onNewTicket }) => {
         </Modal.Header>
         <Modal.Body>
           <p>
-            <label className="form-label">
-              Phone Number
-              <input
-                type="text"
-                className="form-control"
-                name="passenger_phone"
-                value={Booking.passenger_phone}
-                onChange={(e) => onChangeBooking(e)}
-              />
-            </label>
+            <label className="form-label">Phone Number</label>
+            <input
+              type="text"
+              className="form-control"
+              name="passenger_phone"
+              value={Booking.passenger_phone}
+              onChange={(e) => onChangeBooking(e)}
+            />
           </p>
           <p>
-            <label className="form-label">
-              Customer Name
-              <input
-                type="Phone Name"
-                className="form-control"
-                name="passenger_name"
-                value={Booking.passenger_name}
-                onChange={(e) => onChangeBooking(e)}
-              />
-            </label>
+            <label className="form-label">Customer Name </label>
+            <input
+              type="Phone Name"
+              className="form-control"
+              name="passenger_name"
+              value={Booking.passenger_name}
+              onChange={(e) => onChangeBooking(e)}
+            />
           </p>
           <p>
-            <label className="form-label">
-              Total Seats
-              <input
-                type="number"
-                className="form-control"
-                name="total_seats"
-                value={Booking.total_seats}
-                onChange={(e) => onChangeBooking(e)}
-              />
-            </label>
+            <label className="form-label">Total Seats </label>
+            <input
+              type="number"
+              className="form-control"
+              name="total_seats"
+              value={Booking.total_seats}
+              onChange={(e) => onChangeBooking(e)}
+            />
           </p>
           <p>
-            <label className="form-label">
-              Date
-              <input
-                type="date"
-                className="form-control"
-                name="booking_date"
-                value={Booking.booking_date}
-                onChange={(e) => onChangeBooking(e)}
-              />
-            </label>
+            <label className="form-label">Date </label>
+            <input
+              type="date"
+              className="form-control"
+              name="booking_date"
+              value={Booking.booking_date}
+              onChange={(e) => onChangeBooking(e)}
+            />
           </p>
         </Modal.Body>
         <Modal.Footer>

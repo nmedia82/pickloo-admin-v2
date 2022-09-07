@@ -46,14 +46,14 @@ function SchedualsComponent({
             </div>
             <div className="col-md-3">
               <button
-                className="btn btn-success"
+                className="btn btn-success me-1 mb-1"
                 onClick={() => onMoreSchedual(index)}
               >
                 <FaPlus />
               </button>
               {Scheduals.length > 1 && (
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-danger mb-1"
                   onClick={() => onRemoveSchedual(index)}
                 >
                   <FaMinus />

@@ -1,10 +1,12 @@
-/* Sidebar */
+/* ======================= 
+        Sidebar 
+======================= */
 .sidebar-col {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 .my-sidebar {
-  /* height: 100%; */
+  /* min-height: 100%; */
   background-color: #212529;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -22,9 +24,9 @@
 .my-sidebar .nav-link:active {
   color: #fff !important;
 }
-
-/* Footer */
-
+/* ======================= 
+        Footer 
+======================= */
 footer p {
   margin: 0;
   padding: 0;
@@ -66,14 +68,14 @@ footer p {
   .roaddy-printable {
     display: block;
   }
-    /* on modal open bootstrap adds class "modal-open" to body, so you can handle that case and hide body */
-    body.modal-open {
-      visibility: hidden;
-    }
-  
-    body.modal-open .modal .modal-header,
-    body.modal-open .modal .modal-body {
-      visibility: visible;
-      /* make visible modal body and header */
-    }
+  /* on modal open bootstrap adds class "modal-open" to body, so you can handle that case and hide body */
+  body.modal-open {
+    visibility: hidden;
+  }
+
+  body.modal-open .modal .modal-header,
+  body.modal-open .modal .modal-body {
+    visibility: visible;
+    /* make visible modal body and header */
+  }
 }
