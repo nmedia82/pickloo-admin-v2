@@ -14,7 +14,7 @@ const Sidebar = ({ UserCache }) => {
   }, [UserCache]);
 
   return (
-    <div className="my-sidebar h-100">
+    <div className="my-sidebar bg-dark h-100">
       <nav id="sidebarMenu" className="d-md-block collapse">
         <ul className="nav-ul nav flex-column">
           {Menu.map((m, i) => (

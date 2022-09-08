@@ -6,9 +6,8 @@
   padding-right: 0 !important;
 }
 .my-sidebar {
-  /* min-height: 100%; */
-  background-color: #212529;
-  color: rgba(255, 255, 255, 0.5);
+  min-height: 100vh;
+  /* background-color: #333; */
 }
 .my-sidebar .nav-ul {
   padding-top: 2rem;
@@ -17,12 +16,12 @@
 
 .my-sidebar .nav-link {
   font-weight: 500;
-  color: rgb(142, 142, 142) !important;
+  color: #ced4da !important;
 }
 
 .my-sidebar .nav-link:hover,
 .my-sidebar .nav-link:active {
-  color: #fff !important;
+  color: rgb(220, 160, 8) !important;
 }
 /* ======================= 
         Footer 
