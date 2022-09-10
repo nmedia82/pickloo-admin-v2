@@ -14,7 +14,8 @@ const Navbar = ({ onLogOut, onLogin }) => {
         {/* <div className="col-md-3 ps-4"> */}
         {/* Navbar Brand */}
         <Link className="navbar-brand ps-3" to="/">
-          Roaddy Admin | {get_company_name()}
+          Roaddy Admin |
+          <span className="text-light p-2">{get_company_name()}</span>
         </Link>
         {/* </div> */}
         {/* Navbar Search */}

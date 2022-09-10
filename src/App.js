@@ -84,7 +84,7 @@ function App() {
 
   useEffect(() => {
     const user = User;
-    console.log(user);
+    // console.log(user);
     user === null && setisLoggedIn(false);
 
     // Getting Products for AllProducts
@@ -177,16 +177,16 @@ function App() {
     // ask first
     const a = window.confirm("Are you sure to delete?");
     if (!a) return;
-    console.log(id);
+    // console.log(id);
     const post_data = {
       vehicle_id: id,
       transporter_phone: get_transporter_phone(),
     };
     const resp = await deleteVehicle(post_data);
     if (resp.status !== 200) return alert_error("Error while deleting vehicle");
-    // removing city from list and udpate
+    // removing vehicles from list and udpate
     const vehicles = Vehicles.filter((vehicle) => vehicle.vehicle_id !== id);
-    setCities(vehicles);
+    setVehicles(vehicles);
   };
 
   // Delete Prouduct from AllProducts
