@@ -277,7 +277,7 @@ function App() {
 
               <Route
                 path="/routes/add"
-                element={<AddTRoute Cities={Cities} />}
+                element={<AddTRoute Cities={Cities} Vehicles={Vehicles} />}
               />
 
               {/* <Route path="/routes/add" element={<AddTRoute />} /> */}

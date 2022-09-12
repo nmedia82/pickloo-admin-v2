@@ -56,6 +56,19 @@ footer p {
   color: #fff;
 }
 
+.sbox{
+  border: 1px solid lightgrey;
+    margin: 15px auto;
+    border-radius: 10px px;
+    padding: 10px 0;
+}
+
+.schedual-controls{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .roaddy-printable {
   display: none;
 }
