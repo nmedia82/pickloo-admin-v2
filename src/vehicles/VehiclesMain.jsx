@@ -3,13 +3,13 @@ import React from "react";
 import AllVehicles from "./AllVehicles";
 import AddVehicle from "./AddVehicle";
 
-const VehiclesMain = ({ Vehicles, doDeleteVehicle, onNewVehicle }) => {
+const VehiclesMain = ({ Vehicles, onDeleteVehicle, onNewVehicle }) => {
   return (
     <div className="min-vh-100 d-flex flex-row">
       <div className="container">
         <h1 className="text-center m-3">Vehicles</h1>
         <div className="row">
-          <div className="col-md-12 m-3">
+          <div className="col-md-12 mb-3">
             <AddVehicle onNewVehicle={onNewVehicle} />
           </div>
         </div>
@@ -17,7 +17,7 @@ const VehiclesMain = ({ Vehicles, doDeleteVehicle, onNewVehicle }) => {
           <div className="col-md-12">
             <AllVehicles
               Vehicles={Vehicles}
-              doDeleteVehicle={doDeleteVehicle}
+              onDeleteVehicle={onDeleteVehicle}
             />
           </div>
         </div>

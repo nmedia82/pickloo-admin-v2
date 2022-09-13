@@ -11,7 +11,7 @@ import { saveRoute } from "../services/modalService";
 import SubStationsComponent from "./SubStations";
 import SchedualsComponent from "./Scheduals";
 
-const AddTRoute = ({ Cities }) => {
+const AddTRoute = ({ Cities, Vehicles }) => {
   const Navigate = useNavigate();
 
   // State for Route
@@ -174,41 +174,12 @@ const AddTRoute = ({ Cities }) => {
               </div>
             </div>
 
-            <div className="row">
-              <div className="col-md-6">
-                <InputGroup className="mb-3 col-md-6">
-                  <InputGroup.Text id="inputGroup-sizing-default">
-                    Total Seats
-                  </InputGroup.Text>
-                  <Form.Control
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                    required
-                    name="total_seats"
-                    onChange={handleChange}
-                    value={Route.total_seats}
-                  />
-                </InputGroup>
-              </div>
-              <div className="col-md-6">
-                <InputGroup className="mb-3">
-                  <InputGroup.Text>Rs.</InputGroup.Text>
-                  <Form.Control
-                    aria-label="Amount (to the nearest dollar)"
-                    name="ticket_price"
-                    onChange={handleChange}
-                    value={Route.ticket_price}
-                  />
-                  <InputGroup.Text>.00</InputGroup.Text>
-                </InputGroup>
-              </div>
-            </div>
-
             <SchedualsComponent
               Scheduals={SchedualControls}
               onSchedualChange={handleSchedualChange}
               onMoreSchedual={handleMoreSchedual}
               onRemoveSchedual={handleRemoveSchedual}
+              Vehicles={Vehicles}
             />
 
             <SubStationsComponent

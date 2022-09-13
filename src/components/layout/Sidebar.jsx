@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // importing Link
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Icons from "../Icons";
 import { get_menu } from "../../services/helpers";
 
@@ -14,7 +14,7 @@ const Sidebar = ({ UserCache }) => {
   }, [UserCache]);
 
   return (
-    <div className="my-sidebar h-100">
+    <div className="my-sidebar bg-dark h-100">
       <nav id="sidebarMenu" className="d-md-block collapse">
         <ul className="nav-ul nav flex-column">
           {Menu.map((m, i) => (
@@ -24,16 +24,16 @@ const Sidebar = ({ UserCache }) => {
               </NavLink>
             </li>
           ))}
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/cities">
               <Icons icon="city" /> Cities
             </NavLink>
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/vehicles">
-              <Icons icon="city" /> Vehicles
+              <Icons icon="vehicles" /> Vehicles
             </NavLink>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </div>

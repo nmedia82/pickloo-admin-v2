@@ -88,8 +88,19 @@ export const get_menu = (type = null) => {
         ...menu,
         { title: "Routes & Bookings", to: "/routes/all", icon: "booking" },
         { title: "Add Route", to: "/routes/add", icon: "troute" },
+        { title: "Cities", to: "/cities", icon: "city" },
+        { title: "Vehicles", to: "/vehicles", icon: "vehicles" },
       ];
       break;
+    // case "cities":
+    //   menu = [...menu, { title: "Cities", to: "/cities", icon: "city" }];
+    //   break;
+    // case "vehicles":
+    //   menu = [
+    //     ...menu,
+    //     { title: "Vehicles", to: "/vehicles", icon: "vehicles" },
+    //   ];
+    //   break;
 
     default:
       menu = [...menu];

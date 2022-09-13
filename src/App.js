@@ -27,7 +27,11 @@ import {
   getVehicles,
 } from "./services/modalService";
 import useLocalStorage from "./components/localStorage";
-import { get_country_code, verifyLogin } from "./services/auth";
+import {
+  get_country_code,
+  verifyLogin,
+  get_transporter_phone,
+} from "./services/auth";
 
 // ============= importing components  ==============
 // importing Login
@@ -80,7 +84,7 @@ function App() {
 
   useEffect(() => {
     const user = User;
-    console.log(user);
+    // console.log(user);
     user === null && setisLoggedIn(false);
 
     // Getting Products for AllProducts
@@ -168,17 +172,21 @@ function App() {
     setCities(cities);
   };
 
-  // Delete Vehicle from AllCities
-  const doDeleteVehicle = async (id) => {
+  // Delete Vehicle from All Vehicles
+  const handleDeleteVehicle = async (id) => {
     // ask first
     const a = window.confirm("Are you sure to delete?");
     if (!a) return;
-    console.log(id);
-    const resp = await deleteVehicle(id);
+    // console.log(id);
+    const post_data = {
+      vehicle_id: id,
+      transporter_phone: get_transporter_phone(),
+    };
+    const resp = await deleteVehicle(post_data);
     if (resp.status !== 200) return alert_error("Error while deleting vehicle");
-    // removing city from list and udpate
+    // removing vehicles from list and udpate
     const vehicles = Vehicles.filter((vehicle) => vehicle.vehicle_id !== id);
-    setCities(vehicles);
+    setVehicles(vehicles);
   };
 
   // Delete Prouduct from AllProducts
@@ -262,14 +270,14 @@ function App() {
                   <VehiclesMain
                     Vehicles={Vehicles}
                     onNewVehicle={handleNewVehicle}
-                    doDeleteVehicle={doDeleteVehicle}
+                    onDeleteVehicle={handleDeleteVehicle}
                   />
                 }
               />
 
               <Route
                 path="/routes/add"
-                element={<AddTRoute Cities={Cities} />}
+                element={<AddTRoute Cities={Cities} Vehicles={Vehicles} />}
               />
 
               {/* <Route path="/routes/add" element={<AddTRoute />} /> */}

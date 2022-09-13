@@ -83,7 +83,7 @@ const AllTRoutes = ({ TRoutes }) => {
                     </td>
                     <td>
                       <Link
-                        className="btn btn-sm btn-info"
+                        className="btn btn-sm btn-info mt-1"
                         to={`/reports/route/${route.route_id}`}
                       >
                         Print

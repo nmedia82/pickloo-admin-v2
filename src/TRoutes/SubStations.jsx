@@ -45,7 +45,7 @@ function SubStationsComponent({
             </div>
             <div className="col-md-3">
               <button
-                className="btn btn-success"
+                className="btn btn-success me-1"
                 onClick={() => onMoreSubStation(index)}
               >
                 <FaPlus />
