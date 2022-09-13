@@ -52,6 +52,28 @@ export const __totime = (ts) => {
   return hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
 };
 
+export const __totimeampam = (tm) => {
+  var timeSplit = tm.split(":"),
+    hours,
+    minutes,
+    meridian;
+  hours = timeSplit[0];
+  minutes = timeSplit[1];
+  if (hours > 12) {
+    meridian = "PM";
+    hours -= 12;
+  } else if (hours < 12) {
+    meridian = "AM";
+    if (hours === 0) {
+      hours = 12;
+    }
+  } else {
+    meridian = "PM";
+  }
+
+  return hours + ":" + minutes + " " + meridian;
+};
+
 export const __timeReadable = (date) => {
   var toDate = new Date(date);
   var seconds = Math.floor((new Date() - toDate) / 1000);
@@ -92,15 +114,19 @@ export const get_menu = (type = null) => {
         { title: "Vehicles", to: "/vehicles", icon: "vehicles" },
       ];
       break;
-    // case "cities":
-    //   menu = [...menu, { title: "Cities", to: "/cities", icon: "city" }];
-    //   break;
-    // case "vehicles":
-    //   menu = [
-    //     ...menu,
-    //     { title: "Vehicles", to: "/vehicles", icon: "vehicles" },
-    //   ];
-    //   break;
+    case "vendor":
+      menu = [
+        ...menu,
+        { title: "Products", to: "/products/all", icon: "booking" },
+        { title: "Orders", to: "/orders/add", icon: "troute" },
+      ];
+      break;
+    case "vehicles":
+      menu = [
+        ...menu,
+        { title: "Vehicles", to: "/vehicles", icon: "vehicles" },
+      ];
+      break;
 
     default:
       menu = [...menu];

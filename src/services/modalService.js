@@ -1,12 +1,13 @@
 import config from "./../config.json";
-import { get_transporter_phone } from "./auth";
+import { get_store_code, get_transporter_phone } from "./auth";
 import httpService from "./httpService";
 import moment from "moment";
 
 // ============ Products ============
 // Getting Products
 export function getProducts() {
-  const url = `${config.uri}/product/store/${config.store_code}`;
+  const store_code = get_store_code();
+  const url = `${config.uri}/product/store/${store_code}`;
   return httpService.get(url);
 }
 

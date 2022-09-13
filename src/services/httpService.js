@@ -1,10 +1,14 @@
 import axios from "axios";
+import { get_user_type } from "./auth";
 
 axios.interceptors.request.use(
   function (request) {
     request.headers.common["Content-Type"] = "application/json";
-    // request.headers.common["x-api-key"] =
-    //   "s8m40WkSBv2lwa7FDqTiP193zzr8yhul4cMj0IqN";
+    const user_type = get_user_type();
+    if (user_type === "vendor") {
+      request.headers.common["x-api-key"] =
+        "s8m40WkSBv2lwa7FDqTiP193zzr8yhul4cMj0IqN";
+    }
     // request.headers.common['Authorization'] = '***';
     return request;
   },

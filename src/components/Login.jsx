@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // importing saveTransporter API
 // import { saveLogin } from "./services/modalService";
-import AddTransporter from "./transporters/AddTransporter";
+import AddTransporter from "../transporters/AddTransporter";
 
 const Login = ({ onLogin }) => {
   const Navigate = useNavigate();

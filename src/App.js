@@ -31,11 +31,13 @@ import {
   get_country_code,
   verifyLogin,
   get_transporter_phone,
+  verifyLoginPickloo,
+  get_user_type,
 } from "./services/auth";
 
 // ============= importing components  ==============
 // importing Login
-import Login from "./Login";
+import Login from "./components/Login";
 import Protected from "./components/Protected";
 // importing Layout components
 import Navbar from "./components/layout/Navbar";
@@ -54,11 +56,12 @@ import AddTransporter from "./transporters/AddTransporter";
 import AllTransporters from "./transporters/AllTransporters";
 // importing Routes components
 import AddTRoute from "./TRoutes/AddRoute";
-import AllTRoutes from "./TRoutes/AllRoutes";
+import AllTRoutes from "./TRoutes/AllRoutes-old";
 import RouteBookings from "./bookings/RouteBookings";
 import RouteReport from "./reports/RouteReport";
 import CitiesMain from "./cities/CitiesMain";
 import VehiclesMain from "./vehicles/VehiclesMain";
+import LoginPickloo from "./components/LoginPickloo";
 
 function App() {
   // Navigate method of react router dom
@@ -76,7 +79,7 @@ function App() {
   // User Cache
   const [User, setUser] = useLocalStorage("user", {});
   // Check if logged in
-  const [isLoggedIn, setisLoggedIn] = useState(true);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
   // Cities
   const [Cities, setCities] = useState([]);
   // Vehicles
@@ -84,17 +87,16 @@ function App() {
 
   useEffect(() => {
     const user = User;
-    // console.log(user);
-    user === null && setisLoggedIn(false);
+    const is_loggedin = user !== null ? true : false;
+    setisLoggedIn(is_loggedin);
 
     // Getting Products for AllProducts
     const loadProducts = async () => {
       var products = await getProducts();
+      console.log(products);
       products = products.data.AllItems.Items;
-      // console.log(products)
       setProducts(products);
     };
-    // loadProducts();
 
     // Getting Orders for AllOrders
     const loadOrders = async () => {
@@ -103,7 +105,6 @@ function App() {
       // console.log(orders);
       setOrders(orders);
     };
-    // loadOrders();
 
     // Getting Transporters for AllTransporters
     const loadTransporters = async () => {
@@ -112,7 +113,6 @@ function App() {
       // console.log(transporters);
       setTransporters(transporters);
     };
-    loadTransporters();
 
     // Getting Routes for AllRoutes
     const loadRoutes = async () => {
@@ -120,32 +120,49 @@ function App() {
       routes = routes.data.AllItems.Items;
       setTRoutes(routes);
     };
-    loadRoutes();
 
     // Getting Vehicles
-    const laodVehicles = async () => {
-      const data = { transporter_phone: "03224028624" };
+    const loadVehicles = async () => {
+      const data = { transporter_phone: get_transporter_phone() };
       let vehicles = await getVehicles(data);
       vehicles = vehicles.data.AllItems.Items;
       setVehicles(vehicles);
     };
-    laodVehicles();
 
     // Getting Cities
     const laodCities = async () => {
-      const data = { country_code: "PK" };
+      const data = {
+        transporter_phone: get_transporter_phone(),
+        country_code: "PK",
+      };
       let cities = await getCities(data);
       cities = cities.data.AllItems.Items;
       setCities(cities);
     };
-    laodCities();
+
+    if (is_loggedin) {
+      const user_type = get_user_type();
+      switch (user_type) {
+        case "transporter":
+          loadTransporters();
+          loadRoutes();
+          loadVehicles();
+          laodCities();
+          break;
+        case "vendor":
+          loadProducts();
+          // loadOrders();
+          break;
+        default:
+          break;
+      }
+    }
   }, [User]);
 
   // Login
   const handleLogin = async (user) => {
     user = await verifyLogin(user);
     user = user.data.Response;
-    console.log(user);
     if (user !== false) {
       setUser(user);
       setisLoggedIn(true);
@@ -153,8 +170,23 @@ function App() {
     }
   };
 
+  // Login Pickloo
+  const handleLoginPickloo = async (user) => {
+    user.pin = parseInt(user.pin);
+    user = await verifyLoginPickloo(user);
+    user = user.data.Response;
+    if (user !== false) {
+      user.type = "vendor";
+      setUser(user);
+      setisLoggedIn(true);
+      Navigate("/products/all");
+    } else {
+      alert_error("Login is not correct");
+    }
+  };
+
   const handleLogOut = () => {
-    setUser(null);
+    setUser({});
     setisLoggedIn(false);
     Navigate("/login");
   };
@@ -164,7 +196,11 @@ function App() {
     // ask first
     const a = window.confirm("Are you sure to delete?");
     if (!a) return;
-    const post_data = { city_name: cityName, country_code: get_country_code() };
+    const post_data = {
+      city_name: cityName,
+      country_code: get_country_code(),
+      transporter_phone: get_transporter_phone(),
+    };
     const resp = await deleteCity(post_data);
     if (resp.status !== 200) return alert_error("Error while deleting city");
     // removing city from list and udpate
@@ -235,12 +271,13 @@ function App() {
     <div className="App">
       {/* <Login /> */}
       {/* Navbar */}
-      <Navbar onLogOut={handleLogOut} onLogin={isLoggedIn} />
+
+      <Navbar onLogOut={handleLogOut} isLogin={isLoggedIn} />
       <div className="container-fluid">
         <div className="row">
           <div className="sidebar-col col-md-2">
             {/* Sidebar */}
-            <Sidebar UserCache={User} />
+            <Sidebar isLoggedIn={isLoggedIn} />
           </div>
           {/* Main */}
           {/* =========== Routing =========== */}
@@ -248,6 +285,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/login" element={<Login onLogin={handleLogin} />} />
+              <Route
+                path="/login-pickloo"
+                element={<LoginPickloo onLogin={handleLoginPickloo} />}
+              />
               <Route path="/transporters/add" element={<AddTransporter />} />
               <Route
                 path="/transporters/all"

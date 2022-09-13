@@ -5,7 +5,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { get_transporter_phone } from "../services/auth";
 // importing alerts
-import { alert_error, alert_info } from "../services/helpers";
+import { alert_error, alert_info, __totimeampam } from "../services/helpers";
 // importing saveRoute API
 import { saveRoute } from "../services/modalService";
 import SubStationsComponent from "./SubStations";
@@ -93,7 +93,13 @@ const AddTRoute = ({ Cities, Vehicles }) => {
   const handleSchedualChange = (e, i) => {
     var schedual = [...SchedualControls];
     var k = { ...schedual[i] };
-    k[e.target.name] = e.target.value;
+    var value = "";
+    if (e.target.name === "departure" || e.target.name === "arrival") {
+      value = __totimeampam(e.target.value);
+    } else {
+      value = e.target.value;
+    }
+    k[e.target.name] = value;
     schedual[i] = k;
     console.log(i, schedual);
     setSchedualControls(schedual);

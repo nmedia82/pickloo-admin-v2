@@ -7,7 +7,7 @@ import { FaBars } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { get_company_name, get_transporter_name } from "../../services/auth";
 
-const Navbar = ({ onLogOut, onLogin }) => {
+const Navbar = ({ onLogOut, isLogin }) => {
   return (
     <>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -15,7 +15,9 @@ const Navbar = ({ onLogOut, onLogin }) => {
         {/* Navbar Brand */}
         <Link className="navbar-brand ps-3" to="/">
           Roaddy Admin |
-          <span className="text-light p-2">{get_company_name()}</span>
+          {isLogin && (
+            <span className="text-light p-2">{get_company_name()}</span>
+          )}
         </Link>
         {/* </div> */}
         {/* Navbar Search */}
@@ -57,7 +59,7 @@ const Navbar = ({ onLogOut, onLogin }) => {
         {/* </div>
         <div className="col-md-2 ms-auto"> */}
         {/* Navbar */}
-        {onLogin ? (
+        {isLogin ? (
           <>
             <ul className="navbar-nav ms-auto me-3 me-lg-4">
               <span className="text-light p-2">{get_transporter_name()}</span>

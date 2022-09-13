@@ -3,15 +3,16 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Icons from "../Icons";
 import { get_menu } from "../../services/helpers";
+import { get_user_type } from "../../services/auth";
 
-const Sidebar = ({ UserCache }) => {
+const Sidebar = ({ isLoggedIn }) => {
   const [Menu, setMenu] = useState([]);
 
   useEffect(() => {
-    const type = UserCache && UserCache.type;
+    const type = isLoggedIn ? get_user_type() : "";
     const menu = get_menu(type);
     setMenu(menu);
-  }, [UserCache]);
+  }, []);
 
   return (
     <div className="my-sidebar bg-dark h-100">

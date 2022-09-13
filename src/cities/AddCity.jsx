@@ -8,9 +8,9 @@ import Form from "react-bootstrap/Form";
 import { alert_error, alert_info } from "../services/helpers";
 // importing saveProduct API
 import { saveCity } from "../services/modalService";
+import { get_transporter_phone } from "../services/auth";
 
 const AddCity = ({ onNewCity }) => {
-
   // States for react-bootstrap Modal
   const [show, setShow] = useState(false);
 
@@ -42,11 +42,12 @@ const AddCity = ({ onNewCity }) => {
       const city = {
         ...City,
         country_code: "PK",
+        transporter_phone: get_transporter_phone(),
       };
-      city.city_areas = city.city_areas.split(",");
+      // city.city_areas = city.city_areas.split(",");
       resp = await saveCity(city);
       if (resp.status === 200) {
-        alert_info("Done");
+        alert_info("City added..");
         onNewCity(city);
         // navigate("/cities");
       } else {
@@ -81,19 +82,6 @@ const AddCity = ({ onNewCity }) => {
                 name="city_name"
                 onChange={handleChange}
                 value={City.city_name}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>City Areas</Form.Label>
-              <Form.Control
-                className=""
-                id="cityArea"
-                rows="3"
-                placeholder="Lahore"
-                required
-                name="city_areas"
-                onChange={handleChange}
-                value={City.city_areas}
               />
             </Form.Group>
           </Form>
