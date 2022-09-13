@@ -11,6 +11,7 @@ const Sidebar = ({ isLoggedIn }) => {
   useEffect(() => {
     const type = isLoggedIn ? get_user_type() : "";
     const menu = get_menu(type);
+    console.log(menu);
     setMenu(menu);
   }, []);
 

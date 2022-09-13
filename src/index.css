@@ -69,6 +69,11 @@ footer p {
     align-items: center;
 }
 
+.pos-1,.pos-2,.pos-3{
+  border-right:1px solid lightgray;
+  min-height: 800vh;
+}
+
 .roaddy-printable {
   display: none;
 }

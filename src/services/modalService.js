@@ -1,5 +1,5 @@
 import config from "./../config.json";
-import { get_store_code, get_transporter_phone } from "./auth";
+import { get_store_code, get_member_phone } from "./auth";
 import httpService from "./httpService";
 import moment from "moment";
 
@@ -51,7 +51,7 @@ export function sendWelcomePin(data) {
 // Setting Transpoter Status
 export function setTransporterStatus(status) {
   const url = `${config.uri_roaddy}?action=set_transporter_status`;
-  const data = { phone: get_transporter_phone(), transporter_status: status };
+  const data = { phone: get_member_phone(), transporter_status: status };
   return httpService.post(url, data);
 }
 
@@ -59,13 +59,13 @@ export function setTransporterStatus(status) {
 // Getting Routes
 export function getRoutes() {
   const url = `${config.uri_roaddy}?action=get_routes`;
-  const data = { phone: get_transporter_phone() };
+  const data = { phone: get_member_phone() };
   return httpService.post(url, data);
 }
 // Getting Single
 export function getRoute(route_id) {
   const url = `${config.uri_roaddy}?action=get_route`;
-  const data = { phone: get_transporter_phone(), route_id: route_id };
+  const data = { phone: get_member_phone(), route_id: route_id };
   return httpService.post(url, data);
 }
 
@@ -78,7 +78,7 @@ export function saveRoute(data) {
 export function setRouteStatus(route_id, route_status) {
   const url = `${config.uri_roaddy}?action=set_route_status`;
   const data = {
-    phone: get_transporter_phone(),
+    phone: get_member_phone(),
     route_id: route_id,
     route_status: route_status,
   };

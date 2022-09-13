@@ -1,0 +1,19 @@
+.cart-item{
+    display: flex;
+    border: 1px solid lightgrey;
+    justify-content: space-between;
+}
+
+.box{    
+    width:70px;
+    text-align: center;
+}
+
+.cart-item-name{
+    flex-basis: 60%;
+    text-align: left;
+}
+
+input[type="number"]{
+    /* width: 25px; */
+}

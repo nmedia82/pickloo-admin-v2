@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import { alert_error, alert_info } from "../services/helpers";
 // importing saveProduct API
 import { saveVehicle } from "../services/modalService";
-import { get_transporter_phone } from "../services/auth";
+import { get_member_phone } from "../services/auth";
 
 const AddVehicle = ({ onNewVehicle }) => {
   // States for react-bootstrap Modal
@@ -42,7 +42,7 @@ const AddVehicle = ({ onNewVehicle }) => {
       try {
         const vehicle = {
           ...Vehicle,
-          transporter_phone: get_transporter_phone(),
+          transporter_phone: get_member_phone(),
         };
         resp = await saveVehicle(vehicle);
         if (resp.status === 200) {

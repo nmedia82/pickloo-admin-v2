@@ -118,7 +118,8 @@ export const get_menu = (type = null) => {
       menu = [
         ...menu,
         { title: "Products", to: "/products/all", icon: "booking" },
-        { title: "Orders", to: "/orders/add", icon: "troute" },
+        { title: "Orders", to: "/orders/all", icon: "troute" },
+        { title: "POS", to: "/pos", icon: "troute" },
       ];
       break;
     case "vehicles":

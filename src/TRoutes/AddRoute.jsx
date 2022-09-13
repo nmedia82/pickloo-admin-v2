@@ -3,7 +3,7 @@ import { InputGroup, Form, Table } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
 // importing Link and useNavigate for navigation
 import { Link, useNavigate } from "react-router-dom";
-import { get_transporter_phone } from "../services/auth";
+import { get_member_phone } from "../services/auth";
 // importing alerts
 import { alert_error, alert_info, __totimeampam } from "../services/helpers";
 // importing saveRoute API
@@ -52,7 +52,7 @@ const AddTRoute = ({ Cities, Vehicles }) => {
     try {
       const route = {
         ...Route,
-        phone: get_transporter_phone(), // it's from user storage
+        phone: get_member_phone(), // it's from user storage
         route_status: "inactive",
         route_schedual: [...SchedualControls],
         route_stations: [...SubStationControls],
@@ -101,7 +101,6 @@ const AddTRoute = ({ Cities, Vehicles }) => {
     }
     k[e.target.name] = value;
     schedual[i] = k;
-    console.log(i, schedual);
     setSchedualControls(schedual);
   };
 

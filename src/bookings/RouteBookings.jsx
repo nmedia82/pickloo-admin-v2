@@ -11,7 +11,7 @@ import { Link, useParams } from "react-router-dom";
 import moment from "moment";
 import DateBookings from "./DateBookings";
 import AddBooking from "./AddBooking";
-import { get_transporter_phone } from "../services/auth";
+import { get_member_phone } from "../services/auth";
 import Joi from "joi";
 
 const RouteBookings = ({ TRoutes }) => {
@@ -108,7 +108,7 @@ const RouteBookings = ({ TRoutes }) => {
       route_name: Route.route_name,
       seat_info: [],
       booking_status: "pending",
-      transporter_phone: get_transporter_phone(),
+      transporter_phone: get_member_phone(),
     };
     const { total_seats, booking_date } = booking;
     booking.total_seats = Number(total_seats);

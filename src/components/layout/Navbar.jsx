@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
-import { get_company_name, get_transporter_name } from "../../services/auth";
+import { get_company_name, get_member_name } from "../../services/auth";
 
 const Navbar = ({ onLogOut, isLogin }) => {
   return (
@@ -62,7 +62,7 @@ const Navbar = ({ onLogOut, isLogin }) => {
         {isLogin ? (
           <>
             <ul className="navbar-nav ms-auto me-3 me-lg-4">
-              <span className="text-light p-2">{get_transporter_name()}</span>
+              <span className="text-light p-2">{get_member_name()}</span>
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"

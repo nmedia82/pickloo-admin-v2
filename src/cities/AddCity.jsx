@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import { alert_error, alert_info } from "../services/helpers";
 // importing saveProduct API
 import { saveCity } from "../services/modalService";
-import { get_transporter_phone } from "../services/auth";
+import { get_member_phone } from "../services/auth";
 
 const AddCity = ({ onNewCity }) => {
   // States for react-bootstrap Modal
@@ -42,7 +42,7 @@ const AddCity = ({ onNewCity }) => {
       const city = {
         ...City,
         country_code: "PK",
-        transporter_phone: get_transporter_phone(),
+        transporter_phone: get_member_phone(),
       };
       // city.city_areas = city.city_areas.split(",");
       resp = await saveCity(city);

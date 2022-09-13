@@ -30,9 +30,11 @@ import useLocalStorage from "./components/localStorage";
 import {
   get_country_code,
   verifyLogin,
-  get_transporter_phone,
+  get_member_phone,
   verifyLoginPickloo,
   get_user_type,
+  get_store_code,
+  get_company_name,
 } from "./services/auth";
 
 // ============= importing components  ==============
@@ -44,11 +46,11 @@ import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
 import Footer from "./components/layout/Footer";
 // importing Products components
-import AddProduct from "./components/products/AddProduct";
-import AllProducts from "./components/products/AllProducts";
-import EditProduct from "./components/products/EditProduct";
+import AddProduct from "./Vendors/products/AddProduct";
+import AllProducts from "./Vendors/products/AllProducts";
+import EditProduct from "./Vendors/products/EditProduct";
 // importing Orders components
-import AllOrders from "./components/orders/AllOrders";
+import AllOrders from "./Vendors/orders/AllOrders";
 // importing Dashboard
 import Dashboard from "./components/Dashboard";
 // importing Transporters components
@@ -62,6 +64,7 @@ import RouteReport from "./reports/RouteReport";
 import CitiesMain from "./cities/CitiesMain";
 import VehiclesMain from "./vehicles/VehiclesMain";
 import LoginPickloo from "./components/LoginPickloo";
+import POS from "./Vendors/pos/POS";
 
 function App() {
   // Navigate method of react router dom
@@ -72,6 +75,8 @@ function App() {
   const [Products, setProducts] = useState([]);
   // State for Orders
   const [Orders, setOrders] = useState([]);
+  // Cart in Cache
+  const [CartCache, setCartCache] = useLocalStorage("cart", []);
   // State for Transporters
   const [Transporters, setTransporters] = useState([]);
   // State for Routes
@@ -123,7 +128,7 @@ function App() {
 
     // Getting Vehicles
     const loadVehicles = async () => {
-      const data = { transporter_phone: get_transporter_phone() };
+      const data = { transporter_phone: get_member_phone() };
       let vehicles = await getVehicles(data);
       vehicles = vehicles.data.AllItems.Items;
       setVehicles(vehicles);
@@ -132,7 +137,7 @@ function App() {
     // Getting Cities
     const laodCities = async () => {
       const data = {
-        transporter_phone: get_transporter_phone(),
+        transporter_phone: get_member_phone(),
         country_code: "PK",
       };
       let cities = await getCities(data);
@@ -199,7 +204,7 @@ function App() {
     const post_data = {
       city_name: cityName,
       country_code: get_country_code(),
-      transporter_phone: get_transporter_phone(),
+      transporter_phone: get_member_phone(),
     };
     const resp = await deleteCity(post_data);
     if (resp.status !== 200) return alert_error("Error while deleting city");
@@ -216,7 +221,7 @@ function App() {
     // console.log(id);
     const post_data = {
       vehicle_id: id,
-      transporter_phone: get_transporter_phone(),
+      transporter_phone: get_member_phone(),
     };
     const resp = await deleteVehicle(post_data);
     if (resp.status !== 200) return alert_error("Error while deleting vehicle");
@@ -264,6 +269,27 @@ function App() {
   const handleNewVehicle = (Vehicle) => {
     const vehicles = [...Vehicles, Vehicle];
     setVehicles(vehicles);
+  };
+
+  const handleAddToCart = (item) => {
+    item.qty = 1;
+    item.store_code = get_store_code();
+    item.store_title = get_company_name();
+    item.vendor_phone = get_member_phone();
+    var cart = [...CartCache, item];
+    // if item already exists in cart
+    var items = [...CartCache];
+    var found = items.find(
+      (i) => i.barcode === item.barcode && i.store_code === get_store_code()
+    );
+
+    if (found) {
+      const index = items.indexOf(found);
+      items[index].qty += item.qty;
+      console.log(items[index], items, item.qty);
+      cart = [...items];
+    }
+    setCartCache(cart);
   };
 
   // returnig Template
@@ -352,6 +378,17 @@ function App() {
               <Route
                 path="/orders/all"
                 element={<AllOrders Orders={Orders} />}
+              />
+              <Route
+                path="/pos"
+                element={
+                  <POS
+                    Products={Products}
+                    Cart={CartCache}
+                    onAddToCart={handleAddToCart}
+                    onCartUpdate={setCartCache}
+                  />
+                }
               />
             </Routes>
           </div>
