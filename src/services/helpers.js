@@ -52,6 +52,12 @@ export const __totime = (ts) => {
   return hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
 };
 
+export const __cart_total_amount = () => {
+  var cart = localStorage.getItem("cart");
+  cart = JSON.parse(cart);
+  return cart ? cart.reduce((total, obj) => obj.qty * obj.price + total, 0) : 0;
+};
+
 export const __totimeampam = (tm) => {
   var timeSplit = tm.split(":"),
     hours,

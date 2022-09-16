@@ -13,7 +13,7 @@ const Sidebar = ({ isLoggedIn }) => {
     const menu = get_menu(type);
     console.log(menu);
     setMenu(menu);
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <div className="my-sidebar bg-dark h-100">
