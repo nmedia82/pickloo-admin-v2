@@ -7,6 +7,8 @@ import {
   FaRoute,
   FaCity,
   FaEdit,
+  FaShoppingCart,
+  FaRegFileAlt,
 } from "react-icons/fa";
 import { TbBrandBooking } from "react-icons/tb";
 import { BsFillPrinterFill } from "react-icons/bs";
@@ -21,6 +23,8 @@ function Icons({ icon }) {
       {icon === "add" && <FaPlusCircle />}
       {icon === "edit" && <FaEdit />}
       {icon === "delete" && <AiFillDelete />}
+      {icon === "products" && <FaShoppingCart />}
+      {icon === "orders" && <FaRegFileAlt />}
       {icon === "user" && <FaUser />}
       {icon === "images" && <FaImages />}
       {icon === "meter" && <FaTachometerAlt />}

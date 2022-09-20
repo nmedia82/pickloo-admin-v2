@@ -123,9 +123,9 @@ export const get_menu = (type = null) => {
     case "vendor":
       menu = [
         ...menu,
-        { title: "Products", to: "/products/all", icon: "booking" },
-        { title: "Orders", to: "/orders/all", icon: "troute" },
-        { title: "POS", to: "/pos", icon: "troute" },
+        { title: "Products", to: "/products/all", icon: "products" },
+        { title: "Orders", to: "/orders/all", icon: "orders" },
+        { title: "POS", to: "/pos", icon: "products" },
       ];
       break;
     case "vehicles":
