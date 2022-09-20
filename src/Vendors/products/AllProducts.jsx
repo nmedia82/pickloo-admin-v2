@@ -1,8 +1,12 @@
 import React from "react";
 // importing Link
 import { Link } from "react-router-dom";
+// importing Add Stock
+import AddStock from "./AddStock";
 // importing price function
 import { __price } from "../../services/helpers";
+// importing icons
+import Icons from "../../components/Icons";
 
 const AllProducts = ({ Products, onDelete }) => {
   return (
@@ -18,9 +22,7 @@ const AllProducts = ({ Products, onDelete }) => {
                   <th scope="col">Barcode</th>
                   <th scope="col">Title</th>
                   <th scope="col">Price</th>
-                  <th scope="col" colSpan="2">
-                    Action
-                  </th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -33,19 +35,22 @@ const AllProducts = ({ Products, onDelete }) => {
                     <td>{__price(product.price)}</td>
 
                     <td>
+                      <AddStock />
+
                       <Link
-                        className="btn btn-sm btn-warning"
+                        className="btn btn-sm btn-warning ms-1"
+                        title="Edit"
                         to={`/products/edit/${product.barcode}`}
                       >
-                        Edit
+                        <Icons icon="edit" />
                       </Link>
-                    </td>
-                    <td>
+
                       <button
-                        className="btn btn-sm btn-danger"
+                        className="btn btn-sm btn-danger ms-1"
+                        title="Delete"
                         onClick={() => onDelete(product.barcode)}
                       >
-                        Delete
+                        <Icons icon="delete" />
                       </button>
                     </td>
                   </tr>
