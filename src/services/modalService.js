@@ -20,6 +20,18 @@ export function deleteProduct(barcode) {
   const url = `${config.uri}/product/store/${config.store_code}/${barcode}`;
   return httpService.delete(url);
 }
+// Adding Stock
+export function saveStock(data) {
+  const url = `${config.uri}/product/store/{code}/{barcode}/stock`;
+  return httpService.post(url, data);
+}
+
+// Getting Stock
+export function getStock() {
+  const store_code = get_store_code();
+  const url = `${config.uri}/product/store/${store_code}`;
+  return httpService.get(url);
+}
 
 // ============ Orders ============
 // Getting Orders
@@ -36,7 +48,7 @@ export function getTransporters() {
   return httpService.post(url, data);
 }
 
-// Adding r
+// Adding Transporter
 export function saveTransporter(data) {
   const url = `${config.uri_roaddy}?action=save_transporter`;
   return httpService.post(url, data);
