@@ -1,4 +1,4 @@
-const AllStock = ({ Cities }) => {
+const AllStock = ({ Stock }) => {
   return (
     <div className="table-responsive">
       <h4>Stock Detail</h4>
@@ -12,16 +12,15 @@ const AllStock = ({ Cities }) => {
           </tr>
         </thead>
         <tbody>
-          {/* ======= Listing Cities ======= */}
-          {/* {Cities.map((city, index) => (
+          {/* ======= Listing Stock ======= */}
+          {Stock.map((stk, index) => (
             <tr key={index}>
               <th scope="row">{index + 1}</th>
-              <td>{city.city_name}</td>
-              <td>{city.city_areas}</td>
-
-              <td>Detail</td>
+              <td>{stk.stock_title}</td>
+              <td>{stk.stock_qty}</td>
+              <td>{stk.stock_date}</td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </table>
     </div>

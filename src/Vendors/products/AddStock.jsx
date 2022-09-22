@@ -12,15 +12,15 @@ import { alert_error, alert_info } from "../../services/helpers";
 import { saveStock } from "../../services/modalService";
 import { get_member_phone } from "../../services/auth";
 
-const AddStock = ({ onNewStock }) => {
+const AddStock = ({ Stock, onNewStock }) => {
   // States for react-bootstrap Modal
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // State for Stock
-  const [Stock, setStock] = useState({
+  // State for New Stock
+  const [NewStock, setNewStock] = useState({
     stock_title: "",
     stock_qty: 0,
     stock_date: "{{today}}",
@@ -29,23 +29,23 @@ const AddStock = ({ onNewStock }) => {
   // handle on Change
   const handleChange = (e) => {
     const stock = {
-      ...Stock,
+      ...NewStock,
       store_code: "JT",
       [e.target.name]: e.target.value,
     };
-    setStock(stock);
+    setNewStock(stock);
   };
 
   // handle on Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(Stock);
+    console.log(NewStock);
     let resp = {};
     try {
       const stock = {
-        ...Stock,
+        ...NewStock,
         store_code: "JT",
-        transporter_phone: get_member_phone(),
+        // transporter_phone: get_member_phone(),
       };
       resp = await saveStock(stock);
       if (resp.status === 200) {
@@ -83,7 +83,7 @@ const AddStock = ({ onNewStock }) => {
                 required
                 name="stock_title"
                 onChange={handleChange}
-                value={Stock.stock_title}
+                value={NewStock.stock_title}
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -96,7 +96,7 @@ const AddStock = ({ onNewStock }) => {
                 required
                 name="stock_qty"
                 onChange={handleChange}
-                value={Stock.stock_qty}
+                value={NewStock.stock_qty}
               />
             </Form.Group>
             <Form.Group className="mb-3">
@@ -109,7 +109,7 @@ const AddStock = ({ onNewStock }) => {
                 required
                 name="stock_date"
                 onChange={handleChange}
-                value={Stock.stock_date}
+                value={NewStock.stock_date}
               />
             </Form.Group>
           </Form>

@@ -18,6 +18,8 @@ import {
   getProducts,
   deleteProduct,
   saveProduct,
+  saveStock,
+  getStock,
   getOrders,
   getTransporters,
   getRoutes,
@@ -73,6 +75,8 @@ function App() {
   // ========== Products  ===========
   // State for Products
   const [Products, setProducts] = useState([]);
+  // State for Stock
+  const [Stock, setStock] = useState([]);
   // State for Orders
   const [Orders, setOrders] = useState([]);
   // Cart in Cache
@@ -101,6 +105,14 @@ function App() {
       console.log(products);
       products = products.data.AllItems.Items;
       setProducts(products);
+    };
+
+    // Getting Stock
+    const loadStock = async () => {
+      let stock = await getStock();
+      console.log(stock);
+      stock = stock.data.AllItems.Items;
+      setStock(stock);
     };
 
     // Getting Orders for AllOrders
@@ -156,6 +168,7 @@ function App() {
           break;
         case "vendor":
           loadProducts();
+          loadStock();
           // loadOrders();
           break;
         default:
@@ -372,7 +385,11 @@ function App() {
               <Route
                 path="/products/all"
                 element={
-                  <AllProducts Products={Products} onDelete={handleDelete} />
+                  <AllProducts
+                    Products={Products}
+                    onDelete={handleDelete}
+                    Stock={Stock}
+                  />
                 }
               />
               <Route
