@@ -21,15 +21,16 @@ export function deleteProduct(barcode) {
   return httpService.delete(url);
 }
 // Adding Stock
-export function saveStock(data) {
-  const url = `${config.uri}/product/store/${code}/${barcode}/stock`;
-  return httpService.post(url, data);
+export function saveStock(barcode) {
+  const store_code = get_store_code();
+  const url = `${config.uri}/product/store/${store_code}/${barcode}/stock`;
+  return httpService.post(url, barcode);
 }
 
 // Getting Stock
-export function getStock(stock_id) {
-  // const stock_id = get_store_code();
-  const url = `${config.uri}/product/store/{code}/{barcode}/stock/{stock_id}`;
+export function getStock(barcode) {
+  const store_code = get_store_code();
+  const url = `${config.uri}/product/store/${store_code}/${barcode}/stock/{stock_id}`;
   return httpService.get(url);
 }
 

@@ -18,7 +18,6 @@ import {
   getProducts,
   deleteProduct,
   saveProduct,
-  saveStock,
   getStock,
   getOrders,
   getTransporters,
@@ -108,8 +107,12 @@ function App() {
     };
 
     // Getting Stock
-    const loadStock = async () => {
-      let stock = await getStock();
+    const loadStock = async (barcode) => {
+      const data = {
+        store_code: get_store_code(),
+        barcode: barcode,
+      };
+      let stock = await getStock(data);
       console.log(stock);
       stock = stock.data.AllItems.Items;
       setStock(stock);

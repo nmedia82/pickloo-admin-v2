@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form";
 import { alert_error, alert_info } from "../../services/helpers";
 // importing saveStock API
 import { saveStock } from "../../services/modalService";
-import { get_member_phone } from "../../services/auth";
+import { get_store_code } from "../../services/auth";
 
 const AddStock = ({ Stock, onNewStock }) => {
   // States for react-bootstrap Modal
@@ -23,7 +23,7 @@ const AddStock = ({ Stock, onNewStock }) => {
   const [NewStock, setNewStock] = useState({
     stock_title: "",
     stock_qty: 0,
-    stock_date: "{{today}}",
+    stock_date: {},
   });
 
   // handle on Change
@@ -44,8 +44,7 @@ const AddStock = ({ Stock, onNewStock }) => {
     try {
       const stock = {
         ...NewStock,
-        store_code: "JT",
-        // transporter_phone: get_member_phone(),
+        store_code: get_store_code(),
       };
       resp = await saveStock(stock);
       if (resp.status === 200) {
