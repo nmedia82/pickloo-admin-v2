@@ -74,8 +74,6 @@ function App() {
   // ========== Products  ===========
   // State for Products
   const [Products, setProducts] = useState([]);
-  // State for Stock
-  const [Stock, setStock] = useState([]);
   // State for Orders
   const [Orders, setOrders] = useState([]);
   // Cart in Cache
@@ -104,18 +102,6 @@ function App() {
       console.log(products);
       products = products.data.AllItems.Items;
       setProducts(products);
-    };
-
-    // Getting Stock
-    const loadStock = async (barcode) => {
-      const data = {
-        store_code: get_store_code(),
-        barcode: barcode,
-      };
-      let stock = await getStock(data);
-      console.log(stock);
-      stock = stock.data.AllItems.Items;
-      setStock(stock);
     };
 
     // Getting Orders for AllOrders
@@ -397,11 +383,7 @@ function App() {
               <Route
                 path="/products/all"
                 element={
-                  <AllProducts
-                    Products={Products}
-                    onDelete={handleDelete}
-                    Stock={Stock}
-                  />
+                  <AllProducts Products={Products} onDelete={handleDelete} />
                 }
               />
               <Route

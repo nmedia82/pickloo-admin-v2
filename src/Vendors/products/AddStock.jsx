@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // importing All Stock
 import AllStock from "./AllStock";
 // react-bootstrap Modalbox components
@@ -9,15 +9,30 @@ import Form from "react-bootstrap/Form";
 // importing alerts
 import { alert_error, alert_info } from "../../services/helpers";
 // importing saveStock API
-import { saveStock } from "../../services/modalService";
+import { getStocks, saveStock } from "../../services/modalService";
 import { get_store_code } from "../../services/auth";
 
-const AddStock = ({ Stock, onNewStock }) => {
+const AddStock = ({ barcode }) => {
   // States for react-bootstrap Modal
   const [show, setShow] = useState(false);
+  const [Stock, setStock] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    // Getting Stock
+    const loadStock = async () => {
+      let stock = await getStocks(barcode);
+      console.log(stock);
+      stock = stock.data.AllItems.Items;
+      setStock(stock);
+    };
+
+    if (show) {
+      loadStock();
+    }
+  }, [show, barcode]);
 
   // State for New Stock
   const [NewStock, setNewStock] = useState({
@@ -46,9 +61,11 @@ const AddStock = ({ Stock, onNewStock }) => {
         ...NewStock,
         store_code: get_store_code(),
       };
-      resp = await saveStock(stock);
+      resp = await saveStock(barcode, stock);
       if (resp.status === 200) {
         alert_info("Stock added..");
+        const stocks = [...Stock, resp.data];
+        setStock(stocks);
         // onNewStock(stock);
         // navigate("/products/all");
       } else {

@@ -8,7 +8,7 @@ import { __price } from "../../services/helpers";
 // importing icons
 import Icons from "../../components/Icons";
 
-const AllProducts = ({ Products, onDelete, Stock }) => {
+const AllProducts = ({ Products, onDelete }) => {
   return (
     <div className="container-fluid">
       <div className="row">
@@ -35,7 +35,7 @@ const AllProducts = ({ Products, onDelete, Stock }) => {
                     <td>{__price(product.price)}</td>
 
                     <td>
-                      <AddStock Stock={Stock} />
+                      <AddStock barcode={product.barcode} />
 
                       <Link
                         className="btn btn-sm btn-warning ms-1"

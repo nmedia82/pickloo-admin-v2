@@ -21,10 +21,17 @@ export function deleteProduct(barcode) {
   return httpService.delete(url);
 }
 // Adding Stock
-export function saveStock(barcode) {
+export function saveStock(barcode, stock) {
   const store_code = get_store_code();
   const url = `${config.uri}/product/store/${store_code}/${barcode}/stock`;
-  return httpService.post(url, barcode);
+  return httpService.post(url, stock);
+}
+
+// Getting Stock All
+export function getStocks(barcode) {
+  const store_code = get_store_code();
+  const url = `${config.uri}/product/store/${store_code}/${barcode}/stock`;
+  return httpService.get(url);
 }
 
 // Getting Stock
