@@ -28,6 +28,12 @@ export function getOrders() {
   return httpService.get(url);
 }
 
+// saving order
+export function createOrder(order) {
+  const url = `${config.uri}/order`;
+  return httpService.post(url, order);
+}
+
 // ============ Transporter ============
 // Getting Transporter
 export function getTransporters() {

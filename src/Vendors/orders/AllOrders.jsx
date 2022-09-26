@@ -2,7 +2,7 @@ import React from "react";
 // importing OrderModal component
 import OrderModal from "./OrderModal";
 // importin price fuction
-import { __price } from "../../services/helpers";
+import { __price, __todate } from "../../services/helpers";
 
 const AllOrders = ({ Orders }) => {
   return (
@@ -16,7 +16,7 @@ const AllOrders = ({ Orders }) => {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Total</th>
-                  <th scope="col">Service Charges</th>
+                  <th scope="col">Date</th>
                   <th scope="col">Discount</th>
                   <th scope="col">Grand Total</th>
                   <th scope="col">Status</th>
@@ -28,7 +28,7 @@ const AllOrders = ({ Orders }) => {
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
                     <td>{__price(order.total)}</td>
-                    <td>{order.service_charges}</td>
+                    <td>{__todate(order.order_date)}</td>
                     <td>{order.discount}</td>
                     <td>{__price(order.grand_total)}</td>
                     <td>

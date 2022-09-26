@@ -156,7 +156,7 @@ function App() {
           break;
         case "vendor":
           loadProducts();
-          // loadOrders();
+          loadOrders();
           break;
         default:
           break;
@@ -292,6 +292,16 @@ function App() {
     setCartCache(cart);
   };
 
+  const handleOrderPlaced = (order) => {
+    const orders = [...Orders, order];
+    // const store_code = get_store_code();
+    // clear the cart
+    // const cart = CartCache.filter((c) => c.store_code !== store_code);
+    setCartCache([]);
+
+    setOrders(orders);
+  };
+
   // returnig Template
   return (
     <div className="App">
@@ -387,6 +397,7 @@ function App() {
                     Cart={CartCache}
                     onAddToCart={handleAddToCart}
                     onCartUpdate={setCartCache}
+                    onOrderPlaced={handleOrderPlaced}
                   />
                 }
               />
